@@ -3,13 +3,6 @@ package Views;
 import Modelo.ConexionDB;
 import java.sql.Connection;
 
-
-import java.util.ArrayList;
-import java.util.Scanner;
-
-
-
-
 public class Prueba {
     
     public static void main(String[] args) {
