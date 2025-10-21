@@ -1,7 +1,6 @@
 
 package Views;
 
-import java.awt.Color;
 
 public class Prueba12 extends javax.swing.JPanel {
 
@@ -25,11 +24,11 @@ public class Prueba12 extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGap(0, 531, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -49,3 +48,11 @@ public class Prueba12 extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
+
+
+/*
+             /\_/\           ___
+            = o_o =_______    \ \
+             __^      __(  \.__) )
+         (@)<_____>__(_____)____/
+*/
