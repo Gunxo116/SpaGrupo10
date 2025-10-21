@@ -2,9 +2,9 @@
 package Views;
 
 
-public class Prueba12 extends javax.swing.JPanel {
+public class PrubaCopiarParamas extends javax.swing.JPanel {
 
-    public Prueba12() {
+    public PrubaCopiarParamas() {
         initComponents();
         
     }

@@ -1,10 +1,11 @@
 
 package Views.Principal;
 
-import Views.*;
 import Persistencia.EstadisticasData;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -18,8 +19,6 @@ public class PrincipalPanel extends javax.swing.JPanel {
     private JLabel lblInstalacionesActivas;
     private JLabel lblTratamientosActivos;
     private JLabel lblIngresosDelMes;
-    private JLabel lblFechaHora;
-    private Timer timer;
 
     public PrincipalPanel() {
         initComponents();
@@ -29,135 +28,188 @@ public class PrincipalPanel extends javax.swing.JPanel {
     // configurarDashboard //
     
     private void configurarDashboard() {
-        jPanel1.setLayout(new BorderLayout(5, 5));
-        jPanel1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        // Panel central con estadísticas (SIN panel superior)
+        
+        jPanel1.setLayout(new BorderLayout(10, 10));
+        jPanel1.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        jPanel1.setBackground(Color.WHITE);
         jPanel1.add(crearPanelEstadisticas(), BorderLayout.CENTER);
-
-        // Cargar estadísticas iniciales
         actualizarEstadisticas();
+        
     }
     
 
     private JPanel crearPanelEstadisticas() {
-        JPanel panelPrincipal = new JPanel(new BorderLayout(5, 5));
+        JPanel panelPrincipal = new JPanel(new BorderLayout(10, 10));
         panelPrincipal.setBackground(Color.WHITE);
 
+        JPanel panelTitulo = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        panelTitulo.setBackground(Color.WHITE);
+        
         JLabel lblTituloStats = new JLabel("Estadísticas Generales");
-        lblTituloStats.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        lblTituloStats.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
-        panelPrincipal.add(lblTituloStats, BorderLayout.NORTH);
+        lblTituloStats.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        lblTituloStats.setForeground(new Color(44, 62, 80));
+        panelTitulo.add(lblTituloStats);
+        
+        panelPrincipal.add(panelTitulo, BorderLayout.NORTH);
 
-        JPanel panelGrid = new JPanel(new GridLayout(2, 4, 10, 10));
+        JPanel panelGrid = new JPanel(new GridLayout(2, 4, 15, 15));
         panelGrid.setBackground(Color.WHITE);
+        panelGrid.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
-        // Usar los iconos que ya tienes
-        panelGrid.add(crearTarjetaEstadistica("Clientes", "0", new Color(52, 152, 219), "/img/icono-clientes.png"));
-        panelGrid.add(crearTarjetaEstadistica("Masajistas", "0", new Color(46, 204, 113), "/img/icono-consultorios.png"));
-        panelGrid.add(crearTarjetaEstadistica("Sesiones Hoy", "0", new Color(155, 89, 182), "/img/icono-masajistas.png"));
-        panelGrid.add(crearTarjetaEstadistica("Días Spa", "0", new Color(241, 196, 15), "/img/icono-diasspa.png"));
-        panelGrid.add(crearTarjetaEstadistica("Instalaciones", "0", new Color(230, 126, 34), "/img/icono-instalaciones.png"));
-        panelGrid.add(crearTarjetaEstadistica("Tratamientos", "0", new Color(231, 76, 60), "/img/icono-tratamientos.png"));
-        panelGrid.add(crearTarjetaEstadistica("Ingresos Mes", "$0.00", new Color(26, 188, 156), "/img/icono-reportes.png"));
-
-        JPanel btnActualizar = crearBotonActualizar();
-        panelGrid.add(btnActualizar);
+        panelGrid.add(crearTarjetaEstadistica("Clientes", "0", new Color(52, 152, 219), "/img/hd/iconohd-clientes.png"));
+        panelGrid.add(crearTarjetaEstadistica("Masajistas", "0", new Color(46, 204, 113), "/img/hd/iconohd-Masajistas.png"));
+        panelGrid.add(crearTarjetaEstadistica("Sesiones Hoy", "0", new Color(155, 89, 182), "/img/hd/iconohd-Sesiones.png"));
+        panelGrid.add(crearTarjetaEstadistica("Días Spa", "0", new Color(241, 196, 15), "/img/hd/iconohd-DiasSpa.png"));
+        panelGrid.add(crearTarjetaEstadistica("Instalaciones", "0", new Color(230, 126, 34), "/img/hd/iconohd-Instalaciones.png"));
+        panelGrid.add(crearTarjetaEstadistica("Tratamientos", "0", new Color(231, 76, 60), "/img/hd/iconohd-Tratamientos.png"));
+        panelGrid.add(crearTarjetaEstadistica("Ingresos Mes", "$0.00", new Color(26, 188, 156), "/img/hd/iconohd-Ingresos.png"));
+        panelGrid.add(crearBotonActualizar());
 
         panelPrincipal.add(panelGrid, BorderLayout.CENTER);
 
         return panelPrincipal;
     }
 
-    private JPanel crearTarjetaEstadistica(String titulo, String valor, Color color, String rutaIcono) {
-        JPanel tarjeta = new JPanel(new BorderLayout(3, 3));
-        tarjeta.setBackground(color);
-        tarjeta.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(color.darker(), 2, true),
-            BorderFactory.createEmptyBorder(8, 8, 8, 8)
-        ));
+    private JPanel crearTarjetaEstadistica(String titulo, String valor, Color colorBase, String rutaIcono) {
+        JPanel tarjeta = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Cargar el icono sin escalar (24x24 original)
+                g2.setColor(new Color(0, 0, 0, 20));
+                g2.fillRoundRect(2, 2, getWidth() - 4, getHeight() - 4, 25, 25);
+                GradientPaint gradient = new GradientPaint(
+                    0, 0, colorBase,
+                    0, getHeight(), colorBase.darker()
+                );
+                g2.setPaint(gradient);
+                g2.fillRoundRect(0, 0, getWidth() - 4, getHeight() - 4, 25, 25);
+                
+                g2.dispose();
+            }
+        };
+        
+        tarjeta.setLayout(new BorderLayout(5, 5));
+        tarjeta.setOpaque(false);
+        tarjeta.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
+        tarjeta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tarjeta.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tarjeta.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            }
+        });
+
+        JPanel panelIcono = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(new Color(255, 255, 255, 50));
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+                g2.dispose();
+            }
+        };
+        panelIcono.setOpaque(false);
+        panelIcono.setLayout(new GridBagLayout());
+        panelIcono.setPreferredSize(new Dimension(60, 60));
+
         JLabel lblIcono = new JLabel();
         try {
-            ImageIcon icono = new ImageIcon(getClass().getResource(rutaIcono));
-            lblIcono.setIcon(icono);
+            ImageIcon iconoOriginal = new ImageIcon(getClass().getResource(rutaIcono));
+            Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(36, 36, Image.SCALE_SMOOTH);
+            lblIcono.setIcon(new ImageIcon(imagenEscalada));
         } catch (Exception e) {
-            lblIcono.setText("▣");
-            lblIcono.setFont(new Font("Arial", Font.PLAIN, 24));
+            lblIcono.setText("◆");
+            lblIcono.setFont(new Font("Arial", Font.BOLD, 36));
             lblIcono.setForeground(Color.WHITE);
         }
-        lblIcono.setHorizontalAlignment(SwingConstants.CENTER);
-        lblIcono.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0)); // Espaciado extra
-
-        JPanel panelTexto = new JPanel(new GridLayout(2, 1, 0, 2));
-        panelTexto.setBackground(color);
+        panelIcono.add(lblIcono);
+        JPanel panelTexto = new JPanel();
+        panelTexto.setLayout(new BoxLayout(panelTexto, BoxLayout.Y_AXIS));
+        panelTexto.setOpaque(false);
+        panelTexto.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 
         JLabel lblTitulo = new JLabel(titulo);
-        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 10));
-        lblTitulo.setForeground(Color.WHITE);
-        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        lblTitulo.setForeground(new Color(255, 255, 255, 220));
+        lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel lblValor = new JLabel(valor);
-        lblValor.setFont(new Font("Segoe UI", Font.BOLD, 18));
+        lblValor.setFont(new Font("Segoe UI", Font.BOLD, 32));
         lblValor.setForeground(Color.WHITE);
-        lblValor.setHorizontalAlignment(SwingConstants.CENTER);
+        lblValor.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         switch(titulo) {
-            case "Clientes":
-                lblClientesActivos = lblValor;
-                break;
-            case "Masajistas":
-                lblMasajistasDisponibles = lblValor;
-                break;
-            case "Sesiones Hoy":
-                lblSesionesDelDia = lblValor;
-                break;
-            case "Días Spa":
-                lblDiasSpasPendientes = lblValor;
-                break;
-            case "Instalaciones":
-                lblInstalacionesActivas = lblValor;
-                break;
-            case "Tratamientos":
-                lblTratamientosActivos = lblValor;
-                break;
-            case "Ingresos Mes":
-                lblIngresosDelMes = lblValor;
-                break;
+            case "Clientes": lblClientesActivos = lblValor; break;
+            case "Masajistas": lblMasajistasDisponibles = lblValor; break;
+            case "Sesiones Hoy": lblSesionesDelDia = lblValor; break;
+            case "Días Spa": lblDiasSpasPendientes = lblValor; break;
+            case "Instalaciones": lblInstalacionesActivas = lblValor; break;
+            case "Tratamientos": lblTratamientosActivos = lblValor; break;
+            case "Ingresos Mes": lblIngresosDelMes = lblValor; break;
         }
 
         panelTexto.add(lblTitulo);
+        panelTexto.add(Box.createVerticalStrut(5));
         panelTexto.add(lblValor);
 
-        tarjeta.add(lblIcono, BorderLayout.NORTH);
+        tarjeta.add(panelIcono, BorderLayout.NORTH);
         tarjeta.add(panelTexto, BorderLayout.CENTER);
 
         return tarjeta;
     }
 
     private JPanel crearBotonActualizar() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(new Color(52, 152, 219));
-        panel.setBorder(BorderFactory.createLineBorder(new Color(189, 195, 199), 2, true));
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(new Color(0, 0, 0, 20));
+                g2.fillRoundRect(2, 2, getWidth() - 4, getHeight() - 4, 25, 25);
+                GradientPaint gradient = new GradientPaint(
+                    0, 0, new Color(52, 152, 219),
+                    0, getHeight(), new Color(41, 128, 185)
+                );
+                g2.setPaint(gradient);
+                g2.fillRoundRect(0, 0, getWidth() - 4, getHeight() - 4, 25, 25);
+                g2.dispose();
+            }
+        };
+        
+        panel.setLayout(new GridBagLayout());
+        panel.setOpaque(false);
 
         JButton btnActualizar = new JButton();
-
+        
         try {
-            ImageIcon icono = new ImageIcon(getClass().getResource("/img/icono-recargar.png"));
-            btnActualizar.setIcon(icono);
+            ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/img/hd/iconohd-Actualizar.png"));
+            Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(48, 48, Image.SCALE_SMOOTH);
+            btnActualizar.setIcon(new ImageIcon(imagenEscalada));
         } catch (Exception e) {
             btnActualizar.setText("↻");
-            btnActualizar.setFont(new Font("Arial", Font.BOLD, 32));
+            btnActualizar.setFont(new Font("Arial", Font.BOLD, 48));
         }
 
-        btnActualizar.setBackground(new Color(52, 152, 219));
         btnActualizar.setForeground(Color.WHITE);
+        btnActualizar.setContentAreaFilled(false);
         btnActualizar.setFocusPainted(false);
         btnActualizar.setBorderPainted(false);
         btnActualizar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnActualizar.setPreferredSize(new Dimension(60, 60));
         btnActualizar.setToolTipText("Actualizar estadísticas");
+        
+        // Efecto hover
+        btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panel.setBackground(new Color(52, 152, 219).brighter());
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                panel.setBackground(new Color(52, 152, 219));
+            }
+        });
 
         btnActualizar.addActionListener(e -> actualizarEstadisticas());
 

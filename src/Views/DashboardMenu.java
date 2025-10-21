@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Views;
 
 import Views.Principal.PrincipalPanel;
-import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Insets;
-import java.time.DayOfWeek;
+import java.awt.Font;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 
 public class DashboardMenu extends javax.swing.JFrame {
 
@@ -28,13 +20,16 @@ public class DashboardMenu extends javax.swing.JFrame {
     }
     
     private void InitStyles() {
-        navText.putClientProperty("FlatLaf.style", "font: bold $h3.regular.font");
-        navText.setForeground(Color.white);
-        dateText.putClientProperty("FlatLaf.style", "font: 24 $light.font");
-        dateText.setForeground(Color.white);
-        appName.putClientProperty("FlatLaf.style", "font: bold $h1.regular.font");
-        appName.setForeground(Color.white);
-        appName1.setForeground(Color.white);
+        navText.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        navText.setForeground(Color.WHITE);
+
+        dateText.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        dateText.setForeground(Color.WHITE);
+        
+        appName.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        appName.setForeground(Color.WHITE);
+        
+        appName1.setForeground(Color.WHITE);
     }
     
     private void SetDate() {
@@ -77,9 +72,9 @@ public class DashboardMenu extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         navText = new javax.swing.JLabel();
         dateText = new javax.swing.JLabel();
+        appName1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        appName1 = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -267,21 +262,21 @@ public class DashboardMenu extends javax.swing.JFrame {
 
         navText.setFont(new java.awt.Font("Roboto SemiCondensed Light", 1, 24)); // NOI18N
         navText.setText("Dashboard Menu");
-        header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 6, 190, 33));
+        header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 190, 33));
 
         dateText.setText("Hoy es {dayname} {day} de {month} de {year}");
         header.add(dateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 180, 35));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoMenu.png"))); // NOI18N
-        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 6, -1, -1));
-
-        jSeparator1.setPreferredSize(new java.awt.Dimension(50, 5));
-        header.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 190, 20));
 
         appName1.setFont(new java.awt.Font("Roboto Condensed", 1, 20)); // NOI18N
         appName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         appName1.setText("“Entre Dedos” ");
         header.add(appName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, 34));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoMenu.png"))); // NOI18N
+        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -130, -1, -1));
+
+        jSeparator1.setPreferredSize(new java.awt.Dimension(50, 5));
+        header.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 190, 20));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
         content.setLayout(new java.awt.BorderLayout());
@@ -325,19 +320,19 @@ public class DashboardMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_prinActionPerformed
 
     private void btn_ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClientesActionPerformed
-        ShowJPanel(new Prueba12());
+        ShowJPanel(new PrubaCopiarParamas());
     }//GEN-LAST:event_btn_ClientesActionPerformed
 
     private void btn_MasajistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MasajistasActionPerformed
-        ShowJPanel(new Prueba12());
+        ShowJPanel(new PrubaCopiarParamas());
     }//GEN-LAST:event_btn_MasajistasActionPerformed
 
     private void btn_TratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TratamientosActionPerformed
-        ShowJPanel(new Prueba12());
+        ShowJPanel(new PrubaCopiarParamas());
     }//GEN-LAST:event_btn_TratamientosActionPerformed
 
     private void btn_InstalacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InstalacionesActionPerformed
-        ShowJPanel(new Prueba12());
+        ShowJPanel(new PrubaCopiarParamas());
     }//GEN-LAST:event_btn_InstalacionesActionPerformed
 
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
@@ -355,15 +350,15 @@ public class DashboardMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SalirActionPerformed
 
     private void btn_DiasSpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DiasSpaActionPerformed
-        ShowJPanel(new Prueba12());
+        ShowJPanel(new PrubaCopiarParamas());
     }//GEN-LAST:event_btn_DiasSpaActionPerformed
 
     private void btn_SesionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SesionesActionPerformed
-        ShowJPanel(new Prueba12());
+        ShowJPanel(new PrubaCopiarParamas());
     }//GEN-LAST:event_btn_SesionesActionPerformed
 
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
-        ShowJPanel(new Prueba12());
+        ShowJPanel(new PrubaCopiarParamas());
     }//GEN-LAST:event_btn_ReportesActionPerformed
     
     
