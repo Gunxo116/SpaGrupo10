@@ -1,6 +1,13 @@
 package Views;
 
+import Views.Clientes.ClientesPanel;
+import Views.DiasSpa.DiasSpaPanel;
+import Views.Instalaciones.InstalacionesPanel;
+import Views.Masajistas.MasajistasPanel;
 import Views.Principal.PrincipalPanel;
+import Views.Reportes.ReportesPanel;
+import Views.Sesiones.SesionesPanel;
+import Views.Tratamientos.TratamientosPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -23,7 +30,7 @@ public class DashboardMenu extends javax.swing.JFrame {
         navText.setFont(new Font("Segoe UI", Font.BOLD, 20));
         navText.setForeground(Color.WHITE);
 
-        dateText.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        dateText.setFont(new Font("Segoe UI", Font.BOLD, 13));
         dateText.setForeground(Color.WHITE);
         
         appName.setFont(new Font("Segoe UI", Font.BOLD, 20));
@@ -265,7 +272,7 @@ public class DashboardMenu extends javax.swing.JFrame {
         header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 190, 33));
 
         dateText.setText("Hoy es {dayname} {day} de {month} de {year}");
-        header.add(dateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 180, 35));
+        header.add(dateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 190, 35));
 
         appName1.setFont(new java.awt.Font("Roboto Condensed", 1, 20)); // NOI18N
         appName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -320,19 +327,19 @@ public class DashboardMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_prinActionPerformed
 
     private void btn_ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClientesActionPerformed
-        ShowJPanel(new PrubaCopiarParamas());
+        ShowJPanel(new ClientesPanel());
     }//GEN-LAST:event_btn_ClientesActionPerformed
 
     private void btn_MasajistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MasajistasActionPerformed
-        ShowJPanel(new PrubaCopiarParamas());
+        ShowJPanel(new MasajistasPanel());
     }//GEN-LAST:event_btn_MasajistasActionPerformed
 
     private void btn_TratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TratamientosActionPerformed
-        ShowJPanel(new PrubaCopiarParamas());
+        ShowJPanel(new TratamientosPanel());
     }//GEN-LAST:event_btn_TratamientosActionPerformed
 
     private void btn_InstalacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InstalacionesActionPerformed
-        ShowJPanel(new PrubaCopiarParamas());
+        ShowJPanel(new InstalacionesPanel());
     }//GEN-LAST:event_btn_InstalacionesActionPerformed
 
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
@@ -350,21 +357,20 @@ public class DashboardMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_SalirActionPerformed
 
     private void btn_DiasSpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DiasSpaActionPerformed
-        ShowJPanel(new PrubaCopiarParamas());
+        ShowJPanel(new DiasSpaPanel());
     }//GEN-LAST:event_btn_DiasSpaActionPerformed
 
     private void btn_SesionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SesionesActionPerformed
-        ShowJPanel(new PrubaCopiarParamas());
+        ShowJPanel(new SesionesPanel());
     }//GEN-LAST:event_btn_SesionesActionPerformed
 
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
-        ShowJPanel(new PrubaCopiarParamas());
+        ShowJPanel(new ReportesPanel());
     }//GEN-LAST:event_btn_ReportesActionPerformed
     
     
     
     public static void main(String args[]) {
-        
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
