@@ -17,42 +17,42 @@ import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class DashboardMenu extends javax.swing.JFrame {
+public class DashboardMenu extends javax.swing.JFrame{
 
-    public DashboardMenu() {
+    public DashboardMenu(){
         initComponents();
         InitStyles();
         SetDate();
         InitContent();
     }
-    
-    private void InitStyles() {
+
+    private void InitStyles(){
         navText.setFont(new Font("Segoe UI", Font.BOLD, 20));
         navText.setForeground(Color.WHITE);
 
         dateText.setFont(new Font("Segoe UI", Font.BOLD, 13));
         dateText.setForeground(Color.WHITE);
-        
+
         appName.setFont(new Font("Segoe UI", Font.BOLD, 20));
         appName.setForeground(Color.WHITE);
-        
+
         appName1.setForeground(Color.WHITE);
     }
-    
-    private void SetDate() {
+
+    private void SetDate(){
         LocalDate now = LocalDate.now();
         Locale spanishLocale = new Locale("es", "ES");
         dateText.setText(now.format(DateTimeFormatter.ofPattern("EEEE dd 'de' MMMM 'de' yyyy", spanishLocale)));
     }
-    
-    private void InitContent() {
+
+    private void InitContent(){
         ShowJPanel(new PrincipalPanel());
     }
-    
-    public static void ShowJPanel(JPanel p) {
+
+    public static void ShowJPanel(JPanel p){
         p.setSize(760, 516);
-        p.setLocation(0,0);
-        
+        p.setLocation(0, 0);
+
         content.removeAll();
         content.add(p, BorderLayout.CENTER);
         content.revalidate();
@@ -286,7 +286,17 @@ public class DashboardMenu extends javax.swing.JFrame {
         header.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 190, 20));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
-        content.setLayout(new java.awt.BorderLayout());
+
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 760, Short.MAX_VALUE)
+        );
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 516, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -295,27 +305,27 @@ public class DashboardMenu extends javax.swing.JFrame {
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
-                    .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+            .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -345,15 +355,17 @@ public class DashboardMenu extends javax.swing.JFrame {
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
 
         int confirma = JOptionPane.showConfirmDialog(
-            this, 
-            "¿Está seguro que desea salir de la aplicación?",
-            "Confirmar salida", 
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE
+          this,
+          "¿Está seguro que desea salir de la aplicación?",
+          "Confirmar salida",
+          JOptionPane.YES_NO_OPTION,
+          JOptionPane.QUESTION_MESSAGE
         );
 
-        if (confirma == JOptionPane.YES_OPTION) { System.exit(0);}
-        
+        if( confirma == JOptionPane.YES_OPTION ){
+            System.exit(0);
+        }
+
     }//GEN-LAST:event_btn_SalirActionPerformed
 
     private void btn_DiasSpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DiasSpaActionPerformed
@@ -367,17 +379,15 @@ public class DashboardMenu extends javax.swing.JFrame {
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
         ShowJPanel(new ReportesPanel());
     }//GEN-LAST:event_btn_ReportesActionPerformed
-    
-    
-    
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+
+    public static void main(String args[]){
+
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
                 new DashboardMenu().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -409,4 +419,4 @@ public class DashboardMenu extends javax.swing.JFrame {
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-*/
+ */

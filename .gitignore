@@ -10,6 +10,7 @@
 *.jar
 # Excepción: permitir JARs de librerías
 !lib/*.jar
+!lib/absolutelayout/*.jar
 *.war
 *.nar
 *.ear
@@ -20,3 +21,4 @@
 hs_err_pid*
 replay_pid*
 /build/
+/dist/
