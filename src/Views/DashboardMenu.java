@@ -8,6 +8,7 @@ import Views.Principal.PrincipalPanel;
 import Views.Reportes.ReportesPanel;
 import Views.Sesiones.SesionesPanel;
 import Views.Tratamientos.TratamientosPanel;
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -16,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 public class DashboardMenu extends javax.swing.JFrame{
 
@@ -381,6 +383,19 @@ public class DashboardMenu extends javax.swing.JFrame{
     }//GEN-LAST:event_btn_ReportesActionPerformed
 
     public static void main(String args[]){
+        configurarTemaYEstilosGlobales();
+        // CONFIGURAR FLATLAF ANTES DE CREAR CUALQUIER VENTANA
+        try{
+            // Opción 1: Tema claro
+            UIManager.setLookAndFeel(new FlatIntelliJLaf());
+
+            // Opción 2: Tema oscuro
+            // UIManager.setLookAndFeel(new FlatDarkLaf());
+            // Opción 3: Tema Dracula (muy popular)
+            // UIManager.setLookAndFeel(new FlatDraculaIJTheme());
+        } catch( Exception e ){
+            System.err.println("Error al aplicar FlatLaf: " + e.getMessage());
+        }
 
         java.awt.EventQueue.invokeLater(new Runnable(){
             public void run(){
@@ -388,6 +403,44 @@ public class DashboardMenu extends javax.swing.JFrame{
             }
         });
 
+    }
+
+    private static void configurarTemaYEstilosGlobales(){
+        try{
+            // Aplicar tema
+            UIManager.setLookAndFeel(new FlatIntelliJLaf());
+
+            // CONFIGURACIÓN GLOBAL DE BORDES REDONDEADOS
+            UIManager.put("Panel.arc", 20);              // Paneles redondeados
+            UIManager.put("Button.arc", 15);             // Botones redondeados
+            UIManager.put("Component.arc", 15);          // Componentes generales
+            UIManager.put("TextComponent.arc", 10);      // Campos de texto base
+
+            // INPUTS con bordes redondeados
+            UIManager.put("TextField.arc", 10);          // Campos de texto
+            UIManager.put("FormattedTextField.arc", 10); // Campos formateados
+            UIManager.put("PasswordField.arc", 10);      // Campos de contraseña
+            UIManager.put("TextArea.arc", 10);           // Áreas de texto
+            UIManager.put("EditorPane.arc", 10);         // Editor de texto
+            UIManager.put("TextPane.arc", 10);           // Panel de texto
+            UIManager.put("Spinner.arc", 10);            // Spinners
+
+            UIManager.put("CheckBox.arc", 5);            // CheckBoxes
+            UIManager.put("ComboBox.arc", 10);           // ComboBoxes
+            UIManager.put("ProgressBar.arc", 10);        // ProgressBars
+            UIManager.put("TabbedPane.tabArc", 10);      // Pestañas
+            UIManager.put("ScrollBar.thumbArc", 999);    // ScrollBars (muy redondeados)
+
+            // Configuraciones adicionales
+            UIManager.put("Table.showHorizontalLines", true);
+            UIManager.put("Table.rowHeight", 25);
+            UIManager.put("ScrollBar.thumbInsets", new java.awt.Insets(2, 2, 2, 2));
+
+            System.out.println("✓ Estilos globales aplicados");
+
+        } catch( Exception e ){
+            System.err.println("Error al configurar estilos: " + e.getMessage());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
