@@ -4,34 +4,34 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class RolSelectionDialog extends JDialog {
+public class RolSelectionDialog extends JDialog{
 
     private boolean isAdmin = false;
     private boolean selectionMade = false;
 
-    public RolSelectionDialog(Frame parent) {
+    public RolSelectionDialog(Frame parent){
         super(parent, "Seleccionar Rol", true);
         initComponents();
     }
 
-    private void initComponents() {
+    private void initComponents(){
         setSize(600, 480);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter(){
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(WindowEvent e){
                 selectionMade = false;
                 dispose();
             }
         });
 
         // Panel principal con gradiente
-        JPanel mainPanel = new JPanel() {
+        JPanel mainPanel = new JPanel(){
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g){
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
                 g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
@@ -52,11 +52,11 @@ public class RolSelectionDialog extends JDialog {
 
         // Logo
         JLabel logoLabel = new JLabel();
-        try {
+        try{
             ImageIcon logoIcon = new ImageIcon(getClass().getResource("/img/LogoCompleto.png"));
             Image img = logoIcon.getImage().getScaledInstance(140, 140, Image.SCALE_SMOOTH);
             logoLabel.setIcon(new ImageIcon(img));
-        } catch (Exception e) {
+        } catch( Exception e ){
             logoLabel.setText("SPA ENTRE DEDOS");
             logoLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
             logoLabel.setForeground(new Color(33, 33, 33));
@@ -88,14 +88,14 @@ public class RolSelectionDialog extends JDialog {
 
         // Botón Cliente
         JPanel btnCliente = createModernRoleCard(
-                "CLIENTE",
-                "Gestión de turnos y servicios",
-                "/img/hd/iconohd-Clientes.png",
-                new Color(76, 175, 80)
+          "CLIENTE",
+          "Gestión de turnos y servicios",
+          "/img/hd/iconohd-Clientes.png",
+          new Color(76, 175, 80)
         );
-        btnCliente.addMouseListener(new MouseAdapter() {
+        btnCliente.addMouseListener(new MouseAdapter(){
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e){
                 isAdmin = false;
                 selectionMade = true;
                 dispose();
@@ -104,14 +104,14 @@ public class RolSelectionDialog extends JDialog {
 
         // Botón Administrador
         JPanel btnAdmin = createModernRoleCard(
-                "ADMINISTRADOR",
-                "Control total del sistema",
-                "/img/hd/iconohd-Instalaciones.png",
-                new Color(33, 150, 243)
+          "ADMINISTRADOR",
+          "Control total del sistema",
+          "/img/hd/iconohd-Instalaciones.png",
+          new Color(33, 150, 243)
         );
-        btnAdmin.addMouseListener(new MouseAdapter() {
+        btnAdmin.addMouseListener(new MouseAdapter(){
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e){
                 isAdmin = true;
                 selectionMade = true;
                 dispose();
@@ -135,57 +135,57 @@ public class RolSelectionDialog extends JDialog {
         add(mainPanel);
     }
 
-    private JPanel createModernRoleCard(String title, String description, String iconPath, Color accentColor) {
+    private JPanel createModernRoleCard(String title, String description, String iconPath, Color accentColor){
         // Panel principal con bordes redondeados y tamaño fijo más compacto
-        JPanel card = new JPanel() {
+        JPanel card = new JPanel(){
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g){
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                
+
                 // Fondo con color del acento
                 g2d.setColor(accentColor);
                 g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
-                
+
                 // Borde más oscuro
                 g2d.setColor(accentColor.darker());
                 g2d.setStroke(new BasicStroke(2));
                 g2d.drawRoundRect(1, 1, getWidth() - 3, getHeight() - 3, 15, 15);
             }
-            
+
             @Override
-            public Dimension getPreferredSize() {
+            public Dimension getPreferredSize(){
                 return new Dimension(220, 120);
             }
         };
         card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
         card.setOpaque(false);
         card.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
+
         // Panel de contenido con padding reducido
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setOpaque(false);
         contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        
+
         // Espaciador superior
         Component topSpacer = Box.createVerticalGlue();
-        
+
         // Icono
         JLabel iconLabel = new JLabel();
-        try {
+        try{
             ImageIcon icon = new ImageIcon(getClass().getResource(iconPath));
             Image img = icon.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
             iconLabel.setIcon(new ImageIcon(img));
-        } catch (Exception e) {
+        } catch( Exception e ){
             System.err.println("No se pudo cargar el icono: " + iconPath);
         }
         iconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
+
         // Espacio después del icono
         Component iconSpacer = Box.createRigidArea(new Dimension(0, 10));
-        
+
         // Título - BLANCO para contraste con fondo de color
         JLabel titleLabel = new JLabel(title);
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 17));
@@ -194,36 +194,36 @@ public class RolSelectionDialog extends JDialog {
 
         // Espaciador inferior
         Component bottomSpacer = Box.createVerticalGlue();
-        
+
         // Añadir componentes al panel de contenido
         contentPanel.add(topSpacer);
         contentPanel.add(iconLabel);
         contentPanel.add(iconSpacer);
         contentPanel.add(titleLabel);
         contentPanel.add(bottomSpacer);
-        
+
         // Añadir componentes al card
         card.add(contentPanel);
 
         // Efecto hover
-        card.addMouseListener(new MouseAdapter() {
+        card.addMouseListener(new MouseAdapter(){
             @Override
-            public void mouseEntered(MouseEvent e) {
+            public void mouseEntered(MouseEvent e){
                 card.repaint();
             }
 
             @Override
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(MouseEvent e){
                 card.repaint();
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(MouseEvent e){
                 // Efecto de presión - mover ligeramente
             }
 
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseReleased(MouseEvent e){
                 // Volver a posición normal
             }
         });
@@ -231,11 +231,11 @@ public class RolSelectionDialog extends JDialog {
         return card;
     }
 
-    public boolean isAdmin() {
+    public boolean isAdmin(){
         return isAdmin;
     }
 
-    public boolean isSelectionMade() {
+    public boolean isSelectionMade(){
         return selectionMade;
     }
 }
