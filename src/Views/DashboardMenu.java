@@ -469,7 +469,8 @@ public class DashboardMenu extends javax.swing.JFrame{
             UIManager.put("CheckBox.arc", 5);            // CheckBoxes
             UIManager.put("ComboBox.arc", 10);           // ComboBoxes
             UIManager.put("ProgressBar.arc", 10);        // ProgressBars
-            UIManager.put("TabbedPane.tabArc", 10);      // Pestañas
+            UIManager.put("TabbedPane.tabArc", 10);
+            UIManager.put("TabbedPane.underlineColor", new Color(76, 175, 80)); // Pestañas
             UIManager.put("ScrollBar.thumbArc", 999);    // ScrollBars (muy redondeados)
 
             // Configuraciones adicionales
