@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Views/Prueba.java</file>
             <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/nbproject/project.properties</file>
             <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/.gitignore</file>
@@ -21,6 +22,14 @@
             <file>file:/C:/Users/Gunxo/Documents/NetBeansProjects/SpaGrupo10/src/Views/Prueba12.java</file>
             <file>file:/C:/Users/Gunxo/Documents/NetBeansProjects/SpaGrupo10/src/Views/Prueba121.java</file>
 >>>>>>> a155fa7c34b61af7ccf1ae899df05a17b2f99ec6
+=======
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Views/DashboardMenu.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Modelo/Cliente.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Persistencia/ClienteData.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Persistencia/InstalacionData.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Views/Clientes/ClientesPanel.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Views/DiasSpa/DiasSpaPanel.java</file>
+>>>>>>> pruebaMenuIzquierda
         </group>
     </open-files>
 </project-private>
