@@ -122,7 +122,7 @@ public class RolSelectionDialog extends JDialog {
         buttonsPanel.add(btnAdmin);
 
         // Footer
-        JLabel footerLabel = new JLabel("© 2025 Spa Entre Dedos - Todos los derechos reservados");
+        JLabel footerLabel = new JLabel("© 2025 Spa Entre Dedos - Grupo10 - Todos los derechos reservados");
         footerLabel.setFont(new Font("Segoe UI", Font.PLAIN, 10));
         footerLabel.setForeground(new Color(158, 158, 158));
         footerLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -179,7 +179,6 @@ public class RolSelectionDialog extends JDialog {
             Image img = icon.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH);
             iconLabel.setIcon(new ImageIcon(img));
         } catch (Exception e) {
-            // Si no se encuentra el icono, no mostrar nada
             System.err.println("No se pudo cargar el icono: " + iconPath);
         }
         iconLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -193,21 +192,6 @@ public class RolSelectionDialog extends JDialog {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         titleLabel.setForeground(Color.WHITE);
 
-        // Espacio entre título y descripción
-        Component midSpacer = Box.createRigidArea(new Dimension(0, 6));
-
-        // Descripción - BLANCO para contraste con fondo de color
-        JTextArea descArea = new JTextArea(description);
-        descArea.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-        descArea.setForeground(new Color(255, 255, 255, 220)); // Blanco semi-transparente
-        descArea.setBackground(new Color(0, 0, 0, 0)); // Transparente
-        descArea.setEditable(false);
-        descArea.setFocusable(false);
-        descArea.setWrapStyleWord(true);
-        descArea.setLineWrap(true);
-        descArea.setAlignmentX(Component.CENTER_ALIGNMENT);
-        descArea.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
-        
         // Espaciador inferior
         Component bottomSpacer = Box.createVerticalGlue();
         
@@ -216,8 +200,6 @@ public class RolSelectionDialog extends JDialog {
         contentPanel.add(iconLabel);
         contentPanel.add(iconSpacer);
         contentPanel.add(titleLabel);
-        contentPanel.add(midSpacer);
-        contentPanel.add(descArea);
         contentPanel.add(bottomSpacer);
         
         // Añadir componentes al card
