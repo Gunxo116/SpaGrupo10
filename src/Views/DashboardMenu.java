@@ -21,7 +21,10 @@ import javax.swing.UIManager;
 
 public class DashboardMenu extends javax.swing.JFrame{
 
-    public DashboardMenu(){
+    private boolean isAdmin = false;
+
+    public DashboardMenu(boolean isAdmin){
+        this.isAdmin = isAdmin;
         initComponents();
         InitStyles();
         SetDate();
@@ -39,6 +42,41 @@ public class DashboardMenu extends javax.swing.JFrame{
         appName.setForeground(Color.WHITE);
 
         appName1.setForeground(Color.WHITE);
+
+        // NUEVO: Ocultar/mostrar botones según el rol
+        if( !isAdmin ){
+            // Si es cliente, ocultar todos excepto Principal, Días de Spa y Sesiones
+            btn_Clientes.setVisible(false);
+            btn_Masajistas.setVisible(false);
+            btn_Tratamientos.setVisible(false);
+            btn_Instalaciones.setVisible(false);
+            btn_Reportes.setVisible(false);
+
+            // Remover todos los botones del panel
+            menu.remove(btn_Clientes);
+            menu.remove(btn_Masajistas);
+            menu.remove(btn_Tratamientos);
+            menu.remove(btn_Instalaciones);
+            menu.remove(btn_Reportes);
+
+            // Reposicionar botones visibles sin espacios
+            menu.remove(btn_prin);
+            menu.remove(btn_DiasSpa);
+            menu.remove(btn_Sesiones);
+
+            menu.add(btn_prin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 270, 52));
+            menu.add(btn_DiasSpa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 192, 270, 52));
+            menu.add(btn_Sesiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 244, 270, 52));
+
+            // Actualizar el panel
+            menu.revalidate();
+            menu.repaint();
+
+            // Actualizar texto del título
+            navText.setText("Panel de Cliente");
+        } else{
+            navText.setText("Panel de Administrador");
+        }
     }
 
     private void SetDate(){
@@ -384,25 +422,28 @@ public class DashboardMenu extends javax.swing.JFrame{
 
     public static void main(String args[]){
         configurarTemaYEstilosGlobales();
-        // CONFIGURAR FLATLAF ANTES DE CREAR CUALQUIER VENTANA
-        try{
-            // Opción 1: Tema claro
-            UIManager.setLookAndFeel(new FlatIntelliJLaf());
 
-            // Opción 2: Tema oscuro
-            // UIManager.setLookAndFeel(new FlatDarkLaf());
-            // Opción 3: Tema Dracula (muy popular)
-            // UIManager.setLookAndFeel(new FlatDraculaIJTheme());
+        try{
+            UIManager.setLookAndFeel(new FlatIntelliJLaf());
         } catch( Exception e ){
             System.err.println("Error al aplicar FlatLaf: " + e.getMessage());
         }
 
         java.awt.EventQueue.invokeLater(new Runnable(){
             public void run(){
-                new DashboardMenu().setVisible(true);
+                // NUEVO: Mostrar diálogo de selección de rol
+                RolSelectionDialog dialog = new RolSelectionDialog(null);
+                dialog.setVisible(true);
+
+                // Si el usuario hizo una selección, abrir el dashboard
+                if( dialog.isSelectionMade() ){
+                    new DashboardMenu(dialog.isAdmin()).setVisible(true);
+                } else{
+                    // Si cerró sin seleccionar, salir de la aplicación
+                    System.exit(0);
+                }
             }
         });
-
     }
 
     private static void configurarTemaYEstilosGlobales(){
