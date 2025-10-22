@@ -20,6 +20,8 @@ public class ClientesPanel extends javax.swing.JPanel{
         cargarCombo();
         cargarCombo2();
         jTable1.setModel(modelo);
+        
+        // ELEGIR TAMAÑO DE CADA COLUMNA DE LA TABLA 
         int[] anchos = {50, 100, 200, 100, 45, 150, 60};
         for (int i = 0; i < anchos.length; i++) {
             jTable1.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
