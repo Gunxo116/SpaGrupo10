@@ -12,7 +12,7 @@ public class ClientesPanel extends javax.swing.JPanel{
     private int filaSeleccionadaParaEdicion = -1;
 
     private DefaultTableModel modelo = new DefaultTableModel(
-      new String[]{"Id", "Dni", "Nombre completo", "telefono", "Edad", "Afecciones", "Estado"}, 0
+      new String[]{"ID", "Dni", "Nombre completo", "telefono", "Edad", "Afecciones", "Estado"}, 0
     );
 
     public ClientesPanel(){
@@ -20,6 +20,11 @@ public class ClientesPanel extends javax.swing.JPanel{
         cargarCombo();
         cargarCombo2();
         jTable1.setModel(modelo);
+        int[] anchos = {50, 100, 200, 100, 45, 150, 60};
+        for (int i = 0; i < anchos.length; i++) {
+            jTable1.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+        }
+        
         limpiarTabla();
 
         // Función para que al hacer click sobre un alumno se cargue la información en el formulario de edición
@@ -324,6 +329,9 @@ public class ClientesPanel extends javax.swing.JPanel{
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
