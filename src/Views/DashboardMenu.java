@@ -7,14 +7,11 @@ import Views.Masajistas.MasajistasPanel;
 import Views.Principal.PrincipalPanel;
 import Views.Reportes.ReportesPanel;
 import Views.Sesiones.SesionesPanel;
-import Views.Tratamientos.TratamientosPanel;
+import Views.Tratamientos.TratamientoPanel;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -27,7 +24,6 @@ public class DashboardMenu extends javax.swing.JFrame{
         this.isAdmin = isAdmin;
         initComponents();
         InitStyles();
-        SetDate();
         InitContent();
     }
 
@@ -35,30 +31,29 @@ public class DashboardMenu extends javax.swing.JFrame{
         navText.setFont(new Font("Segoe UI", Font.BOLD, 20));
         navText.setForeground(Color.WHITE);
 
-        dateText.setFont(new Font("Segoe UI", Font.BOLD, 13));
-        dateText.setForeground(Color.WHITE);
-
         appName.setFont(new Font("Segoe UI", Font.BOLD, 20));
         appName.setForeground(Color.WHITE);
 
         appName1.setForeground(Color.WHITE);
+        
+        header.remove(navText);
+        header.remove(appName1);
 
-        // NUEVO: Ocultar/mostrar botones según el rol
+        // Ocultar/mostrar botones segun el rol
         if( !isAdmin ){
+            
             // Si es cliente, ocultar todos excepto Principal, Días de Spa y Sesiones
             btn_Clientes.setVisible(false);
             btn_Masajistas.setVisible(false);
             btn_Tratamientos.setVisible(false);
             btn_Instalaciones.setVisible(false);
             btn_Reportes.setVisible(false);
-
-            // Remover todos los botones del panel
+            // Quitar lo otro
             menu.remove(btn_Clientes);
             menu.remove(btn_Masajistas);
             menu.remove(btn_Tratamientos);
             menu.remove(btn_Instalaciones);
             menu.remove(btn_Reportes);
-
             // Reposicionar botones visibles sin espacios
             menu.remove(btn_prin);
             menu.remove(btn_DiasSpa);
@@ -71,19 +66,23 @@ public class DashboardMenu extends javax.swing.JFrame{
             // Actualizar el panel
             menu.revalidate();
             menu.repaint();
-
-            // Actualizar texto del título
+            
             navText.setText("Panel de Cliente");
+
+            header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 220, 33));
+            header.add(appName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 38, -1, 34));
+
         } else{
             navText.setText("Panel de Administrador");
+
+            header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 280, 33));
+            header.add(appName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 38, -1, 45));
         }
+        
+        header.revalidate();
+        header.repaint();
     }
 
-    private void SetDate(){
-        LocalDate now = LocalDate.now();
-        Locale spanishLocale = new Locale("es", "ES");
-        dateText.setText(now.format(DateTimeFormatter.ofPattern("EEEE dd 'de' MMMM 'de' yyyy", spanishLocale)));
-    }
 
     private void InitContent(){
         ShowJPanel(new PrincipalPanel());
@@ -118,7 +117,6 @@ public class DashboardMenu extends javax.swing.JFrame{
         jSeparator2 = new javax.swing.JSeparator();
         header = new javax.swing.JPanel();
         navText = new javax.swing.JLabel();
-        dateText = new javax.swing.JLabel();
         appName1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -309,21 +307,18 @@ public class DashboardMenu extends javax.swing.JFrame{
 
         navText.setFont(new java.awt.Font("Roboto SemiCondensed Light", 1, 24)); // NOI18N
         navText.setText("Dashboard Menu");
-        header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 190, 33));
-
-        dateText.setText("Hoy es {dayname} {day} de {month} de {year}");
-        header.add(dateText, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 190, 35));
+        header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 230, 33));
 
         appName1.setFont(new java.awt.Font("Roboto Condensed", 1, 20)); // NOI18N
         appName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         appName1.setText("“Entre Dedos” ");
-        header.add(appName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, 34));
+        header.add(appName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, 34));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoMenu.png"))); // NOI18N
         header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -130, -1, -1));
 
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 5));
-        header.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 190, 20));
+        header.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 190, 20));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -385,7 +380,7 @@ public class DashboardMenu extends javax.swing.JFrame{
     }//GEN-LAST:event_btn_MasajistasActionPerformed
 
     private void btn_TratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TratamientosActionPerformed
-        ShowJPanel(new TratamientosPanel());
+        ShowJPanel(new TratamientoPanel());
     }//GEN-LAST:event_btn_TratamientosActionPerformed
 
     private void btn_InstalacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InstalacionesActionPerformed
@@ -396,7 +391,7 @@ public class DashboardMenu extends javax.swing.JFrame{
 
         int confirma = JOptionPane.showConfirmDialog(
           this,
-          "¿Está seguro que desea salir de la aplicación?",
+          "¿Esta seguro que desea salir de la aplicación?",
           "Confirmar salida",
           JOptionPane.YES_NO_OPTION,
           JOptionPane.QUESTION_MESSAGE
@@ -439,7 +434,6 @@ public class DashboardMenu extends javax.swing.JFrame{
                 if( dialog.isSelectionMade() ){
                     new DashboardMenu(dialog.isAdmin()).setVisible(true);
                 } else{
-                    // Si cerró sin seleccionar, salir de la aplicación
                     System.exit(0);
                 }
             }
@@ -448,16 +442,14 @@ public class DashboardMenu extends javax.swing.JFrame{
 
     private static void configurarTemaYEstilosGlobales(){
         try{
-            // Aplicar tema
+            
             UIManager.setLookAndFeel(new FlatIntelliJLaf());
-
             // CONFIGURACIÓN GLOBAL DE BORDES REDONDEADOS
             UIManager.put("Panel.arc", 20);              // Paneles redondeados
             UIManager.put("Button.arc", 15);             // Botones redondeados
             UIManager.put("Component.arc", 15);          // Componentes generales
             UIManager.put("TextComponent.arc", 10);      // Campos de texto base
 
-            // INPUTS con bordes redondeados
             UIManager.put("TextField.arc", 10);          // Campos de texto
             UIManager.put("FormattedTextField.arc", 10); // Campos formateados
             UIManager.put("PasswordField.arc", 10);      // Campos de contraseña
@@ -471,14 +463,14 @@ public class DashboardMenu extends javax.swing.JFrame{
             UIManager.put("ProgressBar.arc", 10);        // ProgressBars
             UIManager.put("TabbedPane.tabArc", 10);
             UIManager.put("TabbedPane.underlineColor", new Color(76, 175, 80)); // Pestañas
-            UIManager.put("ScrollBar.thumbArc", 999);    // ScrollBars (muy redondeados)
+            UIManager.put("ScrollBar.thumbArc", 999);    // ScrollBars
 
             // Configuraciones adicionales
             UIManager.put("Table.showHorizontalLines", true);
             UIManager.put("Table.rowHeight", 25);
             UIManager.put("ScrollBar.thumbInsets", new java.awt.Insets(2, 2, 2, 2));
 
-            System.out.println("✓ Estilos globales aplicados");
+            System.out.println("Estilos globales aplicados");
 
         } catch( Exception e ){
             System.err.println("Error al configurar estilos: " + e.getMessage());
@@ -499,7 +491,6 @@ public class DashboardMenu extends javax.swing.JFrame{
     private javax.swing.JButton btn_Tratamientos;
     private javax.swing.JButton btn_prin;
     private static javax.swing.JPanel content;
-    private javax.swing.JLabel dateText;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;

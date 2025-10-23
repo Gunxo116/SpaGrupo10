@@ -1,14 +1,15 @@
 
-package Views.Instalaciones;
+package Views.Tratamientos;
 
+import Views.Instalaciones.*;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 
-public class InstalacionesPanel extends javax.swing.JPanel {
+public class TratamientoPanel extends javax.swing.JPanel {
 
-    public InstalacionesPanel() {
+    public TratamientoPanel() {
         initComponents();
         setSize(760, 516);
         
