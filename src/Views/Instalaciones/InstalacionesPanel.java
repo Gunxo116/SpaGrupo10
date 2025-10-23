@@ -10,7 +10,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
 
     public InstalacionesPanel() {
         initComponents();
-        setSize(760, 516);
+        setSize(760, 522);
         
         jPanelBuscar.setOpaque(false);
         jPanelBuscar.setBackground(new java.awt.Color(255, 255, 255));
