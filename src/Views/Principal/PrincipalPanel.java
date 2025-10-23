@@ -238,10 +238,10 @@ public class PrincipalPanel extends javax.swing.JPanel {
             lblTratamientosActivos.setText(String.valueOf(tratamientosActivos));
             lblIngresosDelMes.setText(String.format("$%.2f", ingresosDelMes));
             
-            System.out.println("Estadísticas actualizadas correctamente");
+            System.out.println("Estadisticas actualizadas correctamente");
             
         } catch (Exception e) {
-            System.err.println("Error actualizando estadísticas: " + e.getMessage());
+            System.err.println("Error actualizando estadisticas: " + e.getMessage());
             JOptionPane.showMessageDialog(this,
                 "Error al cargar las estadísticas.\nVerifique la conexión a la base de datos.",
                 "Error",

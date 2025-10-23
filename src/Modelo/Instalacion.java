@@ -8,8 +8,6 @@ public class Instalacion {
     private double precio30m;
     private boolean estado;
 
-
-    
     // CONTRUCTORES // 
     public Instalacion() {
     }
@@ -33,39 +31,30 @@ public class Instalacion {
     public int getIdInstalacion() {
         return idInstalacion;
     }
-
     public void setIdInstalacion(int idInstalacion) {
         this.idInstalacion = idInstalacion;
     }
-
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public String getDetalleUso() {
         return detalleUso;
     }
-
     public void setDetalleUso(String detalleUso) {
         this.detalleUso = detalleUso;
     }
-
     public double getPrecio30m() {
         return precio30m;
     }
-
     public void setPrecio30m(double precio30m) {
         this.precio30m = precio30m;
     }
-
     public boolean isEstado() {
         return estado;
     }
-
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
