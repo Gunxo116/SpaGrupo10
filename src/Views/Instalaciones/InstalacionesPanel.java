@@ -885,11 +885,6 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         });
     }
     
-    
-
-
-
-
 
 }
 
