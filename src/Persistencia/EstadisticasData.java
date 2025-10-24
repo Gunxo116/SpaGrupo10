@@ -158,17 +158,17 @@ public class EstadisticasData {
     }
     
     public static int obtenerTotalTratamientosActivos() {
-        String sql = "SELECT COUNT(*) as total FROM tratamiento WHERE activo = 1";
+        String sql = "SELECT COUNT(*) as total FROM tratamiento WHERE estado = 1";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        
+
         try {
             conn = ConexionDB.getConexion();
             if (conn != null) {
                 pstmt = conn.prepareStatement(sql);
                 rs = pstmt.executeQuery();
-                
+
                 if (rs.next()) {
                     return rs.getInt("total");
                 }

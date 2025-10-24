@@ -6,6 +6,7 @@ import Persistencia.InstalacionData;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
     public InstalacionesPanel() {
         initComponents();
         setSize(760, 522);
+        configurarBordesTabla();
         jTable1.setModel(modelo);
         
         // TAMAÑOS DE LA COLUMNAS
@@ -174,13 +176,13 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Editar Instalacion");
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel6.setText("Nombre:");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel7.setText("Detalle de uso:");
 
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel8.setText("Estado:");
 
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -202,7 +204,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel9.setText("Precio 30min:");
 
         jTextPrecio.addActionListener(new java.awt.event.ActionListener() {
@@ -419,13 +421,12 @@ public class InstalacionesPanel extends javax.swing.JPanel {
                 .addGap(17, 17, 17)
                 .addGroup(jPanelAdministadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelAdministadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanelAdministadorLayout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonClearFilter))
-                        .addComponent(jScrollPane1)
-                        .addComponent(jPanelBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanelAdministadorLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonClearFilter))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanelBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
         jPanelAdministadorLayout.setVerticalGroup(
@@ -450,7 +451,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -846,6 +847,42 @@ public class InstalacionesPanel extends javax.swing.JPanel {
     private void mostrarError(String mensaje, Component componente){
         JOptionPane.showMessageDialog(this, mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
         componente.requestFocus();
+    }
+    
+    private void configurarBordesTabla(){
+        // Hacer transparente para que se vea el borde personalizado
+        jScrollPane1.setOpaque(false);
+        jScrollPane1.getViewport().setOpaque(false);
+
+        jScrollPane1.setBorder(new javax.swing.border.AbstractBorder() {
+            @Override
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Fondo blanco redondeado
+                g2.setColor(java.awt.Color.WHITE);
+                g2.fillRoundRect(x, y, width - 1, height - 1, 15, 15);
+
+                // Borde gris redondeado
+                g2.setColor(new java.awt.Color(200, 200, 200));
+                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.drawRoundRect(x + 1, y + 1, width - 3, height - 3, 15, 15);
+
+                g2.dispose();
+            }
+
+            @Override
+            public Insets getBorderInsets(Component c) {
+                return new Insets(5, 5, 5, 5);
+            }
+
+            @Override
+            public Insets getBorderInsets(Component c, Insets insets) {
+                insets.left = insets.right = insets.top = insets.bottom = 5;
+                return insets;
+            }
+        });
     }
     
     
