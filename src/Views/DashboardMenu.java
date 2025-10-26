@@ -429,19 +429,37 @@ public class DashboardMenu extends javax.swing.JFrame{
 
         java.awt.EventQueue.invokeLater(new Runnable(){
             public void run(){
-                // NUEVO: Mostrar diálogo de selección de rol
-                RolSelectionDialog dialog = new RolSelectionDialog(null);
-                dialog.setVisible(true);
-
-                // Si el usuario hizo una selección, abrir el dashboard
-                if( dialog.isSelectionMade() ){
-                    new DashboardMenu(dialog.isAdmin()).setVisible(true);
-                } else{
-                    System.exit(0);
-                }
+                new DashboardMenu(true).setVisible(true);
             }
         });
     }
+    
+    /* USAR ESTO SI QUIERES QUE SEA PARA SELECIONAR EL ROL
+    
+    public static void main(String args[]){
+    configurarTemaYEstilosGlobales();
+
+    try{
+        UIManager.setLookAndFeel(new FlatIntelliJLaf());
+    } catch( Exception e ){
+        System.err.println("Error al aplicar FlatLaf: " + e.getMessage());
+    }
+
+    java.awt.EventQueue.invokeLater(new Runnable(){
+        public void run(){
+            // NUEVO: Mostrar diálogo de selección de rol
+            RolSelectionDialog dialog = new RolSelectionDialog(null);
+            dialog.setVisible(true);
+            if( dialog.isSelectionMade() ){
+                new DashboardMenu(dialog.isAdmin()).setVisible(true);
+            } else{
+                System.exit(0);
+            }
+        }
+    });
+}
+    
+    */
 
     private static void configurarTemaYEstilosGlobales(){
         try{
