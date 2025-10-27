@@ -2,10 +2,12 @@ package Views;
 
 import Views.Clientes.ClientesPanel;
 import Views.DiasSpa.DiasSpaPanel;
+import Views.DiasSpa.FormularioDiasSpaPanel;
 import Views.Instalaciones.InstalacionesPanel;
 import Views.Masajistas.MasajistasPanel;
 import Views.Principal.PrincipalPanel;
 import Views.Reportes.ReportesPanel;
+import Views.Sesiones.FormularioSesionesPanel;
 import Views.Sesiones.SesionesPanel;
 import Views.Tratamientos.TratamientoPanel;
 import com.formdev.flatlaf.FlatIntelliJLaf;
@@ -19,11 +21,21 @@ import javax.swing.UIManager;
 public class DashboardMenu extends javax.swing.JFrame{
 
     private boolean isAdmin = false;
+    
+    private boolean diasSpaExpanded = false;
+    private boolean sesionesExpanded = false;
+    private javax.swing.JButton btn_DiasSpa_Sub1;
+    private javax.swing.JButton btn_DiasSpa_Sub2;
+    private javax.swing.JButton btn_Sesiones_Sub1;
+    private javax.swing.JButton btn_Sesiones_Sub2;
+    private javax.swing.JPanel panel_DiasSpa_Submenu;
+    private javax.swing.JPanel panel_Sesiones_Submenu;
 
     public DashboardMenu(boolean isAdmin){
         this.isAdmin = isAdmin;
         initComponents();
         InitStyles();
+        createSubmenus();
         InitContent();
     }
 
@@ -41,40 +53,30 @@ public class DashboardMenu extends javax.swing.JFrame{
 
         // Ocultar/mostrar botones segun el rol
         if( !isAdmin ){
-            
-            // Si es cliente, ocultar todos excepto Principal, Días de Spa y Sesiones
             btn_Clientes.setVisible(false);
             btn_Masajistas.setVisible(false);
             btn_Tratamientos.setVisible(false);
             btn_Instalaciones.setVisible(false);
             btn_Reportes.setVisible(false);
-            // Quitar lo otro
             menu.remove(btn_Clientes);
             menu.remove(btn_Masajistas);
             menu.remove(btn_Tratamientos);
             menu.remove(btn_Instalaciones);
             menu.remove(btn_Reportes);
-            // Reposicionar botones visibles sin espacios
             menu.remove(btn_prin);
             menu.remove(btn_DiasSpa);
             menu.remove(btn_Sesiones);
-
             menu.add(btn_prin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 270, 52));
             menu.add(btn_DiasSpa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 192, 270, 52));
             menu.add(btn_Sesiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 244, 270, 52));
-
-            // Actualizar el panel
             menu.revalidate();
             menu.repaint();
-            
             navText.setText("Panel de Cliente");
-
             header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 220, 33));
             header.add(appName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 38, -1, 34));
 
         } else{
             navText.setText("Panel de Administrador");
-
             header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 280, 33));
             header.add(appName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 38, -1, 45));
         }
@@ -82,7 +84,6 @@ public class DashboardMenu extends javax.swing.JFrame{
         header.revalidate();
         header.repaint();
     }
-
 
     private void InitContent(){
         ShowJPanel(new PrincipalPanel());
@@ -371,27 +372,32 @@ public class DashboardMenu extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_prinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prinActionPerformed
+        closeAllSubmenus();
         ShowJPanel(new PrincipalPanel());
     }//GEN-LAST:event_btn_prinActionPerformed
 
     private void btn_ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClientesActionPerformed
+        closeAllSubmenus();
         ShowJPanel(new ClientesPanel());
     }//GEN-LAST:event_btn_ClientesActionPerformed
 
     private void btn_MasajistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MasajistasActionPerformed
+        closeAllSubmenus();
         ShowJPanel(new MasajistasPanel());
     }//GEN-LAST:event_btn_MasajistasActionPerformed
 
     private void btn_TratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TratamientosActionPerformed
+        closeAllSubmenus();
         ShowJPanel(new TratamientoPanel());
     }//GEN-LAST:event_btn_TratamientosActionPerformed
 
     private void btn_InstalacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InstalacionesActionPerformed
+        closeAllSubmenus();
         ShowJPanel(new InstalacionesPanel());
     }//GEN-LAST:event_btn_InstalacionesActionPerformed
 
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
-
+        closeAllSubmenus();
         int confirma = JOptionPane.showConfirmDialog(
           this,
           "¿Esta seguro que desea salir de la aplicación?",
@@ -407,14 +413,31 @@ public class DashboardMenu extends javax.swing.JFrame{
     }//GEN-LAST:event_btn_SalirActionPerformed
 
     private void btn_DiasSpaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DiasSpaActionPerformed
-        ShowJPanel(new DiasSpaPanel());
+        if(sesionesExpanded){
+            sesionesExpanded = false;
+            btn_Sesiones_Sub1.setVisible(false);
+            btn_Sesiones_Sub2.setVisible(false);
+        }
+
+        diasSpaExpanded = !diasSpaExpanded;
+        btn_DiasSpa_Sub1.setVisible(diasSpaExpanded);
+        btn_DiasSpa_Sub2.setVisible(diasSpaExpanded);
     }//GEN-LAST:event_btn_DiasSpaActionPerformed
 
     private void btn_SesionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SesionesActionPerformed
-        ShowJPanel(new SesionesPanel());
+        if(diasSpaExpanded){
+            diasSpaExpanded = false;
+            btn_DiasSpa_Sub1.setVisible(false);
+            btn_DiasSpa_Sub2.setVisible(false);
+        }
+        
+        sesionesExpanded = !sesionesExpanded;
+        btn_Sesiones_Sub1.setVisible(sesionesExpanded);
+        btn_Sesiones_Sub2.setVisible(sesionesExpanded);
     }//GEN-LAST:event_btn_SesionesActionPerformed
 
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
+        closeAllSubmenus();
         ShowJPanel(new ReportesPanel());
     }//GEN-LAST:event_btn_ReportesActionPerformed
 
@@ -519,6 +542,108 @@ public class DashboardMenu extends javax.swing.JFrame{
     private javax.swing.JPanel menu;
     private javax.swing.JLabel navText;
     // End of variables declaration//GEN-END:variables
+
+    private void closeAllSubmenus(){
+        diasSpaExpanded = false;
+        sesionesExpanded = false;
+        panel_DiasSpa_Submenu.setVisible(false);
+        btn_DiasSpa_Sub1.setVisible(false);
+        btn_DiasSpa_Sub2.setVisible(false);
+        panel_Sesiones_Submenu.setVisible(false);
+        btn_Sesiones_Sub1.setVisible(false);
+        btn_Sesiones_Sub2.setVisible(false);
+    }
+    
+    private void createSubmenus(){
+        // PANEL DE FONDO
+        panel_DiasSpa_Submenu = new javax.swing.JPanel();
+        panel_DiasSpa_Submenu.setBackground(new java.awt.Color(16, 88, 167));
+        panel_DiasSpa_Submenu.setLayout(null);
+        panel_DiasSpa_Submenu.setVisible(false);
+        menu.add(panel_DiasSpa_Submenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 442, 260, 104), 0);
+
+        // Opción 1
+        btn_DiasSpa_Sub1 = new javax.swing.JButton();
+        btn_DiasSpa_Sub1.setBackground(new java.awt.Color(30, 136, 229));
+        btn_DiasSpa_Sub1.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        btn_DiasSpa_Sub1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_DiasSpa_Sub1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-gestion.png")));
+        btn_DiasSpa_Sub1.setText("Gestión Días de Spa");
+        btn_DiasSpa_Sub1.setBorderPainted(false);
+        btn_DiasSpa_Sub1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_DiasSpa_Sub1.setIconTextGap(10);
+        btn_DiasSpa_Sub1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_DiasSpa_Sub1.setVisible(false);
+        btn_DiasSpa_Sub1.addActionListener(evt -> ShowJPanel(new DiasSpaPanel()));
+        menu.add(btn_DiasSpa_Sub1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 442, 255, 52), 0);
+
+        // Opción 2
+        btn_DiasSpa_Sub2 = new javax.swing.JButton();
+        btn_DiasSpa_Sub2.setBackground(new java.awt.Color(30, 136, 229));
+        btn_DiasSpa_Sub2.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        btn_DiasSpa_Sub2.setForeground(new java.awt.Color(255, 255, 255));
+        btn_DiasSpa_Sub2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-formulario.png")));
+        btn_DiasSpa_Sub2.setText("Formulario Día de Spa");
+        btn_DiasSpa_Sub2.setBorderPainted(false);
+        btn_DiasSpa_Sub2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_DiasSpa_Sub2.setIconTextGap(10);
+        btn_DiasSpa_Sub2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_DiasSpa_Sub2.setVisible(false);
+        btn_DiasSpa_Sub2.addActionListener(evt -> {
+            ShowJPanel(new FormularioDiasSpaPanel());
+        });
+        menu.add(btn_DiasSpa_Sub2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 494, 255, 52), 0);
+
+        //PANEL DE FONDO
+        panel_Sesiones_Submenu = new javax.swing.JPanel();
+        panel_Sesiones_Submenu.setBackground(new java.awt.Color(16, 88, 167));
+        panel_Sesiones_Submenu.setLayout(null);
+        panel_Sesiones_Submenu.setVisible(false);
+        menu.add(panel_Sesiones_Submenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 492, 260, 104), 0);
+
+        // Opción 1
+        btn_Sesiones_Sub1 = new javax.swing.JButton();
+        btn_Sesiones_Sub1.setBackground(new java.awt.Color(30, 136, 229));
+        btn_Sesiones_Sub1.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        btn_Sesiones_Sub1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Sesiones_Sub1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-gestion.png")));
+        btn_Sesiones_Sub1.setText("Gestión de Sesiones");
+        btn_Sesiones_Sub1.setBorderPainted(false);
+        btn_Sesiones_Sub1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_Sesiones_Sub1.setIconTextGap(10);
+        btn_Sesiones_Sub1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Sesiones_Sub1.setVisible(false);
+        btn_Sesiones_Sub1.addActionListener(evt -> ShowJPanel(new SesionesPanel()));
+        menu.add(btn_Sesiones_Sub1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 492, 255, 52), 0);
+
+        // Opción 2
+        btn_Sesiones_Sub2 = new javax.swing.JButton();
+        btn_Sesiones_Sub2.setBackground(new java.awt.Color(30, 136, 229));
+        btn_Sesiones_Sub2.setFont(new java.awt.Font("Segoe UI", 0, 13));
+        btn_Sesiones_Sub2.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Sesiones_Sub2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-formulario.png")));
+        btn_Sesiones_Sub2.setText("Formulario Sesión");
+        btn_Sesiones_Sub2.setBorderPainted(false);
+        btn_Sesiones_Sub2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_Sesiones_Sub2.setIconTextGap(10);
+        btn_Sesiones_Sub2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Sesiones_Sub2.setVisible(false);
+        btn_Sesiones_Sub2.addActionListener(evt -> {
+            // Cambia esto por tu panel de formulario
+            ShowJPanel(new FormularioSesionesPanel());
+        });
+        menu.add(btn_Sesiones_Sub2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 544, 255, 52), 0);
+
+        menu.setComponentZOrder(panel_DiasSpa_Submenu, 0);
+        menu.setComponentZOrder(btn_DiasSpa_Sub1, 0);
+        menu.setComponentZOrder(btn_DiasSpa_Sub2, 0);
+        menu.setComponentZOrder(panel_Sesiones_Submenu, 0);
+        menu.setComponentZOrder(btn_Sesiones_Sub1, 0);
+        menu.setComponentZOrder(btn_Sesiones_Sub2, 0);
+    }
+
+
+
 }
 
 /*
