@@ -893,5 +893,6 @@ public class InstalacionesPanel extends javax.swing.JPanel {
              /\_/\           ___
             = o_o =_______    \ \
              __^      __(  \.__) )
-         (@)<_____>__(_____)____/
+         (@)<_____>__(_____)____
+         Hola
 */
