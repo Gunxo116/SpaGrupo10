@@ -2,7 +2,7 @@ package Modelo;
 
 public class Instalacion {
     
-    private int idInstalacion;
+    private int id;
     private String nombre;
     private String detalleUso;
     private double precio30m;
@@ -20,7 +20,7 @@ public class Instalacion {
     }
     // CON ID //
     public Instalacion(int idInstalacion, String nombre, String detalleUso, double precio30m, boolean estado) {
-        this.idInstalacion = idInstalacion;
+        this.id = idInstalacion;
         this.nombre = nombre;
         this.detalleUso = detalleUso;
         this.precio30m = precio30m;
@@ -29,10 +29,10 @@ public class Instalacion {
 
     // GET - SET //
     public int getIdInstalacion() {
-        return idInstalacion;
+        return id;
     }
     public void setIdInstalacion(int idInstalacion) {
-        this.idInstalacion = idInstalacion;
+        this.id = idInstalacion;
     }
     public String getNombre() {
         return nombre;
@@ -62,7 +62,7 @@ public class Instalacion {
     @Override
     public String toString() {
         return "Instalacion{" +
-                "idInstalacion=" + idInstalacion +
+                "idInstalacion=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", detalleUso='" + detalleUso + '\'' +
                 ", precio30m=" + precio30m +

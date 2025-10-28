@@ -26,7 +26,7 @@ public class InstalacionData{
 
                 while( rs.next() ){
                     Instalacion instalacion = new Instalacion();
-                    instalacion.setIdInstalacion(rs.getInt("idInstalacion"));
+                    instalacion.setIdInstalacion(rs.getInt("id"));
                     instalacion.setNombre(rs.getString("nombre"));
                     instalacion.setDetalleUso(rs.getString("detalleUso"));
                     instalacion.setPrecio30m(rs.getDouble("precio30m"));
@@ -52,7 +52,7 @@ public class InstalacionData{
     }
 
     public static boolean existeNombre(String nombre, int idExcluir){
-        String sql = "SELECT COUNT(*) as total FROM instalacion WHERE nombre = ? AND idInstalacion != ?";
+        String sql = "SELECT COUNT(*) as total FROM instalacion WHERE nombre = ? AND id != ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -92,7 +92,7 @@ public class InstalacionData{
 
         switch( criterio ){
             case "ID":
-                sql += "idInstalacion = ?";
+                sql += "id = ?";
                 break;
             case "Nombre":
                 sql += "nombre LIKE ?";
@@ -128,7 +128,7 @@ public class InstalacionData{
 
                 while( rs.next() ){
                     Instalacion inst = new Instalacion();
-                    inst.setIdInstalacion(rs.getInt("idInstalacion"));
+                    inst.setIdInstalacion(rs.getInt("id"));
                     inst.setNombre(rs.getString("nombre"));
                     inst.setDetalleUso(rs.getString("detalleUso"));
                     inst.setPrecio30m(rs.getDouble("precio30m"));
@@ -196,7 +196,7 @@ public class InstalacionData{
     }
 
     public static boolean actualizar(Instalacion instalacion){
-        String sql = "UPDATE instalacion SET nombre = ?, detalleUso = ?, precio30m = ?, estado = ? WHERE idInstalacion = ?";
+        String sql = "UPDATE instalacion SET nombre = ?, detalleUso = ?, precio30m = ?, estado = ? WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -235,7 +235,7 @@ public class InstalacionData{
     }
 
     public static boolean eliminar(int id){
-        String sql = "DELETE FROM instalacion WHERE idInstalacion = ?";
+        String sql = "DELETE FROM instalacion WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -271,7 +271,7 @@ public class InstalacionData{
 
     public static Instalacion buscarPorId(int id){
         Instalacion instalacion = null;
-        String sql = "SELECT * FROM instalacion WHERE idInstalacion = ?";
+        String sql = "SELECT * FROM instalacion WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -285,7 +285,7 @@ public class InstalacionData{
 
                 if( rs.next() ){
                     instalacion = new Instalacion();
-                    instalacion.setIdInstalacion(rs.getInt("idInstalacion"));
+                    instalacion.setIdInstalacion(rs.getInt("id"));
                     instalacion.setNombre(rs.getString("nombre"));
                     instalacion.setDetalleUso(rs.getString("detalleUso"));
                     instalacion.setPrecio30m(rs.getDouble("precio30m"));

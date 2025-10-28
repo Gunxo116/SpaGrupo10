@@ -2,7 +2,7 @@ package Modelo;
 
 public class Tratamiento {
     
-    private int idTratamiento;
+    private int id;
     private String nombre;
     private String tipo;
     private String detalle;
@@ -24,7 +24,7 @@ public class Tratamiento {
             this.estado = estado;
     }
     public Tratamiento(int idTratamiento, String nombre, String tipo, String detalle, String productos, int duracion, double costo, boolean estado) {
-        this.idTratamiento = idTratamiento;
+        this.id = idTratamiento;
         this.nombre = nombre;
         this.tipo = tipo;
         this.detalle = detalle;
@@ -36,10 +36,10 @@ public class Tratamiento {
     
     // GET - SET //
     public int getIdTratamiento() {
-        return idTratamiento;
+        return id;
     }
     public void setIdTratamiento(int idTratamiento) {
-        this.idTratamiento = idTratamiento;
+        this.id = idTratamiento;
     }
     public String getNombre() {
         return nombre;

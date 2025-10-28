@@ -26,7 +26,7 @@ public class TratamientoData {
 
                 while( rs.next() ){
                     Tratamiento tratamiento = new Tratamiento();
-                    tratamiento.setIdTratamiento(rs.getInt("idTratamiento"));
+                    tratamiento.setIdTratamiento(rs.getInt("id"));
                     tratamiento.setNombre(rs.getString("nombre"));
                     tratamiento.setTipo(rs.getString("tipo"));
                     tratamiento.setDetalle(rs.getString("detalle"));
@@ -51,7 +51,7 @@ public class TratamientoData {
     }
 
     public static boolean existeNombre(String nombre, int idExcluir){
-        String sql = "SELECT COUNT(*) as total FROM tratamiento WHERE nombre = ? AND idTratamiento != ?";
+        String sql = "SELECT COUNT(*) as total FROM tratamiento WHERE nombre = ? AND id != ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -87,7 +87,7 @@ public class TratamientoData {
 
         switch( criterio ){
             case "ID":
-                sql += "idTratamiento = ?";
+                sql += "id = ?";
                 break;
             case "Nombre":
                 sql += "nombre LIKE ?";
@@ -128,7 +128,7 @@ public class TratamientoData {
 
                 while( rs.next() ){
                     Tratamiento t = new Tratamiento();
-                    t.setIdTratamiento(rs.getInt("idTratamiento"));
+                    t.setIdTratamiento(rs.getInt("id"));
                     t.setNombre(rs.getString("nombre"));
                     t.setTipo(rs.getString("tipo"));
                     t.setDetalle(rs.getString("detalle"));
@@ -194,7 +194,7 @@ public class TratamientoData {
     }
 
     public static boolean actualizar(Tratamiento tratamiento){
-        String sql = "UPDATE tratamiento SET nombre = ?, tipo = ?, detalle = ?, productos = ?, duracion = ?, costo = ?, estado = ? WHERE idTratamiento = ?";
+        String sql = "UPDATE tratamiento SET nombre = ?, tipo = ?, detalle = ?, productos = ?, duracion = ?, costo = ?, estado = ? WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -234,7 +234,7 @@ public class TratamientoData {
     }
 
     public static boolean eliminar(int id){
-        String sql = "DELETE FROM tratamiento WHERE idTratamiento = ?";
+        String sql = "DELETE FROM tratamiento WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -268,7 +268,7 @@ public class TratamientoData {
 
     public static Tratamiento buscarPorId(int id){
         Tratamiento tratamiento = null;
-        String sql = "SELECT * FROM tratamiento WHERE idTratamiento = ?";
+        String sql = "SELECT * FROM tratamiento WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -282,7 +282,7 @@ public class TratamientoData {
 
                 if( rs.next() ){
                     tratamiento = new Tratamiento();
-                    tratamiento.setIdTratamiento(rs.getInt("idTratamiento"));
+                    tratamiento.setIdTratamiento(rs.getInt("id"));
                     tratamiento.setNombre(rs.getString("nombre"));
                     tratamiento.setTipo(rs.getString("tipo"));
                     tratamiento.setDetalle(rs.getString("detalle"));

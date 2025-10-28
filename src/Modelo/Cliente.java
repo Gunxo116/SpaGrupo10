@@ -2,7 +2,7 @@ package Modelo;
 
 public class Cliente{
 
-    private int idCliente;
+    private int id;
     private String dni;
     private String nombreCompleto;
     private String telefono;
@@ -23,7 +23,7 @@ public class Cliente{
     }
 
     public Cliente(int idCliente, String dni, String nombreCompleto, String telefono, int edad, String afecciones, boolean estado){
-        this.idCliente = idCliente;
+        this.id = idCliente;
         this.dni = dni;
         this.nombreCompleto = nombreCompleto;
         this.telefono = telefono;
@@ -33,11 +33,11 @@ public class Cliente{
     }
 
     public int getIdCliente(){
-        return idCliente;
+        return id;
     }
 
     public void setIdCliente(int idCliente){
-        this.idCliente = idCliente;
+        this.id = idCliente;
     }
 
     public String getDni(){

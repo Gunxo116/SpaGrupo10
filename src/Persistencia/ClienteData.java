@@ -24,7 +24,7 @@ public class ClienteData{
                 rs = stmt.executeQuery(sql);
                 while( rs.next() ){
                     Cliente cliente = new Cliente();
-                    cliente.setIdCliente(rs.getInt("idCliente"));
+                    cliente.setIdCliente(rs.getInt("id"));
                     cliente.setDni(rs.getString("dni"));
                     cliente.setNombreCompleto(rs.getString("nombreCompleto"));
                     cliente.setTelefono(rs.getString("telefono"));
@@ -131,7 +131,7 @@ public class ClienteData{
     }
 
     public static boolean actualizar(Cliente cliente){
-        String sql = "UPDATE cliente SET dni = ?, nombreCompleto = ?, telefono = ?, edad = ?, afecciones = ?, estado = ? WHERE idCliente = ?";
+        String sql = "UPDATE cliente SET dni = ?, nombreCompleto = ?, telefono = ?, edad = ?, afecciones = ?, estado = ? WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         boolean actualizado = false;
@@ -167,7 +167,7 @@ public class ClienteData{
     }
 
     public static boolean borrar(int idCliente){
-        String sql = "DELETE FROM cliente WHERE idCliente = ?";
+        String sql = "DELETE FROM cliente WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
         boolean eliminado = false;
@@ -202,7 +202,7 @@ public class ClienteData{
 
         switch( criterio ){
             case "ID":
-                sql += "idCliente = ?";
+                sql += "id = ?";
                 break;
             case "DNI":
                 sql += "dni = ?";
@@ -241,7 +241,7 @@ public class ClienteData{
 
                 while( rs.next() ){
                     Cliente cliente = new Cliente();
-                    cliente.setIdCliente(rs.getInt("idCliente"));
+                    cliente.setIdCliente(rs.getInt("id"));
                     cliente.setDni(rs.getString("dni"));
                     cliente.setNombreCompleto(rs.getString("nombreCompleto"));
                     cliente.setTelefono(rs.getString("telefono"));
