@@ -1,4 +1,3 @@
-
 package Views.Tratamientos;
 
 import Modelo.Tratamiento;
@@ -12,31 +11,30 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+public class TratamientoPanel extends javax.swing.JPanel{
 
-public class TratamientoPanel extends javax.swing.JPanel {
-    
     private int filaSeleccionadaParaEdicion = -1;
-    
+
     private DefaultTableModel modelo = new DefaultTableModel(
-      new String[]{"ID", "Nombre", "Tipo", "Detalle", "Duracion","Costo","Estado"}, 0
+      new String[]{"ID", "Nombre", "Tipo", "Detalle", "Duracion", "Costo", "Estado"}, 0
     );
 
-    public TratamientoPanel() {
+    public TratamientoPanel(){
         initComponents();
         setSize(760, 516);
         configurarBordesTabla();
-        
+
         cargarComboBuscar();
         cargarComboTipo();
         cargarComboEstado();
-        
+
         jTable1.setModel(modelo);
         // TAMAÑOS DE LA COLUMNAS
-        int[] anchos = {20, 50, 40, 200, 35 ,45,35};
-        for (int i = 0; i < anchos.length; i++) {
+        int[] anchos = {20, 50, 40, 200, 35, 45, 35};
+        for( int i = 0 ; i < anchos.length ; i++ ){
             jTable1.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
-        
+
         // PANELES DISEÑO
         jPanelBuscar.setOpaque(false);
         jPanelBuscar.setBackground(new java.awt.Color(255, 255, 255));
@@ -44,62 +42,57 @@ public class TratamientoPanel extends javax.swing.JPanel {
         jPanelEditar.setBackground(new java.awt.Color(255, 255, 255));
         jPanelAdministador.setOpaque(false);
         jPanelAdministador.setBackground(new java.awt.Color(255, 255, 255));
-        
-        
-        
+
         limpiarTabla();
-        
+
         jTable1.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener(){
             @Override
-                public void valueChanged(javax.swing.event.ListSelectionEvent e){
-                    jButtonGuardarEdit.setEnabled(false);
-                    if( !e.getValueIsAdjusting() ){
-                        int filaSeleccionada = jTable1.getSelectedRow();
-                        filaSeleccionadaParaEdicion = filaSeleccionada;
+            public void valueChanged(javax.swing.event.ListSelectionEvent e){
+                jButtonGuardarEdit.setEnabled(false);
+                if( !e.getValueIsAdjusting() ){
+                    int filaSeleccionada = jTable1.getSelectedRow();
+                    filaSeleccionadaParaEdicion = filaSeleccionada;
 
-                        if( filaSeleccionada >= 0 ){
-                            String id = jTable1.getValueAt(filaSeleccionada, 0).toString();
-                            String nombre = jTable1.getValueAt(filaSeleccionada, 1).toString();
-                            String tipo = jTable1.getValueAt(filaSeleccionada, 2).toString();
-                            String detalle = jTable1.getValueAt(filaSeleccionada, 3).toString();
-                            String duracion = jTable1.getValueAt(filaSeleccionada, 4).toString().replace(" min", "");
-                            String costo = jTable1.getValueAt(filaSeleccionada, 5).toString().replace("$", "");
-                            String estado = jTable1.getValueAt(filaSeleccionada, 6).toString();
+                    if( filaSeleccionada >= 0 ){
+                        String id = jTable1.getValueAt(filaSeleccionada, 0).toString();
+                        String nombre = jTable1.getValueAt(filaSeleccionada, 1).toString();
+                        String tipo = jTable1.getValueAt(filaSeleccionada, 2).toString();
+                        String detalle = jTable1.getValueAt(filaSeleccionada, 3).toString();
+                        String duracion = jTable1.getValueAt(filaSeleccionada, 4).toString().replace(" min", "");
+                        String costo = jTable1.getValueAt(filaSeleccionada, 5).toString().replace("$", "");
+                        String estado = jTable1.getValueAt(filaSeleccionada, 6).toString();
 
-                            // Asignar los valores de la tabla en los inputs
-                            jTextNombre.setText(nombre);
-                            jComboTipo.setSelectedItem(tipo);
-                            jTextDetalle.setText(detalle);
-                            jTextDuracion.setText(duracion);
-                            jTextCosto.setText(costo);
-                            comboEstado.setSelectedItem(estado);
+                        // Asignar los valores de la tabla en los inputs
+                        jTextNombre.setText(nombre);
+                        jComboTipo.setSelectedItem(tipo);
+                        jTextDetalle.setText(detalle);
+                        jTextDuracion.setText(duracion);
+                        jTextCosto.setText(costo);
+                        comboEstado.setSelectedItem(estado);
 
-                            // BUSCAR EL PRODUCTO ASOCIADO EN LA BASE DE DATOS
-                            try {
-                                int idTratamiento = Integer.parseInt(id);
-                                Tratamiento tratamiento = TratamientoData.buscarPorId(idTratamiento);
+                        // BUSCAR EL PRODUCTO ASOCIADO EN LA BASE DE DATOS
+                        try{
+                            int idTratamiento = Integer.parseInt(id);
+                            Tratamiento tratamiento = TratamientoData.buscarPorId(idTratamiento);
 
-                                if (tratamiento != null && tratamiento.getProductos() != null && !tratamiento.getProductos().trim().isEmpty()) {
-                                    // Si tiene producto(s), mostrarlo
-                                    jTextProducto.setText(tratamiento.getProductos());
-                                } else {
-                                    // Si no tiene producto, dejar vacío
-                                    jTextProducto.setText("");
-                                }
-                            } catch (Exception ex) {
-                                // En caso de error, dejar vacío
+                            if( tratamiento != null && tratamiento.getProductos() != null && !tratamiento.getProductos().trim().isEmpty() ){
+                                // Si tiene producto(s), mostrarlo
+                                jTextProducto.setText(tratamiento.getProductos());
+                            } else{
+                                // Si no tiene producto, dejar vacío
                                 jTextProducto.setText("");
-                                System.err.println("Error al cargar productos: " + ex.getMessage());
                             }
+                        } catch( Exception ex ){
+                            // En caso de error, dejar vacío
+                            jTextProducto.setText("");
+                            System.err.println("Error al cargar productos: " + ex.getMessage());
                         }
                     }
                 }
-            });
-        
-        
+            }
+        });
+
     }
-
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -203,12 +196,12 @@ public class TratamientoPanel extends javax.swing.JPanel {
         jPanel1.setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel1.setText("Gestión Trataminetos");
+        jLabel1.setText("Gestión Tratamientos");
 
         jButtonClearFilter.setBackground(new java.awt.Color(33, 150, 243));
         jButtonClearFilter.setForeground(new java.awt.Color(255, 255, 255));
         jButtonClearFilter.setText("Limpiar Filtro");
-        jButtonClearFilter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonClearFilter.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonClearFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonClearFilterActionPerformed(evt);
@@ -237,7 +230,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
         jButtonBuscar.setBackground(new java.awt.Color(76, 175, 80));
         jButtonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setText("Buscar");
-        jButtonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBuscarActionPerformed(evt);
@@ -288,7 +281,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Editar Trataminetos");
+        jLabel5.setText("Editar Tratamientos");
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel6.setText("Nombre:");
@@ -306,7 +299,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
         jButtonGuardarEdit.setBackground(new java.awt.Color(76, 175, 80));
         jButtonGuardarEdit.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardarEdit.setText("Guardar");
-        jButtonGuardarEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonGuardarEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonGuardarEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonGuardarEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -317,7 +310,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
         jButtonBorrar.setBackground(new java.awt.Color(244, 67, 54));
         jButtonBorrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBorrar.setText("Borrar");
-        jButtonBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonBorrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,7 +321,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
         jButtonActualizar.setBackground(new java.awt.Color(255, 152, 0));
         jButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonActualizar.setText("Actualizar");
-        jButtonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,7 +332,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
         jButtonLimpiar.setBackground(new java.awt.Color(102, 102, 102));
         jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLimpiar.setText("Limpiar");
-        jButtonLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,6 +362,11 @@ public class TratamientoPanel extends javax.swing.JPanel {
         jLabel12.setText("Producto:");
 
         jComboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboTipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelEditarLayout = new javax.swing.GroupLayout(jPanelEditar);
         jPanelEditar.setLayout(jPanelEditarLayout);
@@ -387,14 +385,13 @@ public class TratamientoPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel11))
                                 .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelEditarLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
                                         .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanelEditarLayout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
                                                 .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jLabel7))
                                             .addGroup(jPanelEditarLayout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
                                                 .addComponent(jTextDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel10)))
@@ -438,37 +435,38 @@ public class TratamientoPanel extends javax.swing.JPanel {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEditarLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelEditarLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                         .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEditarLayout.createSequentialGroup()
+                    .addGroup(jPanelEditarLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonGuardarEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonBorrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonActualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonLimpiar)
-                        .addGap(8, 8, 8)))
+                        .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelEditarLayout.createSequentialGroup()
+                                .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEditarLayout.createSequentialGroup()
+                                .addComponent(jButtonGuardarEdit)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonBorrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonActualizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonLimpiar)
+                                .addGap(8, 8, 8)))))
                 .addGroup(jPanelEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -536,7 +534,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
-        
+
         limpiarInputs();
         jTextBuscar.setText("");
         limpiarTabla();
@@ -553,7 +551,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextBuscarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        
+
         String buscarPor = (String) jComboBoxBuscar.getSelectedItem();
         String texto = jTextBuscar.getText().trim();
 
@@ -598,7 +596,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_comboEstadoActionPerformed
 
     private void jButtonGuardarEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarEditActionPerformed
-        
+
         if( !validarFormularioTratamiento(0) ){
             return;
         }
@@ -643,7 +641,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonGuardarEditActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
-        
+
         // Verificar que haya una fila seleccionada
         int filaSeleccionadaParaEdicion = jTable1.getSelectedRow();
         if( filaSeleccionadaParaEdicion == -1 ){
@@ -659,8 +657,8 @@ public class TratamientoPanel extends javax.swing.JPanel {
 
         // Buscar el cliente a eliminar
         Tratamiento TratamientoAEliminar = null;
-        for( Tratamiento i : TratamientoData.obtenerTodos()){
-            if( i.getIdTratamiento()== id ){
+        for( Tratamiento i : TratamientoData.obtenerTodos() ){
+            if( i.getIdTratamiento() == id ){
                 TratamientoAEliminar = i;
                 break;
             }
@@ -678,8 +676,8 @@ public class TratamientoPanel extends javax.swing.JPanel {
         int confirmacion = JOptionPane.showConfirmDialog(
           this,
           "¿Esta seguro de que desea eliminar la Instalacion?\n\n"
-          + "Nombre: " + TratamientoAEliminar.getNombre()+ "\n"
-          + "ID: " + TratamientoAEliminar.getIdTratamiento()+ "\n\n"
+          + "Nombre: " + TratamientoAEliminar.getNombre() + "\n"
+          + "ID: " + TratamientoAEliminar.getIdTratamiento() + "\n\n"
           + "Esta acción no se puede deshacer.",
           "Confirmar eliminación",
           JOptionPane.YES_NO_OPTION,
@@ -699,7 +697,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
                 limpiarTabla();
                 jButtonGuardarEdit.setEnabled(true);
                 filaSeleccionadaParaEdicion = -1;
-                
+
             } else{
                 JOptionPane.showMessageDialog(this,
                   "Error al eliminar el cliente.",
@@ -707,11 +705,11 @@ public class TratamientoPanel extends javax.swing.JPanel {
                   JOptionPane.ERROR_MESSAGE);
             }
         }
-       
+
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-        
+
         // Verificar que haya una fila seleccionada
         int filaSeleccionadaParaEdicion = jTable1.getSelectedRow();
         if( filaSeleccionadaParaEdicion == -1 ){
@@ -743,12 +741,12 @@ public class TratamientoPanel extends javax.swing.JPanel {
 
         // Crear el objeto Cliente con los datos actualizados
         Tratamiento tratamiento = new Tratamiento(nombre, tipo, duracion, producto, duracionInt, costo, estado);
-        tratamiento.setIdTratamiento(id); 
+        tratamiento.setIdTratamiento(id);
 
         // Buscar el cliente a actualizar
         Tratamiento tratamientoAActualizar = null;
-        for( Tratamiento i : TratamientoData.obtenerTodos()){
-            if( i.getIdTratamiento()== id ){
+        for( Tratamiento i : TratamientoData.obtenerTodos() ){
+            if( i.getIdTratamiento() == id ){
                 tratamientoAActualizar = i;
                 break;
             }
@@ -768,8 +766,8 @@ public class TratamientoPanel extends javax.swing.JPanel {
         if( resultado ){
             JOptionPane.showMessageDialog(this,
               "Instalacion actualizada correctamente.\n\n"
-              + "ID: " + tratamiento.getIdTratamiento()+ "\n"
-              + "Nombre: " + tratamiento.getNombre()+ "\n",
+              + "ID: " + tratamiento.getIdTratamiento() + "\n"
+              + "Nombre: " + tratamiento.getNombre() + "\n",
               "Éxito",
               JOptionPane.INFORMATION_MESSAGE);
 
@@ -789,7 +787,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-        
+
         limpiarInputs();
         jButtonGuardarEdit.setEnabled(true);
 
@@ -799,6 +797,9 @@ public class TratamientoPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextCostoActionPerformed
 
+    private void jComboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboTipoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboEstado;
@@ -836,7 +837,7 @@ public class TratamientoPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private boolean validarFormularioTratamiento(int idTratamiento){
-    
+
         String nombre = jTextNombre.getText().trim();
         String duracion = jTextDuracion.getText().trim();
         String detalle = jTextDetalle.getText().trim();
@@ -908,14 +909,14 @@ public class TratamientoPanel extends javax.swing.JPanel {
 
         return true;
     }
-    
+
     private void mostrarError(String mensaje, Component componente){
         JOptionPane.showMessageDialog(this, mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
         componente.requestFocus();
     }
-    
+
     private void limpiarInputs(){
-        
+
         jTextNombre.setText(null);
         jTextDetalle.setText(null);
         jTextCosto.setText(null);
@@ -923,26 +924,26 @@ public class TratamientoPanel extends javax.swing.JPanel {
         jTextProducto.setText(null);
         comboEstado.setSelectedIndex(0);
         jComboTipo.setSelectedIndex(0);
-        
+
     }
-    
+
     private void limpiarTabla(){
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setRowCount(0);
 
-        for( Tratamiento t : TratamientoData.obtenerTodos()){
+        for( Tratamiento t : TratamientoData.obtenerTodos() ){
             modelo.addRow(new Object[]{
                 t.getIdTratamiento(),
                 t.getNombre(),
                 t.getTipo(),
                 t.getDetalle(),
-                t.getDuracion()+ " min",
-                "$"+t.getCosto(),
-                t.getEstado() ? "Activo" : "Inactivo" 
+                t.getDuracion() + " min",
+                "$" + t.getCosto(),
+                t.getEstado() ? "Activo" : "Inactivo"
             });
         }
     }
-    
+
     private void cargarComboTipo(){
         jComboTipo.removeAllItems();
         jComboTipo.addItem("Relajacion");
@@ -950,47 +951,46 @@ public class TratamientoPanel extends javax.swing.JPanel {
         jComboTipo.addItem("Corporal");
         jComboTipo.addItem("Estetico");
     }
-    
+
     private void cargarComboEstado(){
         comboEstado.removeAllItems();
         comboEstado.addItem("Activo");
         comboEstado.addItem("Inactivo");
     }
-    
+
     private void cargarComboBuscar(){
-            jComboBoxBuscar.removeAllItems();
-            jComboBoxBuscar.addItem("ID");
-            jComboBoxBuscar.addItem("Nombre");
-            jComboBoxBuscar.addItem("Tipo");
-            jComboBoxBuscar.addItem("Estado");
+        jComboBoxBuscar.removeAllItems();
+        jComboBoxBuscar.addItem("ID");
+        jComboBoxBuscar.addItem("Nombre");
+        jComboBoxBuscar.addItem("Tipo");
+        jComboBoxBuscar.addItem("Estado");
     }
-    
+
     private void actualizarTablaConResultados(ArrayList<Tratamiento> tratamiento){
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setRowCount(0);
-        
+
         for( Tratamiento t : tratamiento ){
             modelo.addRow(new Object[]{
                 t.getIdTratamiento(),
                 t.getNombre(),
                 t.getTipo(),
                 t.getDetalle(),
-                t.getDuracion()+ " min",
-                "$"+t.getCosto(),
-                t.getEstado() ? "Activo" : "Inactivo" 
+                t.getDuracion() + " min",
+                "$" + t.getCosto(),
+                t.getEstado() ? "Activo" : "Inactivo"
             });
         }
     }
-    
-    
+
     private void configurarBordesTabla(){
         // Hacer transparente para que se vea el borde personalizado
         jScrollPane1.setOpaque(false);
         jScrollPane1.getViewport().setOpaque(false);
 
-        jScrollPane1.setBorder(new javax.swing.border.AbstractBorder() {
+        jScrollPane1.setBorder(new javax.swing.border.AbstractBorder(){
             @Override
-            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height){
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -1007,18 +1007,18 @@ public class TratamientoPanel extends javax.swing.JPanel {
             }
 
             @Override
-            public Insets getBorderInsets(Component c) {
+            public Insets getBorderInsets(Component c){
                 return new Insets(5, 5, 5, 5);
             }
 
             @Override
-            public Insets getBorderInsets(Component c, Insets insets) {
+            public Insets getBorderInsets(Component c, Insets insets){
                 insets.left = insets.right = insets.top = insets.bottom = 5;
                 return insets;
             }
         });
     }
-    
+
 }
 
 
@@ -1027,4 +1027,4 @@ public class TratamientoPanel extends javax.swing.JPanel {
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-*/
+ */

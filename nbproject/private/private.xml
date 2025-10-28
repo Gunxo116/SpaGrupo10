@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gunxo/Documents/GitHub/SpaGrupo10/src/Views/Tratamientos/TratamientoPanel.java</file>
-            <file>file:/C:/Users/Gunxo/Documents/GitHub/SpaGrupo10/src/Views/Instalaciones/InstalacionesPanel.java</file>
-            <file>file:/C:/Users/Gunxo/Documents/GitHub/SpaGrupo10/src/Views/RolSelectionDialog.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Views/Masajistas/MasajistasPanel.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Modelo/Masajista.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Views/Tratamientos/TratamientoPanel.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Persistencia/MasajistaData.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Views/Clientes/ClientesPanel.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Views/DashboardMenu.java</file>
+            <file>file:/C:/Users/esteb/Documents/NetBeansProjects/1°%20Año/2°%20Cuatrimestre/SpaGrupo10/src/Persistencia/TratamientoData.java</file>
         </group>
     </open-files>
 </project-private>

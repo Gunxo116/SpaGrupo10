@@ -35,13 +35,13 @@ public class DashboardMenu extends javax.swing.JFrame{
         appName.setForeground(Color.WHITE);
 
         appName1.setForeground(Color.WHITE);
-        
+
         header.remove(navText);
         header.remove(appName1);
 
         // Ocultar/mostrar botones segun el rol
         if( !isAdmin ){
-            
+
             // Si es cliente, ocultar todos excepto Principal, Días de Spa y Sesiones
             btn_Clientes.setVisible(false);
             btn_Masajistas.setVisible(false);
@@ -66,7 +66,7 @@ public class DashboardMenu extends javax.swing.JFrame{
             // Actualizar el panel
             menu.revalidate();
             menu.repaint();
-            
+
             navText.setText("Panel de Cliente");
 
             header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 220, 33));
@@ -78,18 +78,17 @@ public class DashboardMenu extends javax.swing.JFrame{
             header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 280, 33));
             header.add(appName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 38, -1, 45));
         }
-        
+
         header.revalidate();
         header.repaint();
     }
-
 
     private void InitContent(){
         ShowJPanel(new PrincipalPanel());
     }
 
     public static void ShowJPanel(JPanel p){
-        p.setSize(760, 516);
+        p.setSize(760, 522);
         p.setLocation(0, 0);
 
         content.removeAll();
@@ -433,9 +432,9 @@ public class DashboardMenu extends javax.swing.JFrame{
             }
         });
     }
-    
+
     /* USAR ESTO SI QUIERES QUE SEA PARA SELECIONAR EL ROL
-    
+
     public static void main(String args[]){
     configurarTemaYEstilosGlobales();
 
@@ -458,12 +457,11 @@ public class DashboardMenu extends javax.swing.JFrame{
         }
     });
 }
-    
-    */
 
+     */
     private static void configurarTemaYEstilosGlobales(){
         try{
-            
+
             UIManager.setLookAndFeel(new FlatIntelliJLaf());
             // CONFIGURACIÓN GLOBAL DE BORDES REDONDEADOS
             UIManager.put("Panel.arc", 20);              // Paneles redondeados
