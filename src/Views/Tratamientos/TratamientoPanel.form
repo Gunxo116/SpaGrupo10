@@ -53,9 +53,10 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanelAdministador" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -123,7 +124,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Limpiar Filtro"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Cursor Por defecto"/>
+                  <Color id="Default Cursor"/>
                 </Property>
               </Properties>
               <Events>
@@ -216,7 +217,7 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Cursor Por defecto"/>
+                      <Color id="Default Cursor"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -308,16 +309,13 @@
                                               <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <EmptySpace pref="14" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
                                                   <Component id="comboEstado" min="-2" pref="190" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jTextProducto" max="32767" attributes="0"/>
-                                              </Group>
+                                              <Component id="jTextProducto" alignment="1" min="-2" pref="454" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -344,7 +342,7 @@
                           <Component id="jLabel5" min="-2" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="123" max="32767" attributes="0"/>
+                                  <EmptySpace pref="117" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel12" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                                       <Component id="jTextProducto" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
@@ -451,7 +449,7 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Cursor Por defecto"/>
+                      <Color id="Default Cursor"/>
                     </Property>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
@@ -469,7 +467,7 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Borrar"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Cursor Por defecto"/>
+                      <Color id="Default Cursor"/>
                     </Property>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
@@ -487,7 +485,7 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Actualizar"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Cursor Por defecto"/>
+                      <Color id="Default Cursor"/>
                     </Property>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
@@ -505,7 +503,7 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Limpiar"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Cursor Por defecto"/>
+                      <Color id="Default Cursor"/>
                     </Property>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>

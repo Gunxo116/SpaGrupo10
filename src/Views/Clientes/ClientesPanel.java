@@ -5,6 +5,7 @@ import Persistencia.ClienteData;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -23,12 +24,22 @@ public class ClientesPanel extends javax.swing.JPanel{
         cargarCombo();
         cargarCombo2();
         jTable1.setModel(modelo);
+        configurarBordesTabla();
         
         // ELEGIR TAMAÑO DE CADA COLUMNA DE LA TABLA 
         int[] anchos = {50, 100, 200, 100, 45, 150, 60};
         for (int i = 0; i < anchos.length; i++) {
             jTable1.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
+        
+        jPanel4.setOpaque(false);
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        
+        jPanel2.setOpaque(false);
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        
+        jPanel3.setOpaque(false);
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         
         limpiarTabla();
 
@@ -225,15 +236,49 @@ public class ClientesPanel extends javax.swing.JPanel{
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jComboBoxBuscar = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jButtonBuscar = new javax.swing.JButton();
-        comboBusqueda = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
+        Icono = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                // Dibujar borde gris redondeado
+                g2.setColor(new java.awt.Color(200, 200, 200));
+                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        jPanel3 = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                // Dibujar borde gris redondeado
+                g2.setColor(new java.awt.Color(200, 200, 200));
+                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
         jButton4 = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -251,7 +296,34 @@ public class ClientesPanel extends javax.swing.JPanel{
         jLabel14 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         comboEstado = new javax.swing.JComboBox<>();
-        Icono = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                // Dibujar borde gris redondeado
+                g2.setColor(new java.awt.Color(200, 200, 200));
+                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        jComboBoxBuscar = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jButtonBuscar = new javax.swing.JButton();
+        comboBusqueda = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jButtonClearFilter = new javax.swing.JButton();
 
         jMenu1.setText("File");
@@ -263,83 +335,10 @@ public class ClientesPanel extends javax.swing.JPanel{
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 51, 51));
         jPanel1.setToolTipText("");
-
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel2.setText("Gestión Clientes");
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        jComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBoxBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxBuscarActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Buscar Por:");
-
-        jButtonBuscar.setText("Buscar");
-        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarActionPerformed(evt);
-            }
-        });
-
-        comboBusqueda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBusquedaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(comboBusqueda)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonBuscar)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscar))
-                .addGap(5, 5, 5))
-        );
-
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1", "234234", "asdfasdfas", "5343534", "234", "dfasdfasdfasdfasdf", "1"},
-                {"2", "234234", "dfasdfasd", "5345345", "234", "asdfasdfasdfasdfasdf", "1"},
-                {"3", "234234234", "fasdfasdf", "34534", "234", "asdfasdfasdfasdfasdf", null}
-            },
-            new String [] {
-                "ID", "DNI", "Nombre completo", "Telefono", "Edad", "Afecciones", "Estado"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-        }
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(Icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 517, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel3.setToolTipText("Agregar Cliente");
 
         jButton4.setText("Limpiar");
@@ -350,6 +349,8 @@ public class ClientesPanel extends javax.swing.JPanel{
             }
         });
 
+        jButtonGuardar.setBackground(new java.awt.Color(76, 175, 80));
+        jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -491,6 +492,83 @@ public class ClientesPanel extends javax.swing.JPanel{
         inputDni.getAccessibleContext().setAccessibleName("");
         inputDni.getAccessibleContext().setAccessibleDescription("");
 
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"1", "234234", "asdfasdfas", "5343534", "234", "dfasdfasdfasdfasdf", "1"},
+                {"2", "234234", "dfasdfasd", "5345345", "234", "asdfasdfasdfasdfasdf", "1"},
+                {"3", "234234234", "fasdfasdf", "34534", "234", "asdfasdfasdfasdfasdf", null}
+            },
+            new String [] {
+                "ID", "DNI", "Nombre completo", "Telefono", "Edad", "Afecciones", "Estado"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jComboBoxBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxBuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Buscar Por:");
+
+        jButtonBuscar.setBackground(new java.awt.Color(76, 175, 80));
+        jButtonBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+
+        comboBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBusquedaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboBusqueda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonBuscar)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscar))
+                .addGap(5, 5, 5))
+        );
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel2.setText("Gestión Clientes");
+
+        jButtonClearFilter.setBackground(new java.awt.Color(33, 150, 243));
+        jButtonClearFilter.setForeground(new java.awt.Color(255, 255, 255));
         jButtonClearFilter.setText("Limpiar Filtro");
         jButtonClearFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -498,45 +576,39 @@ public class ClientesPanel extends javax.swing.JPanel{
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonClearFilter))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Icono)
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonClearFilter))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(Icono)
-                .addGap(271, 465, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonClearFilter)))
-                .addGap(9, 9, 9)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonClearFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, 510));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -550,9 +622,16 @@ public class ClientesPanel extends javax.swing.JPanel{
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBoxBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxBuscarActionPerformed
+    private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
+        limpiarInputs();
+        comboBusqueda.setText("");
+        limpiarTabla();
+        jButtonGuardar.setEnabled(true);
+    }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
-    }//GEN-LAST:event_jComboBoxBuscarActionPerformed
+    private void comboBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBusquedaActionPerformed
+
+    }//GEN-LAST:event_comboBusquedaActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
 
@@ -569,9 +648,9 @@ public class ClientesPanel extends javax.swing.JPanel{
                 Integer.parseInt(texto);
             } catch( NumberFormatException e ){
                 JOptionPane.showMessageDialog(this,
-                  "El ID debe ser un número",
-                  "Error de formato",
-                  JOptionPane.ERROR_MESSAGE);
+                    "El ID debe ser un número",
+                    "Error de formato",
+                    JOptionPane.ERROR_MESSAGE);
                 comboBusqueda.setText("");
                 return;
             }
@@ -581,39 +660,31 @@ public class ClientesPanel extends javax.swing.JPanel{
 
         if( resultados.isEmpty() ){
             JOptionPane.showMessageDialog(this,
-              "No se encontraron alumnos con " + buscarPor + ": " + texto,
-              "Sin resultados",
-              JOptionPane.INFORMATION_MESSAGE);
+                "No se encontraron alumnos con " + buscarPor + ": " + texto,
+                "Sin resultados",
+                JOptionPane.INFORMATION_MESSAGE);
             limpiarTabla();
         } else{
             actualizarTablaConResultados(resultados);
             JOptionPane.showMessageDialog(this,
-              "Se encontraron " + resultados.size() + " alumno(s)",
-              "Búsqueda exitosa",
-              JOptionPane.INFORMATION_MESSAGE);
+                "Se encontraron " + resultados.size() + " alumno(s)",
+                "Búsqueda exitosa",
+                JOptionPane.INFORMATION_MESSAGE);
         }
-
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
-    private void comboBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBusquedaActionPerformed
+    private void jComboBoxBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxBuscarActionPerformed
 
-    }//GEN-LAST:event_comboBusquedaActionPerformed
-
-    private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
-        limpiarInputs();
-        comboBusqueda.setText("");
-        limpiarTabla();
-        jButtonGuardar.setEnabled(true);
-    }//GEN-LAST:event_jButtonClearFilterActionPerformed
+    }//GEN-LAST:event_jComboBoxBuscarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // Verificar que haya una fila seleccionada
         int filaSeleccionadaParaEdicion = jTable1.getSelectedRow();
         if( filaSeleccionadaParaEdicion == -1 ){
             JOptionPane.showMessageDialog(this,
-              "Por favor, seleccione un Cliente de la tabla para actualizar.",
-              "Advertencia",
-              JOptionPane.WARNING_MESSAGE);
+                "Por favor, seleccione un Cliente de la tabla para actualizar.",
+                "Advertencia",
+                JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -648,9 +719,9 @@ public class ClientesPanel extends javax.swing.JPanel{
 
         if( clienteAActualizar == null ){
             JOptionPane.showMessageDialog(this,
-              "Cliente no encontrado.",
-              "Error",
-              JOptionPane.ERROR_MESSAGE);
+                "Cliente no encontrado.",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -659,12 +730,12 @@ public class ClientesPanel extends javax.swing.JPanel{
 
         if( resultado ){
             JOptionPane.showMessageDialog(this,
-              "Cliente actualizado correctamente.\n\n"
-              + "ID: " + cliente.getIdCliente() + "\n"
-              + "Nombre: " + cliente.getNombreCompleto() + "\n"
-              + "DNI: " + cliente.getDni(),
-              "Éxito",
-              JOptionPane.INFORMATION_MESSAGE);
+                "Cliente actualizado correctamente.\n\n"
+                + "ID: " + cliente.getIdCliente() + "\n"
+                + "Nombre: " + cliente.getNombreCompleto() + "\n"
+                + "DNI: " + cliente.getDni(),
+                "Éxito",
+                JOptionPane.INFORMATION_MESSAGE);
 
             // Limpiar y actualizar
             limpiarInputs();
@@ -673,10 +744,10 @@ public class ClientesPanel extends javax.swing.JPanel{
             filaSeleccionadaParaEdicion = -1;
         } else{
             JOptionPane.showMessageDialog(this,
-              "Error al actualizar el cliente.\n"
-              + "Por favor verifique los datos e intente nuevamente.",
-              "Error",
-              JOptionPane.ERROR_MESSAGE);
+                "Error al actualizar el cliente.\n"
+                + "Por favor verifique los datos e intente nuevamente.",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -686,9 +757,9 @@ public class ClientesPanel extends javax.swing.JPanel{
         int filaSeleccionadaParaEdicion = jTable1.getSelectedRow();
         if( filaSeleccionadaParaEdicion == -1 ){
             JOptionPane.showMessageDialog(this,
-              "Por favor, seleccione un Cliente de la tabla para eliminar.",
-              "Advertencia",
-              JOptionPane.WARNING_MESSAGE);
+                "Por favor, seleccione un Cliente de la tabla para eliminar.",
+                "Advertencia",
+                JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -706,22 +777,22 @@ public class ClientesPanel extends javax.swing.JPanel{
 
         if( clienteAEliminar == null ){
             JOptionPane.showMessageDialog(this,
-              "Cliente no encontrado.",
-              "Error",
-              JOptionPane.ERROR_MESSAGE);
+                "Cliente no encontrado.",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Confirmar eliminación
         int confirmacion = JOptionPane.showConfirmDialog(
-          this,
-          "¿Está seguro de que desea eliminar el Cliente?\n\n"
-          + "Nombre: " + clienteAEliminar.getNombreCompleto() + "\n"
-          + "DNI: " + clienteAEliminar.getDni() + "\n\n"
-          + "Esta acción no se puede deshacer.",
-          "Confirmar eliminación",
-          JOptionPane.YES_NO_OPTION,
-          JOptionPane.WARNING_MESSAGE
+            this,
+            "¿Está seguro de que desea eliminar el Cliente?\n\n"
+            + "Nombre: " + clienteAEliminar.getNombreCompleto() + "\n"
+            + "DNI: " + clienteAEliminar.getDni() + "\n\n"
+            + "Esta acción no se puede deshacer.",
+            "Confirmar eliminación",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE
         );
 
         if( confirmacion == JOptionPane.YES_OPTION ){
@@ -729,9 +800,9 @@ public class ClientesPanel extends javax.swing.JPanel{
 
             if( resultado ){
                 JOptionPane.showMessageDialog(this,
-                  "Cliente eliminado correctamente.",
-                  "Éxito",
-                  JOptionPane.INFORMATION_MESSAGE);
+                    "Cliente eliminado correctamente.",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
 
                 // Limpiar y actualizar
                 limpiarInputs();
@@ -740,12 +811,12 @@ public class ClientesPanel extends javax.swing.JPanel{
                 filaSeleccionadaParaEdicion = -1;
             } else{
                 JOptionPane.showMessageDialog(this,
-                  "Error al eliminar el cliente.",
-                  "Error",
-                  JOptionPane.ERROR_MESSAGE);
+                    "Error al eliminar el cliente.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
             }
         }
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
@@ -766,19 +837,19 @@ public class ClientesPanel extends javax.swing.JPanel{
         Cliente resultado = ClienteData.guardar(cliente);
         if( resultado != null ){
             JOptionPane.showMessageDialog(this,
-              "Alumno guardado exitosamente\n\n"
-              + "ID: " + resultado.getIdCliente() + "\n"
-              + "Nombre: " + resultado.getNombreCompleto() + "\n"
-              + "DNI: " + resultado.getDni(),
-              "Guardado exitoso",
-              JOptionPane.INFORMATION_MESSAGE);
+                "Alumno guardado exitosamente\n\n"
+                + "ID: " + resultado.getIdCliente() + "\n"
+                + "Nombre: " + resultado.getNombreCompleto() + "\n"
+                + "DNI: " + resultado.getDni(),
+                "Guardado exitoso",
+                JOptionPane.INFORMATION_MESSAGE);
             limpiarInputs();
         } else{
             JOptionPane.showMessageDialog(this,
-              "Error al guardar el alumno\n\n"
-              + "Por favor verifique los datos e intente nuevamente",
-              "Error al guardar",
-              JOptionPane.ERROR_MESSAGE);
+                "Error al guardar el alumno\n\n"
+                + "Por favor verifique los datos e intente nuevamente",
+                "Error al guardar",
+                JOptionPane.ERROR_MESSAGE);
         }
         limpiarInputs();
         limpiarTabla();
@@ -821,9 +892,48 @@ public class ClientesPanel extends javax.swing.JPanel{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void configurarBordesTabla(){
+        // Hacer transparente para que se vea el borde personalizado
+        jScrollPane1.setOpaque(false);
+        jScrollPane1.getViewport().setOpaque(false);
+
+        jScrollPane1.setBorder(new javax.swing.border.AbstractBorder() {
+            @Override
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Fondo blanco redondeado
+                g2.setColor(java.awt.Color.WHITE);
+                g2.fillRoundRect(x, y, width - 1, height - 1, 15, 15);
+
+                // Borde gris redondeado
+                g2.setColor(new java.awt.Color(200, 200, 200));
+                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.drawRoundRect(x + 1, y + 1, width - 3, height - 3, 15, 15);
+
+                g2.dispose();
+            }
+
+            @Override
+            public Insets getBorderInsets(Component c) {
+                return new Insets(5, 5, 5, 5);
+            }
+
+            @Override
+            public Insets getBorderInsets(Component c, Insets insets) {
+                insets.left = insets.right = insets.top = insets.bottom = 5;
+                return insets;
+            }
+        });
+    }
+
+
 }
 
 
