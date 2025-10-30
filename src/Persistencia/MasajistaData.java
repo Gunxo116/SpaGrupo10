@@ -11,6 +11,44 @@ import java.util.ArrayList;
 
 public class MasajistaData{
 
+    public static ArrayList<Masajista> obtenerActivos(){
+        ArrayList<Masajista> masajistas = new ArrayList<>();
+        String sql = "SELECT * FROM masajista WHERE estado = 1";
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try{
+            conn = ConexionDB.getConexion();
+            if( conn != null ){
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery(sql);
+                while( rs.next() ){
+                    Masajista masajista = new Masajista();
+                    masajista.setId(rs.getInt("id"));
+                    masajista.setNombreCompleto(rs.getString("nombreCompleto"));
+                    masajista.setTelefono(rs.getString("telefono"));
+                    masajista.setEspecialidad(rs.getString("especialidad"));
+                    masajista.setEstado(rs.getBoolean("estado"));
+                    masajistas.add(masajista);
+                }
+            }
+        } catch( SQLException e ){
+            System.err.println("Error al obtener masajistas: " + e.getMessage());
+        } finally{
+            try{
+                if( rs != null ){
+                    rs.close();
+                }
+                if( stmt != null ){
+                    stmt.close();
+                }
+            } catch( SQLException e ){
+                System.err.println("Error cerrando recursos: " + e.getMessage());
+            }
+        }
+        return masajistas;
+    }
+
     public static ArrayList<Masajista> obtenerTodos(){
         ArrayList<Masajista> masajistas = new ArrayList<>();
         String sql = "SELECT * FROM masajista";

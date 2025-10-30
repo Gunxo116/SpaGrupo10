@@ -660,14 +660,14 @@ public class ClientesPanel extends javax.swing.JPanel{
 
         if( resultados.isEmpty() ){
             JOptionPane.showMessageDialog(this,
-              "No se encontraron alumnos con " + buscarPor + ": " + texto,
+              "No se encontraron clientes con " + buscarPor + ": " + texto,
               "Sin resultados",
               JOptionPane.INFORMATION_MESSAGE);
             limpiarTabla();
         } else{
             actualizarTablaConResultados(resultados);
             JOptionPane.showMessageDialog(this,
-              "Se encontraron " + resultados.size() + " alumno(s)",
+              "Se encontraron " + resultados.size() + " cliente(s)",
               "Búsqueda exitosa",
               JOptionPane.INFORMATION_MESSAGE);
         }

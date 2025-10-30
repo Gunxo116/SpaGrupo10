@@ -487,7 +487,7 @@ public class FormularioDiasSpaPanel extends javax.swing.JPanel{
         comboCliente.addItem(null);
 
         // Obtener todos los clientes desde la base de datos
-        ArrayList<Cliente> clientes = ClienteData.obtenerTodos();
+        ArrayList<Cliente> clientes = ClienteData.obtenerActivos();
 
         // Agregar cada cliente al combo
         for( Cliente cliente : clientes ){

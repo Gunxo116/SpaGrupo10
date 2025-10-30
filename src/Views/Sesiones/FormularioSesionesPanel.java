@@ -665,7 +665,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         private void cargarComboInstalacion(){
             jComboInstalacion.removeAllItems();
             
-            ArrayList<Instalacion> instalaciones = InstalacionData.obtenerTodas();
+            ArrayList<Instalacion> instalaciones = InstalacionData.obtenerActivas();
             for(Instalacion instalacion : instalaciones){
                 if(instalacion.isEstado()){
                     jComboInstalacion.addItem(instalacion);
@@ -676,7 +676,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         private void cargarComboTratamiento(){
             jComboTratamiento.removeAllItems();
             
-            ArrayList<Tratamiento> tratamientos = TratamientoData.obtenerTodos();
+            ArrayList<Tratamiento> tratamientos = TratamientoData.obtenerActivos();
             for(Tratamiento tratamiento : tratamientos){
                 if(tratamiento.getEstado()){
                     jComboTratamiento.addItem(tratamiento);
@@ -687,7 +687,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         private void cargarComboMasajista(){
             jComboMasajista.removeAllItems();
             
-            ArrayList<Masajista> masajistas = MasajistaData.obtenerTodos();
+            ArrayList<Masajista> masajistas = MasajistaData.obtenerActivos();
             for(Masajista masajista : masajistas){
                 if(masajista.getEstado()){
                     jComboMasajista.addItem(masajista);
