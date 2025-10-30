@@ -25,22 +25,22 @@ public class ClientesPanel extends javax.swing.JPanel{
         cargarCombo2();
         jTable1.setModel(modelo);
         configurarBordesTabla();
-        
-        // ELEGIR TAMAÑO DE CADA COLUMNA DE LA TABLA 
+
+        // ELEGIR TAMAÑO DE CADA COLUMNA DE LA TABLA
         int[] anchos = {50, 100, 200, 100, 45, 150, 60};
-        for (int i = 0; i < anchos.length; i++) {
+        for( int i = 0 ; i < anchos.length ; i++ ){
             jTable1.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
-        
+
         jPanel4.setOpaque(false);
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        
+
         jPanel2.setOpaque(false);
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        
+
         jPanel3.setOpaque(false);
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        
+
         limpiarTabla();
 
         // Función para que al hacer click sobre un alumno se cargue la información en el formulario de edición
@@ -648,9 +648,9 @@ public class ClientesPanel extends javax.swing.JPanel{
                 Integer.parseInt(texto);
             } catch( NumberFormatException e ){
                 JOptionPane.showMessageDialog(this,
-                    "El ID debe ser un número",
-                    "Error de formato",
-                    JOptionPane.ERROR_MESSAGE);
+                  "El ID debe ser un número",
+                  "Error de formato",
+                  JOptionPane.ERROR_MESSAGE);
                 comboBusqueda.setText("");
                 return;
             }
@@ -660,16 +660,16 @@ public class ClientesPanel extends javax.swing.JPanel{
 
         if( resultados.isEmpty() ){
             JOptionPane.showMessageDialog(this,
-                "No se encontraron alumnos con " + buscarPor + ": " + texto,
-                "Sin resultados",
-                JOptionPane.INFORMATION_MESSAGE);
+              "No se encontraron alumnos con " + buscarPor + ": " + texto,
+              "Sin resultados",
+              JOptionPane.INFORMATION_MESSAGE);
             limpiarTabla();
         } else{
             actualizarTablaConResultados(resultados);
             JOptionPane.showMessageDialog(this,
-                "Se encontraron " + resultados.size() + " alumno(s)",
-                "Búsqueda exitosa",
-                JOptionPane.INFORMATION_MESSAGE);
+              "Se encontraron " + resultados.size() + " alumno(s)",
+              "Búsqueda exitosa",
+              JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -682,9 +682,9 @@ public class ClientesPanel extends javax.swing.JPanel{
         int filaSeleccionadaParaEdicion = jTable1.getSelectedRow();
         if( filaSeleccionadaParaEdicion == -1 ){
             JOptionPane.showMessageDialog(this,
-                "Por favor, seleccione un Cliente de la tabla para actualizar.",
-                "Advertencia",
-                JOptionPane.WARNING_MESSAGE);
+              "Por favor, seleccione un Cliente de la tabla para actualizar.",
+              "Advertencia",
+              JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -719,9 +719,9 @@ public class ClientesPanel extends javax.swing.JPanel{
 
         if( clienteAActualizar == null ){
             JOptionPane.showMessageDialog(this,
-                "Cliente no encontrado.",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+              "Cliente no encontrado.",
+              "Error",
+              JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -730,12 +730,12 @@ public class ClientesPanel extends javax.swing.JPanel{
 
         if( resultado ){
             JOptionPane.showMessageDialog(this,
-                "Cliente actualizado correctamente.\n\n"
-                + "ID: " + cliente.getIdCliente() + "\n"
-                + "Nombre: " + cliente.getNombreCompleto() + "\n"
-                + "DNI: " + cliente.getDni(),
-                "Éxito",
-                JOptionPane.INFORMATION_MESSAGE);
+              "Cliente actualizado correctamente.\n\n"
+              + "ID: " + cliente.getIdCliente() + "\n"
+              + "Nombre: " + cliente.getNombreCompleto() + "\n"
+              + "DNI: " + cliente.getDni(),
+              "Éxito",
+              JOptionPane.INFORMATION_MESSAGE);
 
             // Limpiar y actualizar
             limpiarInputs();
@@ -744,10 +744,10 @@ public class ClientesPanel extends javax.swing.JPanel{
             filaSeleccionadaParaEdicion = -1;
         } else{
             JOptionPane.showMessageDialog(this,
-                "Error al actualizar el cliente.\n"
-                + "Por favor verifique los datos e intente nuevamente.",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+              "Error al actualizar el cliente.\n"
+              + "Por favor verifique los datos e intente nuevamente.",
+              "Error",
+              JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -757,9 +757,9 @@ public class ClientesPanel extends javax.swing.JPanel{
         int filaSeleccionadaParaEdicion = jTable1.getSelectedRow();
         if( filaSeleccionadaParaEdicion == -1 ){
             JOptionPane.showMessageDialog(this,
-                "Por favor, seleccione un Cliente de la tabla para eliminar.",
-                "Advertencia",
-                JOptionPane.WARNING_MESSAGE);
+              "Por favor, seleccione un Cliente de la tabla para eliminar.",
+              "Advertencia",
+              JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -777,22 +777,22 @@ public class ClientesPanel extends javax.swing.JPanel{
 
         if( clienteAEliminar == null ){
             JOptionPane.showMessageDialog(this,
-                "Cliente no encontrado.",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+              "Cliente no encontrado.",
+              "Error",
+              JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Confirmar eliminación
         int confirmacion = JOptionPane.showConfirmDialog(
-            this,
-            "¿Está seguro de que desea eliminar el Cliente?\n\n"
-            + "Nombre: " + clienteAEliminar.getNombreCompleto() + "\n"
-            + "DNI: " + clienteAEliminar.getDni() + "\n\n"
-            + "Esta acción no se puede deshacer.",
-            "Confirmar eliminación",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE
+          this,
+          "¿Está seguro de que desea eliminar el Cliente?\n\n"
+          + "Nombre: " + clienteAEliminar.getNombreCompleto() + "\n"
+          + "DNI: " + clienteAEliminar.getDni() + "\n\n"
+          + "Esta acción no se puede deshacer.",
+          "Confirmar eliminación",
+          JOptionPane.YES_NO_OPTION,
+          JOptionPane.WARNING_MESSAGE
         );
 
         if( confirmacion == JOptionPane.YES_OPTION ){
@@ -800,9 +800,9 @@ public class ClientesPanel extends javax.swing.JPanel{
 
             if( resultado ){
                 JOptionPane.showMessageDialog(this,
-                    "Cliente eliminado correctamente.",
-                    "Éxito",
-                    JOptionPane.INFORMATION_MESSAGE);
+                  "Cliente eliminado correctamente.",
+                  "Éxito",
+                  JOptionPane.INFORMATION_MESSAGE);
 
                 // Limpiar y actualizar
                 limpiarInputs();
@@ -811,9 +811,9 @@ public class ClientesPanel extends javax.swing.JPanel{
                 filaSeleccionadaParaEdicion = -1;
             } else{
                 JOptionPane.showMessageDialog(this,
-                    "Error al eliminar el cliente.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                  "Error al eliminar el cliente.",
+                  "Error",
+                  JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -837,19 +837,19 @@ public class ClientesPanel extends javax.swing.JPanel{
         Cliente resultado = ClienteData.guardar(cliente);
         if( resultado != null ){
             JOptionPane.showMessageDialog(this,
-                "Alumno guardado exitosamente\n\n"
-                + "ID: " + resultado.getIdCliente() + "\n"
-                + "Nombre: " + resultado.getNombreCompleto() + "\n"
-                + "DNI: " + resultado.getDni(),
-                "Guardado exitoso",
-                JOptionPane.INFORMATION_MESSAGE);
+              "Alumno guardado exitosamente\n\n"
+              + "ID: " + resultado.getIdCliente() + "\n"
+              + "Nombre: " + resultado.getNombreCompleto() + "\n"
+              + "DNI: " + resultado.getDni(),
+              "Guardado exitoso",
+              JOptionPane.INFORMATION_MESSAGE);
             limpiarInputs();
         } else{
             JOptionPane.showMessageDialog(this,
-                "Error al guardar el alumno\n\n"
-                + "Por favor verifique los datos e intente nuevamente",
-                "Error al guardar",
-                JOptionPane.ERROR_MESSAGE);
+              "Error al guardar el alumno\n\n"
+              + "Por favor verifique los datos e intente nuevamente",
+              "Error al guardar",
+              JOptionPane.ERROR_MESSAGE);
         }
         limpiarInputs();
         limpiarTabla();
@@ -902,9 +902,9 @@ public class ClientesPanel extends javax.swing.JPanel{
         jScrollPane1.setOpaque(false);
         jScrollPane1.getViewport().setOpaque(false);
 
-        jScrollPane1.setBorder(new javax.swing.border.AbstractBorder() {
+        jScrollPane1.setBorder(new javax.swing.border.AbstractBorder(){
             @Override
-            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height){
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -921,18 +921,17 @@ public class ClientesPanel extends javax.swing.JPanel{
             }
 
             @Override
-            public Insets getBorderInsets(Component c) {
+            public Insets getBorderInsets(Component c){
                 return new Insets(5, 5, 5, 5);
             }
 
             @Override
-            public Insets getBorderInsets(Component c, Insets insets) {
+            public Insets getBorderInsets(Component c, Insets insets){
                 insets.left = insets.right = insets.top = insets.bottom = 5;
                 return insets;
             }
         });
     }
-
 
 }
 

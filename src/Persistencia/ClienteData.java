@@ -269,6 +269,49 @@ public class ClienteData{
 
         return clientes;
     }
+
+    public static Cliente obtenerPorId(int id){
+        String sql = "SELECT * FROM cliente WHERE id = ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Cliente cliente = null;
+
+        try{
+            conn = ConexionDB.getConexion();
+            if( conn != null ){
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, id);
+                rs = pstmt.executeQuery();
+
+                if( rs.next() ){
+                    cliente = new Cliente();
+                    cliente.setIdCliente(rs.getInt("id"));
+                    cliente.setDni(rs.getString("dni"));
+                    cliente.setNombreCompleto(rs.getString("nombreCompleto"));
+                    cliente.setTelefono(rs.getString("telefono"));
+                    cliente.setEdad(rs.getInt("edad"));
+                    cliente.setAfecciones(rs.getString("afecciones"));
+                    cliente.setEstado(rs.getBoolean("estado"));
+                }
+            }
+        } catch( SQLException e ){
+            System.err.println("Error al obtener cliente por ID: " + e.getMessage());
+        } finally{
+            try{
+                if( rs != null ){
+                    rs.close();
+                }
+                if( pstmt != null ){
+                    pstmt.close();
+                }
+            } catch( SQLException e ){
+                System.err.println("Error cerrando recursos: " + e.getMessage());
+            }
+        }
+
+        return cliente;
+    }
 }
 
 /*
