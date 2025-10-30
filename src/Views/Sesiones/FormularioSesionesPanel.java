@@ -2,16 +2,23 @@ package Views.Sesiones;
 
 import Modelo.Instalacion;
 import Modelo.Masajista;
+import Modelo.Sesion;
 import Modelo.Tratamiento;
 import Persistencia.InstalacionData;
 import Persistencia.MasajistaData;
+import Persistencia.SesionData;
 import Persistencia.TratamientoData;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
@@ -122,6 +129,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jButtonGuardarEdit = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
         jButtonGuardarEdit1 = new javax.swing.JButton();
+        jButtonLimpiar1 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -277,6 +285,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jLabel16.setText("Estado ");
 
         jButtonGuardarEdit.setBackground(new java.awt.Color(76, 175, 80));
+        jButtonGuardarEdit.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jButtonGuardarEdit.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardarEdit.setText("Guardar y Crear Otra ");
         jButtonGuardarEdit.setBorderPainted(false);
@@ -289,6 +298,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         });
 
         jButtonLimpiar.setBackground(new java.awt.Color(102, 102, 102));
+        jButtonLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLimpiar.setText("Cancelar");
         jButtonLimpiar.setBorderPainted(false);
@@ -301,6 +311,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         });
 
         jButtonGuardarEdit1.setBackground(new java.awt.Color(21, 104, 195));
+        jButtonGuardarEdit1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jButtonGuardarEdit1.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardarEdit1.setText("Guardar");
         jButtonGuardarEdit1.setBorderPainted(false);
@@ -309,6 +320,19 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jButtonGuardarEdit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGuardarEdit1ActionPerformed(evt);
+            }
+        });
+
+        jButtonLimpiar1.setBackground(new java.awt.Color(81, 149, 149));
+        jButtonLimpiar1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jButtonLimpiar1.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLimpiar1.setText("Limpiar");
+        jButtonLimpiar1.setBorderPainted(false);
+        jButtonLimpiar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonLimpiar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonLimpiar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiar1ActionPerformed(evt);
             }
         });
 
@@ -377,7 +401,9 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                     .addComponent(jLabel16))
                 .addGap(33, 33, 33))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(jButtonLimpiar1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonGuardarEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -447,7 +473,8 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                 .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardarEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonLimpiar)
-                    .addComponent(jButtonGuardarEdit1))
+                    .addComponent(jButtonGuardarEdit1)
+                    .addComponent(jButtonLimpiar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -474,14 +501,84 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     private void jButtonGuardarEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarEdit1ActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            if (!validarDatos()) {
+                return;
+            }
+
+            // Crear objeto Sesion
+            Sesion sesion = new Sesion();
+
+            // Obtener fechas y horas combinadas
+            LocalDateTime fechaHoraInicio = obtenerFechaHoraInicio();
+            LocalDateTime fechaHoraFin = obtenerFechaHoraFin();
+
+            sesion.setFechaHoraInicio(fechaHoraInicio);
+            sesion.setFechaHoraFin(fechaHoraFin);
+
+            // Tratamiento (opcional)
+            Tratamiento tratamiento = (Tratamiento) jComboTratamiento.getSelectedItem();
+            if (tratamiento != null) {
+                sesion.setIdTratamiento(tratamiento.getIdTratamiento());
+            }
+
+            // Masajista (opcional)
+            Masajista masajista = (Masajista) jComboMasajista.getSelectedItem();
+            if (masajista != null) {
+                sesion.setIdMasajista(masajista.getId());
+            }
+
+            // Instalación (obligatorio)
+            Instalacion instalacion = (Instalacion) jComboInstalacion.getSelectedItem();
+            sesion.setIdInstalacion(instalacion.getIdInstalacion());
+
+            // Estado
+            String estado = (String) jComboEstado.getSelectedItem();
+            sesion.setEstado(estado);
+
+            /*
+            // ID Día Spa
+            int idDiaSpa = Integer.parseInt(jLabelDiaSpaID.getText().trim());
+            sesion.setIdDiaSpa(idDiaSpa);
+            */
+
+            // Guardar en la base de datos
+            Sesion sesionGuardada = SesionData.guardar(sesion);
+
+            if (sesionGuardada != null) {
+                JOptionPane.showMessageDialog(this, 
+                    "Sesión guardada exitosamente con ID: " + sesionGuardada.getId(),
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
+                limpiarFormulario();
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                    "Error al guardar la sesión en la base de datos",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "Error inesperado: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+        
     }//GEN-LAST:event_jButtonGuardarEdit1ActionPerformed
+
+    private void jButtonLimpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiar1ActionPerformed
+        limpiarFormulario();
+    }//GEN-LAST:event_jButtonLimpiar1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonGuardarEdit;
     private javax.swing.JButton jButtonGuardarEdit1;
     private javax.swing.JButton jButtonLimpiar;
+    private javax.swing.JButton jButtonLimpiar1;
     private javax.swing.JComboBox<String> jComboEstado;
     private javax.swing.JComboBox<Instalacion> jComboInstalacion;
     private javax.swing.JComboBox<Masajista> jComboMasajista;
@@ -561,9 +658,123 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         }
         
         
-        
-        
+        private LocalDateTime obtenerFechaHoraInicio() {
+            Date fechaDate = jDateChooser1.getDate();
+            if (fechaDate == null) {
+                return null;
+            }
+            
+            LocalDate fecha = fechaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            Date horaDate = (Date) timeChooser.getValue();
+            LocalTime hora = horaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+            return LocalDateTime.of(fecha, hora);
+            
+        }
 
+        private LocalDateTime obtenerFechaHoraFin() {
+            Date fechaDate = jDateChooser1.getDate();
+            if (fechaDate == null) {
+                return null;
+            }
+            LocalDate fecha = fechaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            Date horaDate = (Date) timeChooser2.getValue();
+            LocalTime hora = horaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+
+            return LocalDateTime.of(fecha, hora);
+        }
+        
+        
+        private boolean validarDatos() {
+            if (jDateChooser1.getDate() == null) {
+                JOptionPane.showMessageDialog(this, 
+                    "Debe seleccionar una fecha", 
+                    "Campo requerido", 
+                    JOptionPane.WARNING_MESSAGE);
+                jDateChooser1.requestFocus();
+                return false;
+            }
+            if (timeChooser.getValue() == null) {
+                JOptionPane.showMessageDialog(this, 
+                    "Debe seleccionar una hora de inicio", 
+                    "Campo requerido", 
+                    JOptionPane.WARNING_MESSAGE);
+                timeChooser.requestFocus();
+                return false;
+            }
+            if (timeChooser2.getValue() == null) {
+                JOptionPane.showMessageDialog(this, 
+                    "Debe seleccionar una hora de fin", 
+                    "Campo requerido", 
+                    JOptionPane.WARNING_MESSAGE);
+                timeChooser2.requestFocus();
+                return false;
+            }
+            
+            LocalDateTime fechaHoraInicio = obtenerFechaHoraInicio();
+            LocalDateTime fechaHoraFin = obtenerFechaHoraFin();
+
+            if (fechaHoraFin.isBefore(fechaHoraInicio) || fechaHoraFin.isEqual(fechaHoraInicio)) {
+                JOptionPane.showMessageDialog(this, 
+                    "La hora de fin debe ser posterior a la hora de inicio", 
+                    "Error en horarios", 
+                    JOptionPane.WARNING_MESSAGE);
+                timeChooser2.requestFocus();
+                return false;
+            }
+
+            if (jComboInstalacion.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(this, 
+                    "Debe seleccionar una instalación", 
+                    "Campo requerido", 
+                    JOptionPane.WARNING_MESSAGE);
+                jComboInstalacion.requestFocus();
+                return false;
+            }
+            
+            if (jComboEstado.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(this, 
+                    "Debe seleccionar un estado", 
+                    "Campo requerido", 
+                    JOptionPane.WARNING_MESSAGE);
+                jComboEstado.requestFocus();
+                return false;
+            }
+
+            /*
+            // Validar que el label tenga el ID del día spa
+            if (jLabelDiaSpaID.getText() == null || jLabelDiaSpaID.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, 
+                    "Error: No se ha cargado el día de spa", 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            // Validar que el ID sea un número válido
+            try {
+                Integer.parseInt(jLabelDiaSpaID.getText().trim());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, 
+                    "Error: ID de día de spa inválido", 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            */
+            
+            return true;
+        }
+        
+    private void limpiarFormulario() {
+        jDateChooser1.setDate(new Date());
+        timeChooser.setValue(new Date());
+        timeChooser2.setValue(new Date());
+        jComboInstalacion.setSelectedIndex(-1);
+        jComboTratamiento.setSelectedIndex(-1);
+        jComboMasajista.setSelectedIndex(-1);
+        jComboEstado.setSelectedIndex(0);
+    }
 }
 
 
