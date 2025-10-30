@@ -157,7 +157,7 @@ public class DiasSpaPanel extends javax.swing.JPanel{
         jPanel1.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("Formulario Día de Spa");
+        jLabel2.setText("Gestión Día de Spa");
 
         jPanelBuscar.setBackground(new java.awt.Color(255, 255, 255));
 

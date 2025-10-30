@@ -88,7 +88,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Formulario D&#xed;a de Spa"/>
+            <Property name="text" type="java.lang.String" value="Gesti&#xf3;n D&#xed;a de Spa"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
