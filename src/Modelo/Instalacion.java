@@ -61,13 +61,7 @@ public class Instalacion {
     
     @Override
     public String toString() {
-        return "Instalacion{" +
-                "idInstalacion=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", detalleUso='" + detalleUso + '\'' +
-                ", precio30m=" + precio30m +
-                ", estado=" + (estado ? "Activa" : "Inactiva") +
-                '}';
+        return nombre + " - $" + String.format("%.2f", precio30m) + " /30min";
     }
     
 }

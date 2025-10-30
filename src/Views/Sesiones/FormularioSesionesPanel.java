@@ -1,8 +1,15 @@
 package Views.Sesiones;
 
+import Modelo.Instalacion;
+import Modelo.Masajista;
+import Modelo.Tratamiento;
+import Persistencia.InstalacionData;
+import Persistencia.MasajistaData;
+import Persistencia.TratamientoData;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JSpinner;
@@ -18,7 +25,16 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
 
         jPanelPrincipal.setOpaque(false);
         jPanelPrincipal.setBackground(new java.awt.Color(21, 104, 195));
+        
+        configurarFormulario();
 
+    }
+    
+    private void configurarFormulario(){
+        cargarComboInstalacion();
+        cargarComboTratamiento();
+        cargarComboMasajista();
+        cargarComboEstado();     
     }
 
     @SuppressWarnings("unchecked")
@@ -101,7 +117,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jComboMasajista = new javax.swing.JComboBox<>();
-        jComboMasajistaEstado = new javax.swing.JComboBox<>();
+        jComboEstado = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
         jButtonGuardarEdit = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
@@ -251,19 +267,11 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setText("Seleccionar Instalación");
 
-        jComboInstalacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboTratamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel14.setText("Seleccionar Tratamiento");
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel15.setText("Asignar Masajista ");
-
-        jComboMasajista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboMasajistaEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel16.setText("Estado ");
@@ -365,7 +373,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                         .addComponent(jComboMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboMasajistaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addGap(33, 33, 33))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondoLayout.createSequentialGroup()
@@ -432,7 +440,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboMasajistaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -474,10 +482,10 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
     private javax.swing.JButton jButtonGuardarEdit;
     private javax.swing.JButton jButtonGuardarEdit1;
     private javax.swing.JButton jButtonLimpiar;
-    private javax.swing.JComboBox<String> jComboInstalacion;
-    private javax.swing.JComboBox<String> jComboMasajista;
-    private javax.swing.JComboBox<String> jComboMasajistaEstado;
-    private javax.swing.JComboBox<String> jComboTratamiento;
+    private javax.swing.JComboBox<String> jComboEstado;
+    private javax.swing.JComboBox<Instalacion> jComboInstalacion;
+    private javax.swing.JComboBox<Masajista> jComboMasajista;
+    private javax.swing.JComboBox<Tratamiento> jComboTratamiento;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -509,6 +517,53 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
     private javax.swing.JSpinner timeChooser;
     private javax.swing.JSpinner timeChooser2;
     // End of variables declaration//GEN-END:variables
+
+        
+        private void cargarComboInstalacion(){
+            jComboInstalacion.removeAllItems();
+            
+            ArrayList<Instalacion> instalaciones = InstalacionData.obtenerTodas();
+            for(Instalacion instalacion : instalaciones){
+                if(instalacion.isEstado()){
+                    jComboInstalacion.addItem(instalacion);
+                }
+            }
+        }
+        
+        private void cargarComboTratamiento(){
+            jComboTratamiento.removeAllItems();
+            
+            ArrayList<Tratamiento> tratamientos = TratamientoData.obtenerTodos();
+            for(Tratamiento tratamiento : tratamientos){
+                if(tratamiento.getEstado()){
+                    jComboTratamiento.addItem(tratamiento);
+                }
+            }
+        }
+        
+        private void cargarComboMasajista(){
+            jComboMasajista.removeAllItems();
+            
+            ArrayList<Masajista> masajistas = MasajistaData.obtenerTodos();
+            for(Masajista masajista : masajistas){
+                if(masajista.getEstado()){
+                    jComboMasajista.addItem(masajista);
+                }
+            }
+        }
+        
+        private void cargarComboEstado(){
+            jComboEstado.removeAllItems();
+            jComboEstado.addItem("Completada");
+            jComboEstado.addItem("Reservada");
+            jComboEstado.addItem("En Curso");
+            jComboEstado.addItem("Cancelada");
+        }
+        
+        
+        
+        
+
 }
 
 

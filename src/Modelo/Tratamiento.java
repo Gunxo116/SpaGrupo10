@@ -87,6 +87,11 @@ public class Tratamiento {
     
     // OVER
     
+    @Override
+    public String toString() {
+        return nombre + " - " + duracion + "min - $" + String.format("%.2f", costo);
+    }
+    
     
 }
 
