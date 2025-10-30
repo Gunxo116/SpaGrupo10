@@ -9,8 +9,51 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class TratamientoData {
-    
+public class TratamientoData{
+
+    public static ArrayList<Tratamiento> obtenerActivos(){
+        ArrayList<Tratamiento> tratamientos = new ArrayList<>();
+        String sql = "SELECT * FROM tratamiento WHERE estado = 1";
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try{
+            conn = ConexionDB.getConexion();
+            if( conn != null ){
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery(sql);
+
+                while( rs.next() ){
+                    Tratamiento tratamiento = new Tratamiento();
+                    tratamiento.setIdTratamiento(rs.getInt("id"));
+                    tratamiento.setNombre(rs.getString("nombre"));
+                    tratamiento.setTipo(rs.getString("tipo"));
+                    tratamiento.setDetalle(rs.getString("detalle"));
+                    tratamiento.setProductos(rs.getString("productos"));
+                    tratamiento.setDuracion(rs.getInt("duracion"));
+                    tratamiento.setCosto(rs.getDouble("costo"));
+                    tratamiento.setEstado(rs.getBoolean("estado"));
+                    tratamientos.add(tratamiento);
+                }
+            }
+        } catch( SQLException e ){
+            System.err.println("Error al obtener tratamientos: " + e.getMessage());
+        } finally{
+            try{
+                if( rs != null ){
+                    rs.close();
+                }
+                if( stmt != null ){
+                    stmt.close();
+                }
+            } catch( SQLException e ){
+                System.err.println("Error cerrando recursos: " + e.getMessage());
+            }
+        }
+        return tratamientos;
+    }
+
     public static ArrayList<Tratamiento> obtenerTodos(){
         ArrayList<Tratamiento> tratamientos = new ArrayList<>();
         String sql = "SELECT * FROM tratamiento";
@@ -41,8 +84,12 @@ public class TratamientoData {
             System.err.println("Error al obtener tratamientos: " + e.getMessage());
         } finally{
             try{
-                if( rs != null ) rs.close();
-                if( stmt != null ) stmt.close();
+                if( rs != null ){
+                    rs.close();
+                }
+                if( stmt != null ){
+                    stmt.close();
+                }
             } catch( SQLException e ){
                 System.err.println("Error cerrando recursos: " + e.getMessage());
             }
@@ -72,8 +119,12 @@ public class TratamientoData {
             System.err.println("Error verificando nombre: " + e.getMessage());
         } finally{
             try{
-                if( rs != null ) rs.close();
-                if( pstmt != null ) pstmt.close();
+                if( rs != null ){
+                    rs.close();
+                }
+                if( pstmt != null ){
+                    pstmt.close();
+                }
             } catch( SQLException e ){
                 System.err.println("Error cerrando recursos: " + e.getMessage());
             }
@@ -99,7 +150,7 @@ public class TratamientoData {
                 sql += "estado = ?";
                 break;
             default:
-                return obtenerTodos();
+                return obtenerActivos();
         }
 
         Connection conn = null;
@@ -143,8 +194,12 @@ public class TratamientoData {
             System.err.println("Error en busqueda: " + e.getMessage());
         } finally{
             try{
-                if( rs != null ) rs.close();
-                if( pstmt != null ) pstmt.close();
+                if( rs != null ){
+                    rs.close();
+                }
+                if( pstmt != null ){
+                    pstmt.close();
+                }
             } catch( SQLException e ){
                 System.err.println("Error cerrando recursos: " + e.getMessage());
             }
@@ -184,8 +239,12 @@ public class TratamientoData {
             tratamiento = null;
         } finally{
             try{
-                if( rs != null ) rs.close();
-                if( pstmt != null ) pstmt.close();
+                if( rs != null ){
+                    rs.close();
+                }
+                if( pstmt != null ){
+                    pstmt.close();
+                }
             } catch( SQLException e ){
                 System.err.println("Error cerrando recursos: " + e.getMessage());
             }
@@ -225,7 +284,9 @@ public class TratamientoData {
             return false;
         } finally{
             try{
-                if( pstmt != null ) pstmt.close();
+                if( pstmt != null ){
+                    pstmt.close();
+                }
             } catch( SQLException e ){
                 System.err.println("Error cerrando recursos: " + e.getMessage());
             }
@@ -258,7 +319,9 @@ public class TratamientoData {
             return false;
         } finally{
             try{
-                if( pstmt != null ) pstmt.close();
+                if( pstmt != null ){
+                    pstmt.close();
+                }
             } catch( SQLException e ){
                 System.err.println("Error cerrando recursos: " + e.getMessage());
             }
@@ -296,19 +359,23 @@ public class TratamientoData {
             System.err.println("Error buscando por ID: " + e.getMessage());
         } finally{
             try{
-                if( rs != null ) rs.close();
-                if( pstmt != null ) pstmt.close();
+                if( rs != null ){
+                    rs.close();
+                }
+                if( pstmt != null ){
+                    pstmt.close();
+                }
             } catch( SQLException e ){
                 System.err.println("Error cerrando recursos: " + e.getMessage());
             }
         }
         return tratamiento;
     }
-    
+
     public static ArrayList<Tratamiento> listarPorTipo(String tipo){
         return buscarPor("Tipo", tipo);
     }
-    
+
 }
 
 

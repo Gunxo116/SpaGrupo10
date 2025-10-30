@@ -11,6 +11,46 @@ import java.util.ArrayList;
 
 public class InstalacionData{
 
+    public static ArrayList<Instalacion> obtenerActivas(){
+        ArrayList<Instalacion> instalaciones = new ArrayList<>();
+        String sql = "SELECT * FROM instalacion WHERE estado = 1";
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try{
+            conn = ConexionDB.getConexion();
+            if( conn != null ){
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery(sql);
+
+                while( rs.next() ){
+                    Instalacion instalacion = new Instalacion();
+                    instalacion.setIdInstalacion(rs.getInt("id"));
+                    instalacion.setNombre(rs.getString("nombre"));
+                    instalacion.setDetalleUso(rs.getString("detalleUso"));
+                    instalacion.setPrecio30m(rs.getDouble("precio30m"));
+                    instalacion.setEstado(rs.getBoolean("estado"));
+                    instalaciones.add(instalacion);
+                }
+            }
+        } catch( SQLException e ){
+            System.err.println("Error al obtener instalaciones: " + e.getMessage());
+        } finally{
+            try{
+                if( rs != null ){
+                    rs.close();
+                }
+                if( stmt != null ){
+                    stmt.close();
+                }
+            } catch( SQLException e ){
+                System.err.println("Error cerrando recursos: " + e.getMessage());
+            }
+        }
+        return instalaciones;
+    }
+
     public static ArrayList<Instalacion> obtenerTodas(){
         ArrayList<Instalacion> instalaciones = new ArrayList<>();
         String sql = "SELECT * FROM instalacion";
@@ -101,7 +141,7 @@ public class InstalacionData{
                 sql += "estado = ?";
                 break;
             default:
-                return obtenerTodas();
+                return obtenerActivas();
         }
 
         Connection conn = null;
@@ -321,4 +361,4 @@ public class InstalacionData{
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-*/
+ */

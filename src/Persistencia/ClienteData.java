@@ -11,6 +11,46 @@ import java.util.ArrayList;
 
 public class ClienteData{
 
+    public static ArrayList<Cliente> obtenerActivos(){
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        String sql = "SELECT * FROM cliente WHERE estado = 1";
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try{
+            conn = ConexionDB.getConexion();
+            if( conn != null ){
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery(sql);
+                while( rs.next() ){
+                    Cliente cliente = new Cliente();
+                    cliente.setIdCliente(rs.getInt("id"));
+                    cliente.setDni(rs.getString("dni"));
+                    cliente.setNombreCompleto(rs.getString("nombreCompleto"));
+                    cliente.setTelefono(rs.getString("telefono"));
+                    cliente.setEdad(rs.getInt("edad"));
+                    cliente.setAfecciones(rs.getString("afecciones"));
+                    cliente.setEstado(rs.getBoolean("estado"));
+                    clientes.add(cliente);
+                }
+            }
+        } catch( SQLException e ){
+            System.err.println("Error al obtener clientes: " + e.getMessage());
+        } finally{
+            try{
+                if( rs != null ){
+                    rs.close();
+                }
+                if( stmt != null ){
+                    stmt.close();
+                }
+            } catch( SQLException e ){
+                System.err.println("Error cerrando recursos: " + e.getMessage());
+            }
+        }
+        return clientes;
+    }
+
     public static ArrayList<Cliente> obtenerTodos(){
         ArrayList<Cliente> clientes = new ArrayList<>();
         String sql = "SELECT * FROM cliente";
@@ -319,4 +359,4 @@ public class ClienteData{
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-*/
+ */
