@@ -563,13 +563,23 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                         "Sesión actualizada exitosamente",
                         "Éxito",
                         JOptionPane.INFORMATION_MESSAGE);
-                    // Volver al panel de sesiones
-                    // DashboardMenu.ShowJPanel(new SesionesPanel());
+                    
+                    
+                    Views.Sesiones.SesionesPanel panelSesiones = new Views.Sesiones.SesionesPanel();
+                    panelSesiones.cargarDatosDiaSpa(
+                        Integer.parseInt(jLabelDiaSpaID.getText()),
+                        jLabelCliente.getText(),
+                        jLabelFecha.getText()
+                    );
+                    Views.DashboardMenu.ShowJPanel(panelSesiones);
+                    
                 } else {
                     JOptionPane.showMessageDialog(this, 
                         "Error al actualizar la sesión",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
+                    
+                    
                 }
             } else {
                 Sesion sesionGuardada = SesionData.guardar(sesion);
@@ -579,6 +589,15 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                         "Éxito",
                         JOptionPane.INFORMATION_MESSAGE);
                     limpiarFormulario();
+                    
+                    Views.Sesiones.SesionesPanel panelSesiones = new Views.Sesiones.SesionesPanel();
+                    panelSesiones.cargarDatosDiaSpa(
+                        Integer.parseInt(jLabelDiaSpaID.getText()),
+                        jLabelCliente.getText(),
+                        jLabelFecha.getText()
+                    );
+                    Views.DashboardMenu.ShowJPanel(panelSesiones);
+                    
                 } else {
                     JOptionPane.showMessageDialog(this, 
                         "Error al guardar la sesión en la base de datos",
@@ -743,7 +762,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
 
             if (fechaHoraFin.isBefore(fechaHoraInicio) || fechaHoraFin.isEqual(fechaHoraInicio)) {
                 JOptionPane.showMessageDialog(this, 
-                    "La hora de fin debe ser posterior a la hora de inicio", 
+                    "La hora de fin debe ser Mayor a la hora inicio", 
                     "Error en horarios", 
                     JOptionPane.WARNING_MESSAGE);
                 timeChooser2.requestFocus();
@@ -768,7 +787,6 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                 return false;
             }
 
-            /*
             // Validar que el label tenga el ID del día spa
             if (jLabelDiaSpaID.getText() == null || jLabelDiaSpaID.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, 
@@ -788,7 +806,6 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                     JOptionPane.ERROR_MESSAGE);
                 return false;
             }
-            */
             
             return true;
         }
