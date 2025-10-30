@@ -25,7 +25,6 @@ public class PrincipalPanel extends javax.swing.JPanel {
         
         configurarPrincipal();
         actualizarEstadisticas();
-        //configurarDashboard();
     }
     
     
@@ -903,7 +902,6 @@ public class PrincipalPanel extends javax.swing.JPanel {
             int tratamientosActivos = EstadisticasData.obtenerTotalTratamientosActivos();
             double ingresosDelMes = EstadisticasData.obtenerIngresosDelMes();
 
-            // Actualizar los labels con tus nombres actuales
             numClientes.setText(String.valueOf(clientesActivos));
             numMasajistas.setText(String.valueOf(masajistasDisponibles));
             numSesiones.setText(String.valueOf(sesionesDelDia));
