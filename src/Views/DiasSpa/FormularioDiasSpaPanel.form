@@ -69,7 +69,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;&#xa;    @Override&#xa;    protected void paintComponent(Graphics g) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);&#xa;&#xa;        // Dibujar fondo blanco redondeado&#xa;        g2.setColor(getBackground());&#xa;        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);&#xa;&#xa;        // Dibujar borde gris redondeado&#xa;        g2.setColor(new java.awt.Color(200, 200, 200));&#xa;        g2.setStroke(new java.awt.BasicStroke(2));&#xa;        g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);&#xa;&#xa;        g2.dispose();&#xa;        super.paintComponent(g);&#xa;    }&#xa;&#xa;    }"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;&#xa;    @Override&#xa;    protected void paintComponent(Graphics g) {&#xa;        Graphics2D g2 = (Graphics2D) g.create();&#xa;        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);&#xa;&#xa;        // Dibujar fondo blanco redondeado&#xa;        g2.setColor(getBackground());&#xa;        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);&#xa;&#xa;        // Dibujar borde gris redondeado&#xa;        g2.setColor(new java.awt.Color(200, 200, 200));&#xa;        g2.setStroke(new java.awt.BasicStroke(1));&#xa;        g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);&#xa;&#xa;        g2.dispose();&#xa;        super.paintComponent(g);&#xa;    }&#xa;&#xa;}"/>
           </AuxValues>
 
           <Layout>
@@ -191,10 +191,10 @@
                       <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="buttonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonGuardar" linkSize="4" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="buttonLimpiar" linkSize="4" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="22" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -252,7 +252,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="\ud83d\udcc5 Fecha y hora" containsInvalidXMLChars="true"/>
+                <Property name="text" type="java.lang.String" value="&#x23f0; Fecha y hora"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator2">
@@ -268,6 +268,11 @@
               </Properties>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="dateChooser">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="timeChooser">
               <AuxValues>
@@ -312,6 +317,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor Por defecto"/>
                 </Property>
@@ -330,6 +336,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Limpiar"/>
+                <Property name="borderPainted" type="boolean" value="false"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Cursor Por defecto"/>
                 </Property>

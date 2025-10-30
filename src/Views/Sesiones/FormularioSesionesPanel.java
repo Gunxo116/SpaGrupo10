@@ -1,7 +1,5 @@
-
 package Views.Sesiones;
 
-import Views.*;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -10,23 +8,18 @@ import java.util.Date;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
+public class FormularioSesionesPanel extends javax.swing.JPanel{
 
-public class FormularioSesionesPanel extends javax.swing.JPanel {
-    
-    
-
-    public FormularioSesionesPanel() {
+    public FormularioSesionesPanel(){
         initComponents();
-        
-        
+
         jPanelFondo.setOpaque(false);
         jPanelFondo.setBackground(new java.awt.Color(255, 255, 255));
-        
+
         jPanelPrincipal.setOpaque(false);
         jPanelPrincipal.setBackground(new java.awt.Color(21, 104, 195));
-        
-    }
 
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -46,7 +39,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel {
 
                 // Dibujar borde gris redondeado
                 g2.setColor(new java.awt.Color(200, 200, 200));
-                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.setStroke(new java.awt.BasicStroke(1));
                 g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
 
                 g2.dispose();
@@ -196,7 +189,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -212,7 +205,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel {
         );
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel4.setText("Fecha y Horario");
+        jLabel4.setText("⏰ Fecha y Horario");
 
         jSeparator1.setBackground(new java.awt.Color(21, 104, 195));
         jSeparator1.setForeground(new java.awt.Color(21, 104, 195));
@@ -221,16 +214,16 @@ public class FormularioSesionesPanel extends javax.swing.JPanel {
         jSeparator2.setForeground(new java.awt.Color(21, 104, 195));
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel8.setText("Instalación");
+        jLabel8.setText("🏢 Instalación");
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel9.setText("Tratamiento ");
+        jLabel9.setText("💆‍♀️ Tratamiento ");
 
         jSeparator3.setBackground(new java.awt.Color(21, 104, 195));
         jSeparator3.setForeground(new java.awt.Color(21, 104, 195));
 
         jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel10.setText("Masajista");
+        jLabel10.setText("👐 Masajista");
 
         jSeparator4.setBackground(new java.awt.Color(21, 104, 195));
         jSeparator4.setForeground(new java.awt.Color(21, 104, 195));
@@ -278,7 +271,8 @@ public class FormularioSesionesPanel extends javax.swing.JPanel {
         jButtonGuardarEdit.setBackground(new java.awt.Color(76, 175, 80));
         jButtonGuardarEdit.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardarEdit.setText("Guardar y Crear Otra ");
-        jButtonGuardarEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonGuardarEdit.setBorderPainted(false);
+        jButtonGuardarEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonGuardarEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonGuardarEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,7 +283,8 @@ public class FormularioSesionesPanel extends javax.swing.JPanel {
         jButtonLimpiar.setBackground(new java.awt.Color(102, 102, 102));
         jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLimpiar.setText("Cancelar");
-        jButtonLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonLimpiar.setBorderPainted(false);
+        jButtonLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,7 +295,8 @@ public class FormularioSesionesPanel extends javax.swing.JPanel {
         jButtonGuardarEdit1.setBackground(new java.awt.Color(21, 104, 195));
         jButtonGuardarEdit1.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardarEdit1.setText("Guardar");
-        jButtonGuardarEdit1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonGuardarEdit1.setBorderPainted(false);
+        jButtonGuardarEdit1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonGuardarEdit1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonGuardarEdit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -463,19 +459,15 @@ public class FormularioSesionesPanel extends javax.swing.JPanel {
 
     private void jButtonGuardarEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarEditActionPerformed
 
-        
-
     }//GEN-LAST:event_jButtonGuardarEditActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-
 
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     private void jButtonGuardarEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarEdit1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonGuardarEdit1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -525,4 +517,4 @@ public class FormularioSesionesPanel extends javax.swing.JPanel {
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-*/
+ */

@@ -1,4 +1,3 @@
-
 package Views.Instalaciones;
 
 import Modelo.Instalacion;
@@ -12,40 +11,39 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+public class InstalacionesPanel extends javax.swing.JPanel{
 
-public class InstalacionesPanel extends javax.swing.JPanel {
-    
     private int filaSeleccionadaParaEdicion = -1;
-    
+
     private DefaultTableModel modelo = new DefaultTableModel(
-      new String[]{"ID", "Nombre", "Detalles de uso", "Precio 30min","Estado"}, 0
+      new String[]{"ID", "Nombre", "Detalles de uso", "Precio 30min", "Estado"}, 0
     );
 
-    public InstalacionesPanel() {
+    public InstalacionesPanel(){
         initComponents();
         setSize(760, 522);
         configurarBordesTabla();
         jTable1.setModel(modelo);
-        
+
         // TAMAÑOS DE LA COLUMNAS
         int[] anchos = {20, 60, 200, 60, 40};
-        for (int i = 0; i < anchos.length; i++) {
+        for( int i = 0 ; i < anchos.length ; i++ ){
             jTable1.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
-        
+
         jPanelBuscar.setOpaque(false);
         jPanelBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        
+
         jPanelAdministador.setOpaque(false);
         jPanelAdministador.setBackground(new java.awt.Color(255, 255, 255));
-        
+
         jPanelEditar.setOpaque(false);
         jPanelEditar.setBackground(new java.awt.Color(255, 255, 255));
-        
+
         cargarCombo();
         cargarComboEstado();
         limpiarTabla();
-        
+
         // Funcion para que al hacer click sobre un alumno se cargue la información en el formulario de edición
         jTable1.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener(){
             @Override
@@ -70,10 +68,8 @@ public class InstalacionesPanel extends javax.swing.JPanel {
                 }
             }
         });
-        
+
     }
-
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -93,7 +89,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
 
                 // Dibujar borde gris redondeado
                 g2.setColor(new java.awt.Color(200, 200, 200));
-                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.setStroke(new java.awt.BasicStroke(1));
                 g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
 
                 g2.dispose();
@@ -114,7 +110,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
 
                 // Dibujar borde gris redondeado
                 g2.setColor(new java.awt.Color(200, 200, 200));
-                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.setStroke(new java.awt.BasicStroke(1));
                 g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
 
                 g2.dispose();
@@ -151,7 +147,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
 
                 // Dibujar borde gris redondeado
                 g2.setColor(new java.awt.Color(200, 200, 200));
-                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.setStroke(new java.awt.BasicStroke(1));
                 g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
 
                 g2.dispose();
@@ -216,7 +212,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         jButtonGuardarEdit.setBackground(new java.awt.Color(76, 175, 80));
         jButtonGuardarEdit.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardarEdit.setText("Guardar");
-        jButtonGuardarEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonGuardarEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonGuardarEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonGuardarEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +223,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         jButtonBorrar.setBackground(new java.awt.Color(244, 67, 54));
         jButtonBorrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBorrar.setText("Borrar");
-        jButtonBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonBorrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,7 +234,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         jButtonActualizar.setBackground(new java.awt.Color(255, 152, 0));
         jButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonActualizar.setText("Actualizar");
-        jButtonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,7 +245,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         jButtonLimpiar.setBackground(new java.awt.Color(102, 102, 102));
         jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLimpiar.setText("Limpiar");
-        jButtonLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,7 +363,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         jButtonBuscar.setBackground(new java.awt.Color(76, 175, 80));
         jButtonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setText("Buscar");
-        jButtonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBuscarActionPerformed(evt);
@@ -406,7 +402,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         jButtonClearFilter.setBackground(new java.awt.Color(33, 150, 243));
         jButtonClearFilter.setForeground(new java.awt.Color(255, 255, 255));
         jButtonClearFilter.setText("Limpiar Filtro");
-        jButtonClearFilter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonClearFilter.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonClearFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonClearFilterActionPerformed(evt);
@@ -473,11 +469,11 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         jTextBuscar.setText("");
         limpiarTabla();
         jButtonGuardarEdit.setEnabled(true);
-        
+
     }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        
+
         String buscarPor = (String) jComboBoxBuscar.getSelectedItem();
         String texto = jTextBuscar.getText().trim();
 
@@ -514,7 +510,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
               "Búsqueda exitosa",
               JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void comboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEstadoActionPerformed
@@ -526,7 +522,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
     private void jTextPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPrecioActionPerformed
     }//GEN-LAST:event_jTextPrecioActionPerformed
     private void jButtonGuardarEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarEditActionPerformed
-        
+
         if( !validarFormularioCliente(0) ){
             return;
         }
@@ -565,11 +561,11 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         limpiarInputs();
         limpiarTabla();
         filaSeleccionadaParaEdicion = -1;
-        
+
     }//GEN-LAST:event_jButtonGuardarEditActionPerformed
 
     private void jButtonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarActionPerformed
-        
+
         // Verificar que haya una fila seleccionada
         int filaSeleccionadaParaEdicion = jTable1.getSelectedRow();
         if( filaSeleccionadaParaEdicion == -1 ){
@@ -586,7 +582,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         // Buscar el cliente a eliminar
         Instalacion InstalacionAEliminar = null;
         for( Instalacion i : InstalacionData.obtenerTodas() ){
-            if( i.getIdInstalacion()== id ){
+            if( i.getIdInstalacion() == id ){
                 InstalacionAEliminar = i;
                 break;
             }
@@ -604,8 +600,8 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         int confirmacion = JOptionPane.showConfirmDialog(
           this,
           "¿Esta seguro de que desea eliminar la Instalacion?\n\n"
-          + "Nombre: " + InstalacionAEliminar.getNombre()+ "\n"
-          + "ID: " + InstalacionAEliminar.getIdInstalacion()+ "\n\n"
+          + "Nombre: " + InstalacionAEliminar.getNombre() + "\n"
+          + "ID: " + InstalacionAEliminar.getIdInstalacion() + "\n\n"
           + "Esta acción no se puede deshacer.",
           "Confirmar eliminación",
           JOptionPane.YES_NO_OPTION,
@@ -625,7 +621,7 @@ public class InstalacionesPanel extends javax.swing.JPanel {
                 limpiarTabla();
                 jButtonGuardarEdit.setEnabled(true);
                 filaSeleccionadaParaEdicion = -1;
-                
+
             } else{
                 JOptionPane.showMessageDialog(this,
                   "Error al eliminar el cliente.",
@@ -633,11 +629,11 @@ public class InstalacionesPanel extends javax.swing.JPanel {
                   JOptionPane.ERROR_MESSAGE);
             }
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-        
+
         // Verificar que haya una fila seleccionada
         int filaSeleccionadaParaEdicion = jTable1.getSelectedRow();
         if( filaSeleccionadaParaEdicion == -1 ){
@@ -665,12 +661,12 @@ public class InstalacionesPanel extends javax.swing.JPanel {
 
         // Crear el objeto Cliente con los datos actualizados
         Instalacion instalacion = new Instalacion(nombre, detalleUso, precio30m, estado);
-        instalacion.setIdInstalacion(id); 
+        instalacion.setIdInstalacion(id);
 
         // Buscar el cliente a actualizar
         Instalacion clienteAActualizar = null;
         for( Instalacion i : InstalacionData.obtenerTodas() ){
-            if( i.getIdInstalacion()== id ){
+            if( i.getIdInstalacion() == id ){
                 clienteAActualizar = i;
                 break;
             }
@@ -690,8 +686,8 @@ public class InstalacionesPanel extends javax.swing.JPanel {
         if( resultado ){
             JOptionPane.showMessageDialog(this,
               "Instalacion actualizada correctamente.\n\n"
-              + "ID: " + instalacion.getIdInstalacion()+ "\n"
-              + "Nombre: " + instalacion.getNombre()+ "\n",
+              + "ID: " + instalacion.getIdInstalacion() + "\n"
+              + "Nombre: " + instalacion.getNombre() + "\n",
               "Éxito",
               JOptionPane.INFORMATION_MESSAGE);
 
@@ -707,16 +703,15 @@ public class InstalacionesPanel extends javax.swing.JPanel {
               "Error",
               JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-        
+
         limpiarInputs();
         jButtonGuardarEdit.setEnabled(true);
-        
-    }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
+    }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboEstado;
@@ -746,27 +741,26 @@ public class InstalacionesPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextPrecio;
     // End of variables declaration//GEN-END:variables
 
-
     private void cargarCombo(){
-            jComboBoxBuscar.removeAllItems();
-            jComboBoxBuscar.addItem("ID");
-            jComboBoxBuscar.addItem("Nombre");
-            jComboBoxBuscar.addItem("Estado");
+        jComboBoxBuscar.removeAllItems();
+        jComboBoxBuscar.addItem("ID");
+        jComboBoxBuscar.addItem("Nombre");
+        jComboBoxBuscar.addItem("Estado");
     }
-    
+
     private void cargarComboEstado(){
         comboEstado.removeAllItems();
         comboEstado.addItem("Activo");
         comboEstado.addItem("Inactivo");
     }
-    
+
     private void limpiarInputs(){
         jTextNombre.setText(null);
         jTextPrecio.setText(null);
         jTextDetallesUso.setText(null);
         comboEstado.setSelectedIndex(0);
     }
-    
+
     private void limpiarTabla(){
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setRowCount(0);
@@ -776,13 +770,12 @@ public class InstalacionesPanel extends javax.swing.JPanel {
                 p.getIdInstalacion(),
                 p.getNombre(),
                 p.getDetalleUso(),
-                "$"+p.getPrecio30m(),
+                "$" + p.getPrecio30m(),
                 p.isEstado() ? "Activo" : "Inactivo"
             });
         }
     }
-    
-    
+
     private void actualizarTablaConResultados(ArrayList<Instalacion> instalacion){
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setRowCount(0);
@@ -792,12 +785,12 @@ public class InstalacionesPanel extends javax.swing.JPanel {
                 i.getIdInstalacion(),
                 i.getNombre(),
                 i.getDetalleUso(),
-                "$"+i.getPrecio30m(),
+                "$" + i.getPrecio30m(),
                 i.isEstado() ? "Activo" : "Inactivo"
             });
         }
     }
-    
+
     private boolean validarFormularioCliente(int idCliente){
         String nombre = jTextNombre.getText().trim();
         String precio30m = jTextPrecio.getText().trim();
@@ -812,9 +805,9 @@ public class InstalacionesPanel extends javax.swing.JPanel {
             mostrarError("El Nombre debe tener al menos 3 caracteres", jTextNombre);
             return false;
         }
-        
+
         // Validar Edad
-       if( precio30m.isEmpty() ){
+        if( precio30m.isEmpty() ){
             mostrarError("El precio es obligatorio", jTextPrecio);
             return false;
         }
@@ -843,20 +836,20 @@ public class InstalacionesPanel extends javax.swing.JPanel {
 
         return true;
     }
-    
+
     private void mostrarError(String mensaje, Component componente){
         JOptionPane.showMessageDialog(this, mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
         componente.requestFocus();
     }
-    
+
     private void configurarBordesTabla(){
         // Hacer transparente para que se vea el borde personalizado
         jScrollPane1.setOpaque(false);
         jScrollPane1.getViewport().setOpaque(false);
 
-        jScrollPane1.setBorder(new javax.swing.border.AbstractBorder() {
+        jScrollPane1.setBorder(new javax.swing.border.AbstractBorder(){
             @Override
-            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height){
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -866,25 +859,24 @@ public class InstalacionesPanel extends javax.swing.JPanel {
 
                 // Borde gris redondeado
                 g2.setColor(new java.awt.Color(200, 200, 200));
-                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.setStroke(new java.awt.BasicStroke(1));
                 g2.drawRoundRect(x + 1, y + 1, width - 3, height - 3, 15, 15);
 
                 g2.dispose();
             }
 
             @Override
-            public Insets getBorderInsets(Component c) {
+            public Insets getBorderInsets(Component c){
                 return new Insets(5, 5, 5, 5);
             }
 
             @Override
-            public Insets getBorderInsets(Component c, Insets insets) {
+            public Insets getBorderInsets(Component c, Insets insets){
                 insets.left = insets.right = insets.top = insets.bottom = 5;
                 return insets;
             }
         });
     }
-    
 
 }
 
@@ -895,4 +887,4 @@ public class InstalacionesPanel extends javax.swing.JPanel {
              __^      __(  \.__) )
          (@)<_____>__(_____)____
          Hola
-*/
+ */

@@ -109,7 +109,7 @@ public class FormularioDiasSpaPanel extends javax.swing.JPanel{
 
                 // Dibujar borde gris redondeado
                 g2.setColor(new java.awt.Color(200, 200, 200));
-                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.setStroke(new java.awt.BasicStroke(1));
                 g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
 
                 g2.dispose();
@@ -158,11 +158,13 @@ public class FormularioDiasSpaPanel extends javax.swing.JPanel{
 
         jLabel4.setText("Estado:");
 
-        jLabel5.setText("📅 Fecha y hora");
+        jLabel5.setText("⏰ Fecha y hora");
 
         jLabel6.setText("Fecha:");
 
         jLabel7.setText("Hora:");
+
+        dateChooser.setBackground(new java.awt.Color(255, 255, 255));
 
         JSpinner.DateEditor de = new JSpinner.DateEditor(timeChooser, "HH:mm");
         timeChooser.setEditor(de);
@@ -178,6 +180,7 @@ public class FormularioDiasSpaPanel extends javax.swing.JPanel{
         buttonGuardar.setBackground(new java.awt.Color(76, 175, 80));
         buttonGuardar.setForeground(new java.awt.Color(255, 255, 255));
         buttonGuardar.setText("Guardar");
+        buttonGuardar.setBorderPainted(false);
         buttonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +192,7 @@ public class FormularioDiasSpaPanel extends javax.swing.JPanel{
         buttonLimpiar.setBackground(new java.awt.Color(102, 102, 102));
         buttonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         buttonLimpiar.setText("Limpiar");
+        buttonLimpiar.setBorderPainted(false);
         buttonLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -298,10 +302,12 @@ public class FormularioDiasSpaPanel extends javax.swing.JPanel{
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(jPanelAdministadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonGuardar)
-                    .addComponent(buttonLimpiar))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addComponent(buttonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
+
+        jPanelAdministadorLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {buttonGuardar, buttonLimpiar});
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
