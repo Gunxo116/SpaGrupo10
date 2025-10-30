@@ -1,13 +1,18 @@
 package Views.Sesiones;
 
+import Modelo.Cliente;
+import Modelo.DiaDeSpa;
 import Modelo.Instalacion;
 import Modelo.Masajista;
 import Modelo.Sesion;
 import Modelo.Tratamiento;
+import Persistencia.ClienteData;
+import Persistencia.DiaDeSpaData;
 import Persistencia.InstalacionData;
 import Persistencia.MasajistaData;
 import Persistencia.SesionData;
 import Persistencia.TratamientoData;
+import Views.DashboardMenu;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -15,6 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,6 +40,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jPanelPrincipal.setBackground(new java.awt.Color(21, 104, 195));
         
         configurarFormulario();
+        
 
     }
     
@@ -126,8 +133,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jComboMasajista = new javax.swing.JComboBox<>();
         jComboEstado = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        jButtonGuardarEdit = new javax.swing.JButton();
-        jButtonLimpiar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jButtonGuardarEdit1 = new javax.swing.JButton();
         jButtonLimpiar1 = new javax.swing.JButton();
 
@@ -179,7 +185,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(245, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelDiaSpaID, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +196,8 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,33 +291,20 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel16.setText("Estado ");
 
-        jButtonGuardarEdit.setBackground(new java.awt.Color(76, 175, 80));
-        jButtonGuardarEdit.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jButtonGuardarEdit.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonGuardarEdit.setText("Guardar y Crear Otra ");
-        jButtonGuardarEdit.setBorderPainted(false);
-        jButtonGuardarEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButtonGuardarEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonGuardarEdit.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelar.setBackground(new java.awt.Color(102, 102, 102));
+        jButtonCancelar.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jButtonCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setBorderPainted(false);
+        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarEditActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
-        jButtonLimpiar.setBackground(new java.awt.Color(102, 102, 102));
-        jButtonLimpiar.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonLimpiar.setText("Cancelar");
-        jButtonLimpiar.setBorderPainted(false);
-        jButtonLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButtonLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpiarActionPerformed(evt);
-            }
-        });
-
-        jButtonGuardarEdit1.setBackground(new java.awt.Color(21, 104, 195));
+        jButtonGuardarEdit1.setBackground(new java.awt.Color(76, 175, 80));
         jButtonGuardarEdit1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jButtonGuardarEdit1.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardarEdit1.setText("Guardar");
@@ -323,7 +317,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
             }
         });
 
-        jButtonLimpiar1.setBackground(new java.awt.Color(81, 149, 149));
+        jButtonLimpiar1.setBackground(new java.awt.Color(21, 104, 195));
         jButtonLimpiar1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jButtonLimpiar1.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLimpiar1.setText("Limpiar");
@@ -404,12 +398,10 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                 .addGap(31, 31, 31)
                 .addComponent(jButtonLimpiar1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonGuardarEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonGuardarEdit)
-                .addGap(26, 26, 26))
+                .addGap(39, 39, 39))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -418,7 +410,7 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
 
         jPanelFondoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jDateChooser1, timeChooser, timeChooser2});
 
-        jPanelFondoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonGuardarEdit1, jButtonLimpiar});
+        jPanelFondoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonCancelar, jButtonGuardarEdit1});
 
         jPanelFondoLayout.setVerticalGroup(
             jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,14 +463,13 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGuardarEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonLimpiar)
+                    .addComponent(jButtonCancelar)
                     .addComponent(jButtonGuardarEdit1)
                     .addComponent(jButtonLimpiar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanelFondoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonGuardarEdit, jButtonGuardarEdit1, jButtonLimpiar});
+        jPanelFondoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButtonCancelar, jButtonGuardarEdit1});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -492,13 +483,28 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonGuardarEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarEditActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        
+        int confirmar = JOptionPane.showConfirmDialog(
+            this,
+            "¿Estas seguro de cancelar?\nLos cambios no guardados se perderan.",
+            "Cancelar",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE
+        );
 
-    }//GEN-LAST:event_jButtonGuardarEditActionPerformed
-
-    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-
-    }//GEN-LAST:event_jButtonLimpiarActionPerformed
+        if (confirmar == JOptionPane.YES_OPTION) {
+            // Volver al panel de sesiones
+            Views.Sesiones.SesionesPanel panelSesiones = new Views.Sesiones.SesionesPanel();
+            panelSesiones.cargarDatosDiaSpa(
+                Integer.parseInt(jLabelDiaSpaID.getText()),
+                jLabelCliente.getText(),
+                jLabelFecha.getText()
+            );
+            Views.DashboardMenu.ShowJPanel(panelSesiones);
+        }
+        
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonGuardarEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarEdit1ActionPerformed
 
@@ -506,9 +512,12 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
             if (!validarDatos()) {
                 return;
             }
-
-            // Crear objeto Sesion
-            Sesion sesion = new Sesion();
+            Sesion sesion;
+            if (sesionEnEdicion != null) {
+                sesion = sesionEnEdicion;
+            } else {
+                sesion = new Sesion();
+            }
 
             // Obtener fechas y horas combinadas
             LocalDateTime fechaHoraInicio = obtenerFechaHoraInicio();
@@ -521,12 +530,16 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
             Tratamiento tratamiento = (Tratamiento) jComboTratamiento.getSelectedItem();
             if (tratamiento != null) {
                 sesion.setIdTratamiento(tratamiento.getIdTratamiento());
+            } else {
+                sesion.setIdTratamiento(null);
             }
 
             // Masajista (opcional)
             Masajista masajista = (Masajista) jComboMasajista.getSelectedItem();
             if (masajista != null) {
                 sesion.setIdMasajista(masajista.getId());
+            } else {
+                sesion.setIdMasajista(null);
             }
 
             // Instalación (obligatorio)
@@ -537,26 +550,41 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
             String estado = (String) jComboEstado.getSelectedItem();
             sesion.setEstado(estado);
 
-            /*
             // ID Día Spa
             int idDiaSpa = Integer.parseInt(jLabelDiaSpaID.getText().trim());
             sesion.setIdDiaSpa(idDiaSpa);
-            */
 
-            // Guardar en la base de datos
-            Sesion sesionGuardada = SesionData.guardar(sesion);
-
-            if (sesionGuardada != null) {
-                JOptionPane.showMessageDialog(this, 
-                    "Sesión guardada exitosamente con ID: " + sesionGuardada.getId(),
-                    "Éxito",
-                    JOptionPane.INFORMATION_MESSAGE);
-                limpiarFormulario();
+            // Guardar o actualizar en la base de datos
+            boolean exito;
+            if (sesionEnEdicion != null) {
+                exito = SesionData.actualizar(sesion);
+                if (exito) {
+                    JOptionPane.showMessageDialog(this, 
+                        "Sesión actualizada exitosamente",
+                        "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
+                    // Volver al panel de sesiones
+                    // DashboardMenu.ShowJPanel(new SesionesPanel());
+                } else {
+                    JOptionPane.showMessageDialog(this, 
+                        "Error al actualizar la sesión",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, 
-                    "Error al guardar la sesión en la base de datos",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+                Sesion sesionGuardada = SesionData.guardar(sesion);
+                if (sesionGuardada != null) {
+                    JOptionPane.showMessageDialog(this, 
+                        "Sesión guardada exitosamente con ID: " + sesionGuardada.getId(),
+                        "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
+                    limpiarFormulario();
+                } else {
+                    JOptionPane.showMessageDialog(this, 
+                        "Error al guardar la sesión en la base de datos",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                }
             }
 
         } catch (Exception e) {
@@ -575,9 +603,8 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonGuardarEdit;
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonGuardarEdit1;
-    private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonLimpiar1;
     private javax.swing.JComboBox<String> jComboEstado;
     private javax.swing.JComboBox<Instalacion> jComboInstalacion;
@@ -775,6 +802,78 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jComboMasajista.setSelectedIndex(-1);
         jComboEstado.setSelectedIndex(0);
     }
+    
+    public void cargarDatosDiaSpa(int idDiaSpa, String nombreCliente, String fecha) {
+        jLabelDiaSpaID.setText(String.valueOf(idDiaSpa));
+        jLabel2.setText("Día de Spa: " + idDiaSpa); 
+
+        // Actualizar cliente y fecha
+        jLabelCliente.setText(nombreCliente);
+        jLabelFecha.setText(fecha);
+    }
+    
+    public void cargarDatosParaEditar(Sesion sesion) {
+        jLabelDiaSpaID.setText(String.valueOf(sesion.getIdDiaSpa()));
+        jLabel2.setText("Día de Spa: " + sesion.getIdDiaSpa());
+
+        DiaDeSpa diaSpa = DiaDeSpaData.buscarPorId(sesion.getIdDiaSpa());
+        if (diaSpa != null) {
+            Cliente cliente = ClienteData.obtenerPorId(diaSpa.getIdCliente());
+            if (cliente != null) {
+                jLabelCliente.setText(cliente.getNombreCompleto());
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            jLabelFecha.setText(diaSpa.getFechaHora().format(formatter));
+        }
+
+        LocalDateTime fechaHoraInicio = sesion.getFechaHoraInicio();
+        LocalDateTime fechaHoraFin = sesion.getFechaHoraFin();
+
+        Date fechaInicio = Date.from(fechaHoraInicio.atZone(ZoneId.systemDefault()).toInstant());
+        Date horaInicio = Date.from(fechaHoraInicio.atZone(ZoneId.systemDefault()).toInstant());
+        Date horaFin = Date.from(fechaHoraFin.atZone(ZoneId.systemDefault()).toInstant());
+
+        jDateChooser1.setDate(fechaInicio);
+        timeChooser.setValue(horaInicio);
+        timeChooser2.setValue(horaFin);
+
+
+        for (int i = 0; i < jComboInstalacion.getItemCount(); i++) {
+            Instalacion inst = jComboInstalacion.getItemAt(i);
+            if (inst.getIdInstalacion() == sesion.getIdInstalacion()) {
+                jComboInstalacion.setSelectedIndex(i);
+                break;
+            }
+        }
+
+
+        if (sesion.getIdTratamiento() != null) {
+            for (int i = 0; i < jComboTratamiento.getItemCount(); i++) {
+                Tratamiento trat = jComboTratamiento.getItemAt(i);
+                if (trat.getIdTratamiento() == sesion.getIdTratamiento()) {
+                    jComboTratamiento.setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
+
+        if (sesion.getIdMasajista() != null) {
+            for (int i = 0; i < jComboMasajista.getItemCount(); i++) {
+                Masajista mas = jComboMasajista.getItemAt(i);
+                if (mas.getId() == sesion.getIdMasajista()) {
+                    jComboMasajista.setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
+
+        jComboEstado.setSelectedItem(sesion.getEstado());
+        jButtonGuardarEdit1.setText("Actualizar");
+        this.sesionEnEdicion = sesion;
+    }
+    
+    private Sesion sesionEnEdicion = null;
+    
 }
 
 

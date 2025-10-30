@@ -65,18 +65,31 @@ class PanelBotonesEditor extends AbstractCellEditor implements TableCellEditor{
 
     private void accionSesiones(){
         int idDiaSpa = (int) tabla.getValueAt(filaActual, 0);
+        String nombreCliente = (String) tabla.getValueAt(filaActual, 1);
+        String fechaHora = (String) tabla.getValueAt(filaActual, 2);
+
         System.out.println("Gestionar sesiones del día de spa ID: " + idDiaSpa);
 
         // Obtener el día de spa completo
         DiaDeSpa diaSpa = DiaDeSpaData.buscarPorId(idDiaSpa);
 
-        if( diaSpa != null ){
-            // Aquí abres el panel de sesiones (cuando lo tengas creado)
-            // DashboardMenu.ShowJPanel(new PanelSesiones(diaSpa));
+        if(diaSpa != null){
+            // Crear el panel de sesiones y cargar los datos
+            Views.Sesiones.SesionesPanel panelSesiones = new Views.Sesiones.SesionesPanel();
+            
+            panelSesiones.cargarDatosDiaSpa(
+                idDiaSpa,
+                nombreCliente,
+                fechaHora
+            );
+
+            // Mostrar el panel
+            DashboardMenu.ShowJPanel(panelSesiones);
+        } else {
             JOptionPane.showMessageDialog(tabla,
-              "Funcionalidad de sesiones próximamente\nDía de Spa ID: " + idDiaSpa,
-              "Sesiones",
-              JOptionPane.INFORMATION_MESSAGE);
+                "Error al cargar el día de spa",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
         }
     }
 
