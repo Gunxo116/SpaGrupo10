@@ -20,6 +20,8 @@ import javax.swing.UIManager;
 
 public class DashboardMenu extends javax.swing.JFrame{
 
+    private static DashboardMenu instance;
+
     private boolean isAdmin = false;
 
     private boolean diasSpaExpanded = false;
@@ -32,6 +34,7 @@ public class DashboardMenu extends javax.swing.JFrame{
     private javax.swing.JPanel panel_Sesiones_Submenu;
 
     public DashboardMenu(boolean isAdmin){
+        instance = this;
         this.isAdmin = isAdmin;
         initComponents();
         InitStyles();
@@ -99,6 +102,7 @@ public class DashboardMenu extends javax.swing.JFrame{
         content.add(p, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
+        instance.closeAllSubmenus();
     }
 
     @SuppressWarnings("unchecked")
@@ -374,32 +378,27 @@ public class DashboardMenu extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_prinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prinActionPerformed
-        closeAllSubmenus();
         ShowJPanel(new PrincipalPanel());
     }//GEN-LAST:event_btn_prinActionPerformed
 
     private void btn_ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClientesActionPerformed
-        closeAllSubmenus();
         ShowJPanel(new ClientesPanel());
     }//GEN-LAST:event_btn_ClientesActionPerformed
 
     private void btn_MasajistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MasajistasActionPerformed
-        closeAllSubmenus();
         ShowJPanel(new MasajistasPanel());
     }//GEN-LAST:event_btn_MasajistasActionPerformed
 
     private void btn_TratamientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TratamientosActionPerformed
-        closeAllSubmenus();
         ShowJPanel(new TratamientoPanel());
     }//GEN-LAST:event_btn_TratamientosActionPerformed
 
     private void btn_InstalacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InstalacionesActionPerformed
-        closeAllSubmenus();
         ShowJPanel(new InstalacionesPanel());
     }//GEN-LAST:event_btn_InstalacionesActionPerformed
 
     private void btn_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SalirActionPerformed
-        closeAllSubmenus();
+
         int confirma = JOptionPane.showConfirmDialog(
           this,
           "¿Esta seguro que desea salir de la aplicación?",
@@ -439,7 +438,6 @@ public class DashboardMenu extends javax.swing.JFrame{
     }//GEN-LAST:event_btn_SesionesActionPerformed
 
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
-        closeAllSubmenus();
         ShowJPanel(new ReportesPanel());
     }//GEN-LAST:event_btn_ReportesActionPerformed
 

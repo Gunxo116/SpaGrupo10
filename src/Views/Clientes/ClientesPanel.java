@@ -250,7 +250,7 @@ public class ClientesPanel extends javax.swing.JPanel{
 
                 // Dibujar borde gris redondeado
                 g2.setColor(new java.awt.Color(200, 200, 200));
-                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.setStroke(new java.awt.BasicStroke(1));
                 g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
 
                 g2.dispose();
@@ -271,7 +271,7 @@ public class ClientesPanel extends javax.swing.JPanel{
 
                 // Dibujar borde gris redondeado
                 g2.setColor(new java.awt.Color(200, 200, 200));
-                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.setStroke(new java.awt.BasicStroke(1));
                 g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
 
                 g2.dispose();
@@ -311,7 +311,7 @@ public class ClientesPanel extends javax.swing.JPanel{
 
                 // Dibujar borde gris redondeado
                 g2.setColor(new java.awt.Color(200, 200, 200));
-                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.setStroke(new java.awt.BasicStroke(1));
                 g2.drawRoundRect(1, 1, getWidth() - 2, getHeight() - 2, 20, 20);
 
                 g2.dispose();
@@ -914,7 +914,7 @@ public class ClientesPanel extends javax.swing.JPanel{
 
                 // Borde gris redondeado
                 g2.setColor(new java.awt.Color(200, 200, 200));
-                g2.setStroke(new java.awt.BasicStroke(2));
+                g2.setStroke(new java.awt.BasicStroke(1));
                 g2.drawRoundRect(x + 1, y + 1, width - 3, height - 3, 15, 15);
 
                 g2.dispose();
