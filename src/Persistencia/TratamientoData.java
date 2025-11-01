@@ -375,6 +375,49 @@ public class TratamientoData{
     public static ArrayList<Tratamiento> listarPorTipo(String tipo){
         return buscarPor("Tipo", tipo);
     }
+    
+    
+    
+    public static ArrayList<String> obtenerTipos() {
+        ArrayList<String> tipos = new ArrayList<>();
+        String sql = "SELECT DISTINCT tipo FROM tratamiento WHERE tipo IS NOT NULL ORDER BY tipo";
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = ConexionDB.getConexion();
+            if (conn != null) {
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                    tipos.add(rs.getString("tipo"));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener tipos: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Error cerrando recursos: " + e.getMessage());
+            }
+        }
+        return tipos;
+    }
+
+    public static ArrayList<String> obtenerEstados() {
+        ArrayList<String> estados = new ArrayList<>();
+        estados.add("Activo");
+        estados.add("Inactivo");
+        return estados;
+    }
 
 }
 

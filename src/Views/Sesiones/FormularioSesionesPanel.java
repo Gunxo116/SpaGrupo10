@@ -282,6 +282,12 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
         jLabel13.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel13.setText("Seleccionar Instalación");
 
+        jComboTratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboTratamientoActionPerformed(evt);
+            }
+        });
+
         jLabel14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel14.setText("Seleccionar Tratamiento");
 
@@ -620,6 +626,10 @@ public class FormularioSesionesPanel extends javax.swing.JPanel{
     private void jButtonLimpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiar1ActionPerformed
         limpiarFormulario();
     }//GEN-LAST:event_jButtonLimpiar1ActionPerformed
+
+    private void jComboTratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboTratamientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboTratamientoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

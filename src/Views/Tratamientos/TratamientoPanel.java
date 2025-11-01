@@ -983,7 +983,6 @@ public class TratamientoPanel extends javax.swing.JPanel{
     }
 
     private void configurarBordesTabla(){
-        // Hacer transparente para que se vea el borde personalizado
         jScrollPane1.setOpaque(false);
         jScrollPane1.getViewport().setOpaque(false);
 
