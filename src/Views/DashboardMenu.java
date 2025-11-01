@@ -6,7 +6,6 @@ import Views.DiasSpa.FormularioDiasSpaPanel;
 import Views.Instalaciones.InstalacionesPanel;
 import Views.Masajistas.MasajistasPanel;
 import Views.Principal.PrincipalPanel;
-import Views.Reportes.ReportesPanel;
 import Views.Reportes.ReportesPanel2;
 import Views.Tratamientos.TratamientoPanel;
 import com.formdev.flatlaf.FlatIntelliJLaf;
@@ -26,7 +25,7 @@ public class DashboardMenu extends javax.swing.JFrame{
     public static InstalacionesPanel instalacionesPanel;
     public static DiasSpaPanel diasSpaPanel;
     public static FormularioDiasSpaPanel formularioDiasSpaPanel;
-    public static ReportesPanel reportesPanel;
+    public static ReportesPanel2 reportesPanel;
 
     public DashboardMenu(){
         initComponents();
@@ -433,7 +432,7 @@ public class DashboardMenu extends javax.swing.JFrame{
             instalacionesPanel = new InstalacionesPanel();
             diasSpaPanel = new DiasSpaPanel();
             formularioDiasSpaPanel = new FormularioDiasSpaPanel();
-            reportesPanel = new ReportesPanel();
+            reportesPanel = new ReportesPanel2();
         }
     }
     
