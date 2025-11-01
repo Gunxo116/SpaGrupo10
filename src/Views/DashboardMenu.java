@@ -7,6 +7,7 @@ import Views.Instalaciones.InstalacionesPanel;
 import Views.Masajistas.MasajistasPanel;
 import Views.Principal.PrincipalPanel;
 import Views.Reportes.ReportesPanel;
+import Views.Reportes.ReportesPanel2;
 import Views.Tratamientos.TratamientoPanel;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.BorderLayout;
@@ -375,7 +376,7 @@ public class DashboardMenu extends javax.swing.JFrame{
     }//GEN-LAST:event_btn_SalirActionPerformed
 
     private void btn_ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ReportesActionPerformed
-        ShowJPanel(new ReportesPanel());
+        ShowJPanel(new ReportesPanel2());
     }//GEN-LAST:event_btn_ReportesActionPerformed
 
     private void btn_Instalaciones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Instalaciones1ActionPerformed

@@ -21,7 +21,7 @@ public class MasajistasPanel extends javax.swing.JPanel{
 
     public MasajistasPanel(){
         initComponents();
-        setSize(760, 516);
+        setSize(760, 522);
         configurarBordesTabla();
 
         cargarComboBuscar();
