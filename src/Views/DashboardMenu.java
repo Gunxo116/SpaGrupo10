@@ -14,24 +14,39 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 public class DashboardMenu extends javax.swing.JFrame{
+    
+    public static ClientesPanel clientesPanel;
+    public static MasajistasPanel masajistasPanel;
+    public static TratamientoPanel tratamientoPanel;
+    public static InstalacionesPanel instalacionesPanel;
+    public static DiasSpaPanel diasSpaPanel;
+    public static FormularioDiasSpaPanel formularioDiasSpaPanel;
+    public static ReportesPanel reportesPanel;
 
     public DashboardMenu(){
         initComponents();
         InitStyles();
         InitContent();
+        
+        inicializarPanelesEstaticos();
     }
 
     private void InitStyles(){
+        navText.setHorizontalAlignment(SwingConstants.CENTER);
         navText.setFont(new Font("Segoe UI", Font.BOLD, 20));
         navText.setForeground(Color.WHITE);
-
-        appName.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        
+        appName.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        appName.setHorizontalAlignment(SwingConstants.CENTER);
         appName.setForeground(Color.WHITE);
 
+
         appName1.setForeground(Color.WHITE);
+        appName1.setHorizontalAlignment(SwingConstants.CENTER);
 
         header.revalidate();
         header.repaint();
@@ -217,7 +232,7 @@ public class DashboardMenu extends javax.swing.JFrame{
         menu.add(btn_Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 270, 52));
 
         jSeparator2.setPreferredSize(new java.awt.Dimension(50, 5));
-        menu.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 190, 20));
+        menu.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 210, 20));
 
         btn_Instalaciones1.setBackground(new java.awt.Color(21, 101, 192));
         btn_Instalaciones1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -261,18 +276,18 @@ public class DashboardMenu extends javax.swing.JFrame{
 
         navText.setFont(new java.awt.Font("Roboto SemiCondensed Light", 1, 24)); // NOI18N
         navText.setText("Dashboard Menu");
-        header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 230, 33));
+        header.add(navText, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 180, 33));
 
         appName1.setFont(new java.awt.Font("Roboto Condensed", 1, 20)); // NOI18N
         appName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        appName1.setText("“Entre Dedos” ");
-        header.add(appName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, 34));
+        appName1.setText("“Entre Dedos”");
+        header.add(appName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 180, 34));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoMenu.png"))); // NOI18N
-        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -130, -1, -1));
+        header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, -230, -1, -1));
 
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 5));
-        header.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 190, 20));
+        header.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, 180, 20));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -387,6 +402,40 @@ public class DashboardMenu extends javax.swing.JFrame{
         });
     }
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel appName;
+    private javax.swing.JLabel appName1;
+    private javax.swing.JPanel background;
+    private javax.swing.JButton btn_Clientes;
+    private javax.swing.JButton btn_Instalaciones;
+    private javax.swing.JButton btn_Instalaciones1;
+    private javax.swing.JButton btn_Instalaciones2;
+    private javax.swing.JButton btn_Masajistas;
+    private javax.swing.JButton btn_Reportes;
+    private javax.swing.JButton btn_Salir;
+    private javax.swing.JButton btn_Tratamientos;
+    private javax.swing.JButton btn_prin;
+    private static javax.swing.JPanel content;
+    private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JPanel menu;
+    private javax.swing.JLabel navText;
+    // End of variables declaration//GEN-END:variables
+
+    private void inicializarPanelesEstaticos() {
+        if (clientesPanel == null) {
+            clientesPanel = new ClientesPanel();
+            masajistasPanel = new MasajistasPanel();
+            tratamientoPanel = new TratamientoPanel();
+            instalacionesPanel = new InstalacionesPanel();
+            diasSpaPanel = new DiasSpaPanel();
+            formularioDiasSpaPanel = new FormularioDiasSpaPanel();
+            reportesPanel = new ReportesPanel();
+        }
+    }
+    
     private static void configurarTemaYEstilosGlobales(){
         try{
 
@@ -423,28 +472,6 @@ public class DashboardMenu extends javax.swing.JFrame{
             System.err.println("Error al configurar estilos: " + e.getMessage());
         }
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel appName;
-    private javax.swing.JLabel appName1;
-    private javax.swing.JPanel background;
-    private javax.swing.JButton btn_Clientes;
-    private javax.swing.JButton btn_Instalaciones;
-    private javax.swing.JButton btn_Instalaciones1;
-    private javax.swing.JButton btn_Instalaciones2;
-    private javax.swing.JButton btn_Masajistas;
-    private javax.swing.JButton btn_Reportes;
-    private javax.swing.JButton btn_Salir;
-    private javax.swing.JButton btn_Tratamientos;
-    private javax.swing.JButton btn_prin;
-    private static javax.swing.JPanel content;
-    private javax.swing.JPanel header;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JPanel menu;
-    private javax.swing.JLabel navText;
-    // End of variables declaration//GEN-END:variables
 
 }
 

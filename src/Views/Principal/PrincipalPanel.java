@@ -2,10 +2,19 @@
 package Views.Principal;
 
 import Persistencia.EstadisticasData;
+import Views.Clientes.ClientesPanel;
+import Views.DashboardMenu;
+import Views.DiasSpa.DiasSpaPanel;
+import Views.Instalaciones.InstalacionesPanel;
+import Views.Masajistas.MasajistasPanel;
+import Views.Tratamientos.TratamientoPanel;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -342,6 +351,11 @@ public class PrincipalPanel extends javax.swing.JPanel {
         jPanel1.setToolTipText("");
 
         PanelClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelClientesMouseClicked(evt);
+            }
+        });
 
         jPanelicono.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -379,11 +393,11 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(jPanelicono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelClientesLayout.createSequentialGroup()
+            .addGroup(PanelClientesLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addGroup(PanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(numClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(numClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(52, 52, 52))
         );
         PanelClientesLayout.setVerticalGroup(
@@ -392,19 +406,24 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(jPanelicono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(numClientes)
                 .addGap(28, 28, 28))
         );
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-consultorios.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-Estadisticas.png"))); // NOI18N
         jLabel1.setText("Estadisticas Generales");
 
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
         PanelMasajistas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelMasajistas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelMasajistasMouseClicked(evt);
+            }
+        });
 
         jPanelicono1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -457,12 +476,17 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addComponent(jPanelicono1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(numMasajistas)
                 .addGap(27, 27, 27))
         );
 
         PanelSesiones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelSesiones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelSesionesMouseClicked(evt);
+            }
+        });
 
         jPanelicono2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -520,6 +544,11 @@ public class PrincipalPanel extends javax.swing.JPanel {
         );
 
         PanelDiaSpa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelDiaSpa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelDiaSpaMouseClicked(evt);
+            }
+        });
 
         jPanelicono3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -577,6 +606,11 @@ public class PrincipalPanel extends javax.swing.JPanel {
         );
 
         PanelInstalaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelInstalaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelInstalacionesMouseClicked(evt);
+            }
+        });
 
         jPanelicono4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -635,6 +669,11 @@ public class PrincipalPanel extends javax.swing.JPanel {
 
         PanelTratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PanelTratamientos.setPreferredSize(new java.awt.Dimension(145, 196));
+        PanelTratamientos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelTratamientosMouseClicked(evt);
+            }
+        });
 
         jPanelicono5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -717,7 +756,12 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        PanelIngresos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelIngresos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        PanelIngresos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelIngresosMouseClicked(evt);
+            }
+        });
 
         jPanelicono6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -814,18 +858,17 @@ public class PrincipalPanel extends javax.swing.JPanel {
                         .addComponent(PanelDiaSpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PanelSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(PanelMasajistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(PanelClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PanelSesiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PanelMasajistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PanelClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PanelInstalaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelTratamientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelIngresos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelRecargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -842,9 +885,51 @@ public class PrincipalPanel extends javax.swing.JPanel {
 
     private void PanelRecargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelRecargarMouseClicked
         
-        actualizarEstadisticas();
+        animarIconoActualizar();
+    
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                actualizarEstadisticas();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                // Mensaje 
+            }
+        };
+
+        worker.execute();
         
     }//GEN-LAST:event_PanelRecargarMouseClicked
+
+    private void PanelClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelClientesMouseClicked
+        animarYNavegar(PanelClientes, DashboardMenu.clientesPanel);
+    }//GEN-LAST:event_PanelClientesMouseClicked
+
+    private void PanelMasajistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelMasajistasMouseClicked
+        animarYNavegar(PanelMasajistas, DashboardMenu.masajistasPanel);
+    }//GEN-LAST:event_PanelMasajistasMouseClicked
+
+    private void PanelSesionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelSesionesMouseClicked
+        animarYNavegar(PanelSesiones, DashboardMenu.diasSpaPanel);
+    }//GEN-LAST:event_PanelSesionesMouseClicked
+
+    private void PanelDiaSpaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDiaSpaMouseClicked
+        animarYNavegar(PanelDiaSpa, DashboardMenu.diasSpaPanel);
+    }//GEN-LAST:event_PanelDiaSpaMouseClicked
+
+    private void PanelInstalacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelInstalacionesMouseClicked
+        animarYNavegar(PanelInstalaciones, DashboardMenu.instalacionesPanel);
+    }//GEN-LAST:event_PanelInstalacionesMouseClicked
+
+    private void PanelTratamientosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelTratamientosMouseClicked
+        animarYNavegar(PanelTratamientos, DashboardMenu.tratamientoPanel);
+    }//GEN-LAST:event_PanelTratamientosMouseClicked
+
+    private void PanelIngresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelIngresosMouseClicked
+    }//GEN-LAST:event_PanelIngresosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -922,7 +1007,115 @@ public class PrincipalPanel extends javax.swing.JPanel {
             setCursor(Cursor.getDefaultCursor());
         }
     }
+    
+    
+    
+    
+    private void animarIconoActualizar() {
+        final ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/img/hd/iconohd-Actualizar.png"));
+        final Color colorOriginal = PanelRecargar.getBackground();
+        final Color colorDestello = colorOriginal.brighter();
+        final int duracion = 600;
+        final int pasos = 85;
+        final int delay = duracion / pasos;
 
+        Timer timer = new Timer(delay, new ActionListener() {
+            int contador = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (contador >= pasos) {
+                    ((Timer)e.getSource()).stop();
+                    jLabel10.setIcon(iconoOriginal);
+                    PanelRecargar.setBackground(colorOriginal);
+                    return;
+                }
+
+                // Rotación del icono
+                double angulo = Math.toRadians((360.0 / pasos) * contador);
+                BufferedImage imagenRotada = rotarImagen(iconoOriginal.getImage(), angulo);
+                jLabel10.setIcon(new ImageIcon(imagenRotada));
+
+                // Efecto de color
+                float ratio = (float) contador / pasos;
+                if (contador < pasos / 2) {
+                    ratio = ratio * 2;
+                    PanelRecargar.setBackground(interpolarColor(colorOriginal, colorDestello, ratio));
+                } else {
+                    ratio = (ratio - 0.5f) * 2;
+                    PanelRecargar.setBackground(interpolarColor(colorDestello, colorOriginal, ratio));
+                }
+
+                contador++;
+            }
+
+            private Color interpolarColor(Color c1, Color c2, float ratio) {
+                int r = (int) (c1.getRed() + (c2.getRed() - c1.getRed()) * ratio);
+                int g = (int) (c1.getGreen() + (c2.getGreen() - c1.getGreen()) * ratio);
+                int b = (int) (c1.getBlue() + (c2.getBlue() - c1.getBlue()) * ratio);
+                return new Color(r, g, b);
+            }
+        });
+
+        timer.start();
+    }
+
+    private BufferedImage rotarImagen(Image imagen, double angulo) {
+        
+        int ancho = imagen.getWidth(null);
+        int alto = imagen.getHeight(null);
+        BufferedImage bufferedImage = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = bufferedImage.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.rotate(angulo, ancho / 2.0, alto / 2.0);
+        g2d.drawImage(imagen, 0, 0, null);
+        g2d.dispose();
+        return bufferedImage;
+        
+    }
+    
+    private void animarYNavegar(JPanel panel, JPanel destino) {
+        final Color colorOriginal = panel.getBackground();
+        final Color colorDestello = colorOriginal.brighter();
+        final int duracion = 300;
+        final int pasos = 10;
+        final int delay = duracion / pasos;
+
+        Timer timer = new Timer(delay, new ActionListener() {
+            int contador = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (contador >= pasos) {
+                    ((Timer)e.getSource()).stop();
+                    panel.setBackground(colorOriginal);
+                    DashboardMenu.ShowJPanel(destino);
+                    return;
+                }
+
+                float ratio = (float) contador / pasos;
+                if (contador < pasos / 2) {
+                    ratio = ratio * 2;
+                    panel.setBackground(interpolarColor(colorOriginal, colorDestello, ratio));
+                } else {
+                    ratio = (ratio - 0.5f) * 2;
+                    panel.setBackground(interpolarColor(colorDestello, colorOriginal, ratio));
+                }
+
+                contador++;
+            }
+
+            private Color interpolarColor(Color c1, Color c2, float ratio) {
+                int r = (int) (c1.getRed() + (c2.getRed() - c1.getRed()) * ratio);
+                int g = (int) (c1.getGreen() + (c2.getGreen() - c1.getGreen()) * ratio);
+                int b = (int) (c1.getBlue() + (c2.getBlue() - c1.getBlue()) * ratio);
+                return new Color(r, g, b);
+            }
+        });
+
+        timer.start();
+    }
 
 }
 
