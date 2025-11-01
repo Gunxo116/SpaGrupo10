@@ -86,7 +86,7 @@
                                               </Group>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="BotonGuardar1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="BotonBuscarInstalacion" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
@@ -127,7 +127,7 @@
                           <Component id="timeChooser" alignment="1" max="32767" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="timeChooser2" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="BotonGuardar1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="BotonBuscarInstalacion" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -162,7 +162,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/icono-ManosTratamientos.png"/>
+                  <Image iconType="3" name="/img/icono-InstalacionNegro.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Instalaciones Disponibles"/>
               </Properties>
@@ -183,7 +183,7 @@
                 <Property name="text" type="java.lang.String" value="Hora Inicio:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="BotonGuardar1">
+            <Component class="javax.swing.JButton" name="BotonBuscarInstalacion">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="c3" green="68" red="15" type="rgb"/>
@@ -200,7 +200,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonGuardar1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonBuscarInstalacionActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
@@ -214,14 +214,14 @@
             <Component class="javax.swing.JSpinner" name="timeChooser2">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(sm2)"/>
-                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="Date date2 = new Date();&#xa;  SpinnerDateModel sm2 = new SpinnerDateModel(date2, null, null, Calendar.HOUR_OF_DAY);"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="Calendar cal2 = Calendar.getInstance();&#xa;cal2.set(Calendar.HOUR_OF_DAY, 10);&#xa;cal2.set(Calendar.MINUTE, 0);&#xa;cal2.set(Calendar.SECOND, 0);&#xa;Date date2 = cal2.getTime();&#xa;SpinnerDateModel sm2 = new SpinnerDateModel(date2, null, null, Calendar.HOUR_OF_DAY);"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JSpinner.DateEditor de2 = new JSpinner.DateEditor(timeChooser2, &quot;HH:mm&quot;);&#xa;timeChooser2.setEditor(de2);"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JSpinner" name="timeChooser">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(sm)"/>
-                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="Date date = new Date();&#xa;  SpinnerDateModel sm = &#xa;  new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="Calendar cal = Calendar.getInstance();&#xa;cal.set(Calendar.HOUR_OF_DAY, 9);&#xa;cal.set(Calendar.MINUTE, 0);&#xa;cal.set(Calendar.SECOND, 0);&#xa;Date date = cal.getTime();&#xa;SpinnerDateModel sm = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JSpinner.DateEditor de1 = new JSpinner.DateEditor(timeChooser, &quot;HH:mm&quot;);&#xa;timeChooser.setEditor(de1);"/>
               </AuxValues>
             </Component>
@@ -263,7 +263,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="c3" green="68" red="15" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Label"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">

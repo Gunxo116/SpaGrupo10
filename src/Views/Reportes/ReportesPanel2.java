@@ -31,9 +31,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     
     public ReportesPanel2() {
         initComponents();
-        
-        
-        
+
         cargarTablasBonitas();
         
         // TRATAMIENTOS TIPO //
@@ -42,6 +40,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         cargarTodosLosTratamientos();
         // INSTALACIONES DISPONIBLES //
         cargarTodasLasIntalaciones();
+        jDateChooser1.setCalendar(Calendar.getInstance());
     }
     
     
@@ -56,14 +55,21 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        BotonGuardar1 = new javax.swing.JButton();
+        BotonBuscarInstalacion = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        Date date2 = new Date();
+        Calendar cal2 = Calendar.getInstance();
+        cal2.set(Calendar.HOUR_OF_DAY, 10);
+        cal2.set(Calendar.MINUTE, 0);
+        cal2.set(Calendar.SECOND, 0);
+        Date date2 = cal2.getTime();
         SpinnerDateModel sm2 = new SpinnerDateModel(date2, null, null, Calendar.HOUR_OF_DAY);
         timeChooser2 = new javax.swing.JSpinner(sm2);
-        Date date = new Date();
-        SpinnerDateModel sm =
-        new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 9);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        Date date = cal.getTime();
+        SpinnerDateModel sm = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         timeChooser = new javax.swing.JSpinner(sm);
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
@@ -104,7 +110,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-ManosTratamientos.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-InstalacionNegro.png"))); // NOI18N
         jLabel4.setText("Instalaciones Disponibles");
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -113,14 +119,14 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel6.setText("Hora Inicio:");
 
-        BotonGuardar1.setBackground(new java.awt.Color(21, 104, 195));
-        BotonGuardar1.setForeground(new java.awt.Color(255, 255, 255));
-        BotonGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-Buscardor.png"))); // NOI18N
-        BotonGuardar1.setText("Buscar Disponibilidad");
-        BotonGuardar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotonGuardar1.addActionListener(new java.awt.event.ActionListener() {
+        BotonBuscarInstalacion.setBackground(new java.awt.Color(21, 104, 195));
+        BotonBuscarInstalacion.setForeground(new java.awt.Color(255, 255, 255));
+        BotonBuscarInstalacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-Buscardor.png"))); // NOI18N
+        BotonBuscarInstalacion.setText("Buscar Disponibilidad");
+        BotonBuscarInstalacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonBuscarInstalacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonGuardar1ActionPerformed(evt);
+                BotonBuscarInstalacionActionPerformed(evt);
             }
         });
 
@@ -145,7 +151,6 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         LebelHoras.setBackground(new java.awt.Color(0, 0, 0));
         LebelHoras.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         LebelHoras.setForeground(new java.awt.Color(21, 104, 195));
-        LebelHoras.setText("Label");
 
         jTableInstalaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -191,7 +196,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                                             .addComponent(timeChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(BotonGuardar1)
+                                    .addComponent(BotonBuscarInstalacion)
                                     .addGap(164, 164, 164))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel8)
@@ -222,7 +227,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                     .addComponent(timeChooser, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(timeChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BotonGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BotonBuscarInstalacion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -552,14 +557,77 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         
     }//GEN-LAST:event_BotonGuardarActionPerformed
 
-    private void BotonGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonGuardar1ActionPerformed
+    private void BotonBuscarInstalacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarInstalacionActionPerformed
+        
+        if (jDateChooser1.getDate() == null) {
+            JOptionPane.showMessageDialog(this,
+                "Por favor seleccione una fecha",
+                "Fecha requerida",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Date fechaSeleccionada = jDateChooser1.getDate();
+        Date horaInicio = (Date) timeChooser.getValue();
+        Date horaFin = (Date) timeChooser2.getValue();
+        
+        LebelHoras.setText("("+horaInicio+" - "+horaFin+")");
+
+        if (horaFin.before(horaInicio) || horaFin.equals(horaInicio)) {
+            JOptionPane.showMessageDialog(this,
+                "La hora de fin debe ser posterior a la hora de inicio",
+                "Error en horarios",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Formatear fecha y horas para la consulta
+        java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        java.text.SimpleDateFormat formatoHora = new java.text.SimpleDateFormat("HH:mm:ss");
+
+        String fecha = formatoFecha.format(fechaSeleccionada);
+        String horaInicioStr = formatoHora.format(horaInicio);
+        String horaFinStr = formatoHora.format(horaFin);
+
+        modelo2.setRowCount(0);
+
+        ArrayList<Object[]> instalaciones = ReportesData.obtenerInstalacionesDisponibles(fecha, horaInicioStr, horaFinStr);
+        for (Object[] inst : instalaciones) {
+            int id = (int) inst[0];
+            String nombre = (String) inst[1];
+            String detalle = (String) inst[2];
+            double precio30m = (double) inst[3];
+
+            modelo2.addRow(new Object[]{
+                id,
+                nombre,
+                detalle,
+                "$" + String.format("%.2f", precio30m),
+                "$" + String.format("%.2f", precio30m * 2),
+                "Disponible"
+            });
+        }
+
+        int cantidadResultados = modelo2.getRowCount();
+        LebelHoras.setText("(" + formatoHora.format(horaInicio).substring(0, 5) + 
+                          " - " + formatoHora.format(horaFin).substring(0, 5) + ")");
+        if (cantidadResultados == 0) {
+            JOptionPane.showMessageDialog(this,
+                "No se encontraron instalaciones disponibles en el horario seleccionado",
+                "Sin resultados",
+                JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                "Se encontraron " + cantidadResultados + " instalación(es) disponible(s)",
+                "Búsqueda exitosa",
+                JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_BotonBuscarInstalacionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonBuscarInstalacion;
     private javax.swing.JButton BotonGuardar;
-    private javax.swing.JButton BotonGuardar1;
     private javax.swing.JComboBox<String> ComboEstadoTrata;
     private javax.swing.JComboBox<String> ComboTipoTrata;
     private javax.swing.JLabel LebelHoras;

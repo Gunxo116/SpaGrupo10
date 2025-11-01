@@ -120,8 +120,8 @@ public class ReportesData {
         ArrayList<Object[]> ranking = new ArrayList<>();
         String sql = "SELECT t.id, t.nombre, t.tipo, COUNT(s.id) as cantidad, SUM(t.costo) as ingresos " +
                      "FROM tratamiento t " +
-                     "INNER JOIN sesion s ON t.id = s.id_tratamiento " +
-                     "WHERE s.fecha_hora_inicio BETWEEN ? AND ? " +
+                     "INNER JOIN sesion s ON t.id = s.idTratamiento " +
+                     "WHERE s.fechaHoraInicio BETWEEN ? AND ? " +
                      "GROUP BY t.id, t.nombre, t.tipo " +
                      "ORDER BY cantidad DESC " +
                      "LIMIT 10";
@@ -167,16 +167,16 @@ public class ReportesData {
     /*Obtiene instalaciones disponibles en una franja horaria*/
     public static ArrayList<Object[]> obtenerInstalacionesDisponibles(String fecha, String horaInicio, String horaFin) {
         ArrayList<Object[]> instalaciones = new ArrayList<>();
-        String sql = "SELECT i.id, i.nombre, i.detalle, i.precio30m " +
+        String sql = "SELECT i.id, i.nombre, i.detalleUso, i.precio30m " +
                      "FROM instalacion i " +
                      "WHERE i.estado = 1 " +
                      "AND i.id NOT IN ( " +
-                     "    SELECT s.id_instalacion " +
+                     "    SELECT s.idInstalacion " +
                      "    FROM sesion s " +
-                     "    WHERE DATE(s.fecha_hora_inicio) = ? " +
+                     "    WHERE DATE(s.fechaHoraInicio) = ? " +
                      "    AND ( " +
-                     "        (TIME(s.fecha_hora_inicio) < ? AND TIME(s.fecha_hora_fin) > ?) " +
-                     "        OR (TIME(s.fecha_hora_inicio) >= ? AND TIME(s.fecha_hora_inicio) < ?) " +
+                     "        (TIME(s.fechaHoraInicio) < ? AND TIME(s.fechaHoraFin) > ?) " +
+                     "        OR (TIME(s.fechaHoraInicio) >= ? AND TIME(s.fechaHoraInicio) < ?) " +
                      "    ) " +
                      ") " +
                      "ORDER BY i.nombre";
@@ -200,7 +200,7 @@ public class ReportesData {
                     Object[] fila = {
                         rs.getInt("id"),
                         rs.getString("nombre"),
-                        rs.getString("detalle"),
+                        rs.getString("detalleUso"),
                         rs.getDouble("precio30m")
                     };
                     instalaciones.add(fila);
@@ -224,8 +224,8 @@ public class ReportesData {
         ArrayList<Object[]> ranking = new ArrayList<>();
         String sql = "SELECT i.id, i.nombre, COUNT(s.id) as cantidad, SUM(i.precio30m) as ingresos " +
                      "FROM instalacion i " +
-                     "INNER JOIN sesion s ON i.id = s.id_instalacion " +
-                     "WHERE s.fecha_hora_inicio BETWEEN ? AND ? " +
+                     "INNER JOIN sesion s ON i.id = s.idInstalacion " +
+                     "WHERE s.fechaHoraInicio BETWEEN ? AND ? " +
                      "GROUP BY i.id, i.nombre " +
                      "ORDER BY cantidad DESC " +
                      "LIMIT 10";
@@ -301,19 +301,19 @@ public class ReportesData {
     /*Obtiene masajistas disponibles en una franja horaria*/
     public static ArrayList<Object[]> obtenerMasajistasDisponibles(String fecha, String horaInicio, String horaFin) {
         ArrayList<Object[]> masajistas = new ArrayList<>();
-        String sql = "SELECT m.matricula, m.nombre_completo, m.telefono, m.especialidad " +
+        String sql = "SELECT m.id, m.nombreCompleto, m.telefono, m.especialidad " +
                      "FROM masajista m " +
                      "WHERE m.estado = 1 " +
-                     "AND m.matricula NOT IN ( " +
-                     "    SELECT s.matricula_masajista " +
+                     "AND m.id NOT IN ( " +
+                     "    SELECT s.idMasajista " +
                      "    FROM sesion s " +
-                     "    WHERE DATE(s.fecha_hora_inicio) = ? " +
+                     "    WHERE DATE(s.fechaHoraInicio) = ? " +
                      "    AND ( " +
-                     "        (TIME(s.fecha_hora_inicio) < ? AND TIME(s.fecha_hora_fin) > ?) " +
-                     "        OR (TIME(s.fecha_hora_inicio) >= ? AND TIME(s.fecha_hora_inicio) < ?) " +
+                     "        (TIME(s.fechaHoraInicio) < ? AND TIME(s.fechaHoraFin) > ?) " +
+                     "        OR (TIME(s.fechaHoraInicio) >= ? AND TIME(s.fechaHoraInicio) < ?) " +
                      "    ) " +
                      ") " +
-                     "ORDER BY m.nombre_completo";
+                     "ORDER BY m.nombreCompleto";
         
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -332,8 +332,8 @@ public class ReportesData {
 
                 while (rs.next()) {
                     Object[] fila = {
-                        rs.getString("matricula"),
-                        rs.getString("nombre_completo"),
+                        rs.getInt("id"),
+                        rs.getString("nombreCompleto"),
                         rs.getString("telefono"),
                         rs.getString("especialidad")
                     };
@@ -356,8 +356,8 @@ public class ReportesData {
     /* Obtiene masajistas por especialidad */
     public static ArrayList<Object[]> obtenerMasajistasPorEspecialidad(String especialidad) {
         ArrayList<Object[]> masajistas = new ArrayList<>();
-        String sql = "SELECT m.matricula, m.nombre_completo, m.telefono, " +
-                     "(SELECT COUNT(*) FROM sesion WHERE matricula_masajista = m.matricula) as sesiones_totales " +
+        String sql = "SELECT m.id, m.nombreCompleto, m.telefono, " +
+                     "(SELECT COUNT(*) FROM sesion WHERE idMasajista = m.id) as sesiones_totales " +
                      "FROM masajista m " +
                      "WHERE m.especialidad = ? AND m.estado = 1 " +
                      "ORDER BY sesiones_totales DESC";
@@ -375,8 +375,8 @@ public class ReportesData {
 
                 while (rs.next()) {
                     Object[] fila = {
-                        rs.getString("matricula"),
-                        rs.getString("nombre_completo"),
+                        rs.getInt("id"),
+                        rs.getString("nombreCompleto"),
                         rs.getString("telefono"),
                         rs.getInt("sesiones_totales")
                     };
