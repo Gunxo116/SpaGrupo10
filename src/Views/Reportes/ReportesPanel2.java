@@ -1087,7 +1087,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 
-
+    // TRATAMIENTOS TIPO //
     private void cargarComboTipoTrata(){
         ComboTipoTrata.removeAllItems();
         ComboTipoTrata.addItem("Todos");
@@ -1106,8 +1106,6 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             ComboEstadoTrata.addItem(estado);
         }
     }
-    
-    
     private void cargarTodosLosTratamientos() {
         modelo.setRowCount(0);
         ArrayList<Tratamiento> tratamientos = TratamientoData.obtenerTodos();
@@ -1123,6 +1121,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             });
         }
     }
+    // INSTALACIONES DISPONIBLES //
     private void cargarTodasLasIntalaciones(){
         
         modelo2.setRowCount(0);
@@ -1147,7 +1146,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         }
         
     }
-    
+    // TABLAS BONITAS //
     private void cargarTablasBonitas(){
         
         jTableTratamientos.setModel(modelo);
@@ -1173,8 +1172,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         header3.setFont(header2.getFont().deriveFont(Font.BOLD));
         
     }
-    
-    
+    // MASAJISTAS POR ESPECIALIDAD //
     private void configurarPanelesMasajistas(){
     
         jPanelFacial.setOpaque(false);
@@ -1228,7 +1226,6 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         numEsteticos.setText(String.valueOf(esteticos));
     } 
     private void cargarComboEspecialidad(){
-        
         ComboEspecialidad.removeAllItems();
         ComboEspecialidad.addItem("Todos");
         ArrayList<String> Especialidades = ReportesData.obtenerEspecialidades();
@@ -1237,14 +1234,12 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         }
         
     }
-    
     private void cargarMasajistaEstado(){
         ComboEstadoMasajista.removeAllItems();
         ComboEstadoMasajista.addItem("Todos");
         ComboEstadoMasajista.addItem("Activo");
         ComboEstadoMasajista.addItem("Inactivo");
     }
-    
     private void cargarTodosLosMasajistas() {
         modelo3.setRowCount(0);
         ArrayList<Masajista> masajistas = MasajistaData.obtenerTodos();
@@ -1261,3 +1256,11 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     }
     
 }
+
+
+/*
+             /\_/\           ___
+            = o_o =_______    \ \
+             __^      __(  \.__) )
+         (@)<_____>__(_____)____/
+*/
