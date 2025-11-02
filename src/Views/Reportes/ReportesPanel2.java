@@ -9,14 +9,21 @@ import Persistencia.MasajistaData;
 import Persistencia.ReportesData;
 import Persistencia.TratamientoData;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.table.DefaultTableModel;
@@ -48,16 +55,20 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         initComponents();
 
         cargarTablasBonitas();
+        configurarPaneles();
+        
         
         // TRATAMIENTOS TIPO //
         cargarComboEstadoTrata();
         cargarComboTipoTrata();
         cargarTodosLosTratamientos();
+        // TRATAMIENTOS MAS SOLICITADOS //
+        configurarPanelRanking();
+        cargarRankingInicial();
         // INSTALACIONES DISPONIBLES //
         cargarTodasLasIntalaciones();
         jDateChooser1.setCalendar(Calendar.getInstance());
         // MASAJISTAS POR ESPECIALIDAD //
-        configurarPanelesMasajistas();
         cargarPanelesConMasajistas();
         cargarComboEspecialidad();
         cargarMasajistaEstado();
@@ -226,6 +237,71 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         BotonGuardar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
+        jLabel22 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        BotonGenerarReporte = new javax.swing.JButton();
+        jDateChooser5 = new com.toedter.calendar.JDateChooser();
+        jLabel23 = new javax.swing.JLabel();
+        jDateChooser6 = new com.toedter.calendar.JDateChooser();
+        jLabel24 = new javax.swing.JLabel();
+        jPanelTotalSesiones = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        jLabel25 = new javax.swing.JLabel();
+        numFaciales1 = new javax.swing.JLabel();
+        jPanelTratamientosUnicos = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        jLabel26 = new javax.swing.JLabel();
+        numCorporales1 = new javax.swing.JLabel();
+        jPanelIngresosTratamientosSoli = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        jLabel27 = new javax.swing.JLabel();
+        numEsteticos1 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
+        scrollRanking = new javax.swing.JScrollPane();
+        panelRankingContainer = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -497,8 +573,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                                     .addGroup(jPanel10Layout.createSequentialGroup()
                                         .addComponent(jLabel21)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(HoraInicioFinalMasajistas)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                        .addComponent(HoraInicioFinalMasajistas))))))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jLabel17)
@@ -751,8 +826,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                                         .addComponent(ComboEstadoMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(BotonFlitrarMasajistasEspecialidad))
-                                    .addComponent(jLabel11))
-                                .addGap(279, 279, 279))))
+                                    .addComponent(jLabel11)))))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jLabel9))
@@ -925,15 +999,214 @@ public class ReportesPanel2 extends javax.swing.JPanel {
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel22.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-ManosTratamientos.png"))); // NOI18N
+        jLabel22.setText("Tratamientos Mas Solicitados");
+
+        jSeparator6.setForeground(new java.awt.Color(21, 104, 195));
+
+        BotonGenerarReporte.setBackground(new java.awt.Color(21, 104, 195));
+        BotonGenerarReporte.setForeground(new java.awt.Color(255, 255, 255));
+        BotonGenerarReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-Buscardor.png"))); // NOI18N
+        BotonGenerarReporte.setText("Generar Reporte ");
+        BotonGenerarReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonGenerarReporteActionPerformed(evt);
+            }
+        });
+
+        jDateChooser5.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel23.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel23.setText("Fecha Desde:");
+
+        jDateChooser6.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel24.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel24.setText("Fecha Hasta:");
+
+        jPanelTotalSesiones.setPreferredSize(new java.awt.Dimension(76, 76));
+
+        jLabel25.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("Total Sesiones ");
+
+        numFaciales1.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        numFaciales1.setForeground(new java.awt.Color(0, 0, 0));
+        numFaciales1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numFaciales1.setText("0");
+
+        javax.swing.GroupLayout jPanelTotalSesionesLayout = new javax.swing.GroupLayout(jPanelTotalSesiones);
+        jPanelTotalSesiones.setLayout(jPanelTotalSesionesLayout);
+        jPanelTotalSesionesLayout.setHorizontalGroup(
+            jPanelTotalSesionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTotalSesionesLayout.createSequentialGroup()
+                .addComponent(numFaciales1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+        );
+        jPanelTotalSesionesLayout.setVerticalGroup(
+            jPanelTotalSesionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTotalSesionesLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(numFaciales1)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        jPanelTratamientosUnicos.setPreferredSize(new java.awt.Dimension(76, 76));
+
+        jLabel26.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("Tratamientos Únicos ");
+
+        numCorporales1.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        numCorporales1.setForeground(new java.awt.Color(0, 0, 0));
+        numCorporales1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numCorporales1.setText("0");
+
+        javax.swing.GroupLayout jPanelTratamientosUnicosLayout = new javax.swing.GroupLayout(jPanelTratamientosUnicos);
+        jPanelTratamientosUnicos.setLayout(jPanelTratamientosUnicosLayout);
+        jPanelTratamientosUnicosLayout.setHorizontalGroup(
+            jPanelTratamientosUnicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTratamientosUnicosLayout.createSequentialGroup()
+                .addComponent(numCorporales1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+        );
+        jPanelTratamientosUnicosLayout.setVerticalGroup(
+            jPanelTratamientosUnicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTratamientosUnicosLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(numCorporales1)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        jPanelIngresosTratamientosSoli.setMinimumSize(new java.awt.Dimension(70, 76));
+        jPanelIngresosTratamientosSoli.setPreferredSize(new java.awt.Dimension(131, 100));
+
+        jLabel27.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setText("Ingresos Totales ");
+
+        numEsteticos1.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        numEsteticos1.setForeground(new java.awt.Color(0, 0, 0));
+        numEsteticos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numEsteticos1.setText("0");
+
+        javax.swing.GroupLayout jPanelIngresosTratamientosSoliLayout = new javax.swing.GroupLayout(jPanelIngresosTratamientosSoli);
+        jPanelIngresosTratamientosSoli.setLayout(jPanelIngresosTratamientosSoliLayout);
+        jPanelIngresosTratamientosSoliLayout.setHorizontalGroup(
+            jPanelIngresosTratamientosSoliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(numEsteticos1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+        );
+        jPanelIngresosTratamientosSoliLayout.setVerticalGroup(
+            jPanelIngresosTratamientosSoliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelIngresosTratamientosSoliLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(numEsteticos1)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        jSeparator7.setForeground(new java.awt.Color(21, 104, 195));
+
+        jSeparator8.setForeground(new java.awt.Color(21, 104, 195));
+
+        scrollRanking.setBackground(new java.awt.Color(255, 255, 255));
+
+        panelRankingContainer.setBackground(new java.awt.Color(255, 255, 255));
+        panelRankingContainer.setForeground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout panelRankingContainerLayout = new javax.swing.GroupLayout(panelRankingContainer);
+        panelRankingContainer.setLayout(panelRankingContainerLayout);
+        panelRankingContainerLayout.setHorizontalGroup(
+            panelRankingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 716, Short.MAX_VALUE)
+        );
+        panelRankingContainerLayout.setVerticalGroup(
+            panelRankingContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 339, Short.MAX_VALUE)
+        );
+
+        scrollRanking.setViewportView(panelRankingContainer);
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel22))
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel23))
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(BotonGenerarReporte)
+                .addGap(4, 4, 4)
+                .addComponent(jPanelTotalSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jPanelTratamientosUnicos, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jPanelIngresosTratamientosSoli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scrollRanking)
+                    .addComponent(jSeparator6)))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel22)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel23))
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel24)
+                        .addGap(4, 4, 4)
+                        .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(BotonGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelTotalSesiones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelTratamientosUnicos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelIngresosTratamientosSoli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(scrollRanking, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -1130,37 +1403,46 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         String estadoSeleccionado = (String) ComboEstadoMasajista.getSelectedItem();
         modelo3.setRowCount(0);
 
-        ArrayList<Masajista> masajistas = new ArrayList<>();
-
         if (especialidadSeleccionada.equals("Todos") && estadoSeleccionado.equals("Todos")) {
-            masajistas = MasajistaData.obtenerTodos();
-        } else if (especialidadSeleccionada.equals("Todos")) {
-            ArrayList<Masajista> todos = MasajistaData.obtenerTodos();
-            boolean estadoBuscado = estadoSeleccionado.equals("Activo");
-            for (Masajista m : todos) {
-                if (m.getEstado() == estadoBuscado) {
-                    masajistas.add(m);
+            ArrayList<Masajista> masajistas = MasajistaData.obtenerTodos();
+            for (Masajista m : masajistas) {
+                modelo3.addRow(new Object[]{
+                    m.getId(),
+                    m.getNombreCompleto(),
+                    m.getTelefono(),
+                    0, 
+                    m.getEstado() ? "Activo" : "Inactivo"
+                });
+            }
+        } else if (!especialidadSeleccionada.equals("Todos") && estadoSeleccionado.equals("Todos")) {
+            ArrayList<Object[]> masajistas = ReportesData.obtenerMasajistasPorEspecialidad(especialidadSeleccionada);
+            for (Object[] m : masajistas) {
+                Masajista masajista = MasajistaData.buscarPorId((int)m[0]);
+                if (masajista != null) {
+                    modelo3.addRow(new Object[]{
+                        m[0],
+                        m[1],
+                        m[2],
+                        m[3],
+                        masajista.getEstado() ? "Activo" : "Inactivo"
+                    });
                 }
             }
-        } else if (estadoSeleccionado.equals("Todos")) {
-            masajistas = MasajistaData.buscarPor("Especialidad", especialidadSeleccionada);
         } else {
-            ArrayList<Masajista> porEspecialidad = MasajistaData.buscarPor("Especialidad", especialidadSeleccionada);
+            ArrayList<Object[]> porEspecialidad = ReportesData.obtenerMasajistasPorEspecialidad(
+                especialidadSeleccionada.equals("Todos") ? null : especialidadSeleccionada
+            );
             boolean estadoBuscado = estadoSeleccionado.equals("Activo");
-            for (Masajista m : porEspecialidad) {
-                if (m.getEstado() == estadoBuscado) {
-                    masajistas.add(m);
+
+            for (Object[] m : porEspecialidad) {
+                Masajista masajista = MasajistaData.buscarPorId((int)m[0]);
+                if (masajista != null && masajista.getEstado() == estadoBuscado) {
+                    modelo3.addRow(new Object[]{
+                        m[0], m[1], m[2], m[3],
+                        masajista.getEstado() ? "Activo" : "Inactivo"
+                    });
                 }
             }
-        }
-        for (Masajista m : masajistas) {
-            modelo3.addRow(new Object[]{
-                m.getId(),
-                m.getNombreCompleto(),
-                m.getTelefono(),
-                m.getEspecialidad(),
-                m.getEstado() ? "Activo" : "Inactivo"
-            });
         }
 
         int cantidadResultados = modelo3.getRowCount();
@@ -1244,11 +1526,29 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         
     }//GEN-LAST:event_BotonBuscarMasajistaActionPerformed
 
+    private void BotonGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarReporteActionPerformed
+        
+        if (jDateChooser5.getDate() == null || jDateChooser6.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Seleccione ambas fechas", "Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String fechaDesde = formato.format(jDateChooser5.getDate()) + " 00:00:00";
+        String fechaHasta = formato.format(jDateChooser6.getDate()) + " 23:59:59";
+
+        ArrayList<Object[]> ranking = ReportesData.obtenerTratamientosMasSolicitados(fechaDesde, fechaHasta);
+
+        cargarRankingTratamientos(ranking);
+        
+    }//GEN-LAST:event_BotonGenerarReporteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscarInstalacion;
     private javax.swing.JButton BotonBuscarMasajista;
     private javax.swing.JButton BotonFlitrarMasajistasEspecialidad;
+    private javax.swing.JButton BotonGenerarReporte;
     private javax.swing.JButton BotonGuardar;
     private javax.swing.JComboBox<String> ComboEspecialidad;
     private javax.swing.JComboBox<String> ComboEstadoMasajista;
@@ -1258,6 +1558,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel LebelHoras;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser5;
+    private com.toedter.calendar.JDateChooser jDateChooser6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1272,6 +1574,12 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1297,7 +1605,10 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelCorporal;
     private javax.swing.JPanel jPanelEstetico;
     private javax.swing.JPanel jPanelFacial;
+    private javax.swing.JPanel jPanelIngresosTratamientosSoli;
     private javax.swing.JPanel jPanelRelajacion;
+    private javax.swing.JPanel jPanelTotalSesiones;
+    private javax.swing.JPanel jPanelTratamientosUnicos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1306,15 +1617,23 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTableInstalaciones;
     private javax.swing.JTable jTableMasajistasDisponibles;
     private javax.swing.JTable jTableMasajistasPorEspecialidad;
     private javax.swing.JTable jTableTratamientos;
     private javax.swing.JLabel numCorporales;
+    private javax.swing.JLabel numCorporales1;
     private javax.swing.JLabel numEsteticos;
+    private javax.swing.JLabel numEsteticos1;
     private javax.swing.JLabel numFaciales;
+    private javax.swing.JLabel numFaciales1;
     private javax.swing.JLabel numRelajaciones;
+    private javax.swing.JPanel panelRankingContainer;
+    private javax.swing.JScrollPane scrollRanking;
     private javax.swing.JSpinner timeChooser;
     private javax.swing.JSpinner timeChooser2;
     private javax.swing.JSpinner timeChooser3;
@@ -1373,8 +1692,6 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 i.isEstado()? "Activo" : "Inactivo"
             });
         }
-
-        // Ajustar anchos de columnas
         int[] anchos = {50, 120, 250, 80, 80, 70};
         for(int i = 0; i < anchos.length; i++){
             jTableInstalaciones.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
@@ -1415,7 +1732,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         
     }
     // MASAJISTAS POR ESPECIALIDAD //
-    private void configurarPanelesMasajistas(){
+    private void configurarPaneles(){
     
         jPanelFacial.setOpaque(false);
         jPanelFacial.setBackground(new java.awt.Color(52, 152, 219)); 
@@ -1425,6 +1742,13 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jPanelRelajacion.setBackground(new java.awt.Color(231, 76, 60));
         jPanelEstetico.setOpaque(false);
         jPanelEstetico.setBackground(new java.awt.Color(26, 188, 156));
+        
+        jPanelTotalSesiones.setOpaque(false);
+        jPanelTotalSesiones.setBackground(new java.awt.Color(52, 152, 219)); 
+        jPanelTratamientosUnicos.setOpaque(false);
+        jPanelTratamientosUnicos.setBackground(new java.awt.Color(231, 76, 60)); 
+        jPanelIngresosTratamientosSoli.setOpaque(false);
+        jPanelIngresosTratamientosSoli.setBackground(new java.awt.Color(26, 188, 156));
         
     }
     private void cargarPanelesConMasajistas(){
@@ -1497,6 +1821,133 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         }
     }
     
+    
+    
+    // Tratamientos mas Solicitados //
+    
+    private void configurarPanelRanking() {
+        panelRankingContainer.setLayout(new BoxLayout(panelRankingContainer, BoxLayout.Y_AXIS));
+        panelRankingContainer.setBackground(Color.WHITE);
+
+        scrollRanking.setBorder(null);
+        scrollRanking.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+    }
+
+    private void cargarRankingTratamientos(ArrayList<Object[]> ranking) {
+        panelRankingContainer.removeAll();
+
+        int posicion = 1;
+        for (Object[] datos : ranking) {
+            JPanel itemPanel = crearItemRanking(
+                posicion,
+                (String) datos[1], 
+                (String) datos[2],
+                (int) datos[3],   
+                (double) datos[4] 
+            );
+            panelRankingContainer.add(itemPanel);
+            panelRankingContainer.add(Box.createRigidArea(new Dimension(0, 8))); 
+            posicion++;
+        }
+
+        panelRankingContainer.revalidate();
+        panelRankingContainer.repaint();
+    }
+    
+    private JPanel crearItemRanking(int numero, String nombre, String tipo, int sesiones, double ingresos) {
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                g2.setColor(new Color(249, 249, 249));
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 12, 12);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+        };
+
+        panel.setLayout(null);
+        panel.setOpaque(false);
+        panel.setPreferredSize(new Dimension(680, 50));
+        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+        
+        JLabel lblNumero = new JLabel(String.valueOf(numero)) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                g2.setColor(new Color(21, 104, 195));
+                g2.fillOval(0, 0, 30, 30);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+        };
+        lblNumero.setBounds(12, 10, 30, 30);
+        lblNumero.setFont(new Font("Century Gothic", Font.BOLD, 14));
+        lblNumero.setForeground(Color.WHITE);
+        lblNumero.setHorizontalAlignment(JLabel.CENTER);
+
+        JLabel lblNombre = new JLabel("<html><b>" + nombre + "</b> - " + tipo + "</html>");
+        lblNombre.setBounds(55, 8, 400, 20);
+        lblNombre.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+        lblNombre.setForeground(Color.BLACK);
+
+        JLabel lblSesiones = new JLabel(sesiones + " sesiones realizadas");
+        lblSesiones.setBounds(55, 28, 400, 15);
+        lblSesiones.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        lblSesiones.setForeground(new Color(102, 102, 102));
+
+        JLabel lblIngresos = new JLabel(String.format("$%,.0f", ingresos));
+        lblIngresos.setBounds(520, 15, 140, 20);
+        lblIngresos.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        lblIngresos.setForeground(new Color(21, 104, 195));
+        lblIngresos.setHorizontalAlignment(JLabel.RIGHT);
+
+        panel.add(lblNumero);
+        panel.add(lblNombre);
+        panel.add(lblSesiones);
+        panel.add(lblIngresos);
+
+        return panel;
+    }
+    
+    private void cargarRankingInicial() {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calDesde = Calendar.getInstance();
+        calDesde.set(2000, Calendar.JANUARY, 1, 0, 0, 0);
+        String fechaDesde = formato.format(calDesde.getTime());
+
+        Calendar calHasta = Calendar.getInstance();
+        String fechaHasta = formato.format(calHasta.getTime());
+
+        jDateChooser5.setDate(calDesde.getTime());
+        jDateChooser6.setDate(calHasta.getTime());
+
+        ArrayList<Object[]> ranking = ReportesData.obtenerTratamientosMasSolicitados(fechaDesde, fechaHasta);
+        cargarRankingTratamientos(ranking);
+        actualizarEstadisticasGenerales(ranking);
+    }
+    
+    private void actualizarEstadisticasGenerales(ArrayList<Object[]> ranking) {
+        int totalSesiones = 0;
+        double ingresosTotal = 0.0;
+        int tratamientosUnicos = ranking.size();
+
+        for (Object[] datos : ranking) {
+            totalSesiones += (int) datos[3];
+            ingresosTotal += (double) datos[4];
+        }
+
+        // Actualizar los labels con formato
+        numFaciales1.setText(String.valueOf(totalSesiones));
+        numCorporales1.setText(String.valueOf(tratamientosUnicos));
+        numEsteticos1.setText(String.format("$%,.0f", ingresosTotal));
+    }
 }
 
 
