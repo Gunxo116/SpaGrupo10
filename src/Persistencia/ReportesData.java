@@ -222,14 +222,14 @@ public class ReportesData {
     /* Ranking de instalaciones más solicitadas*/
     public static ArrayList<Object[]> obtenerRankingInstalaciones(String fechaDesde, String fechaHasta) {
         ArrayList<Object[]> ranking = new ArrayList<>();
-        String sql = "SELECT i.id, i.nombre, COUNT(s.id) as cantidad, SUM(i.precio30m) as ingresos " +
+        String sql = "SELECT i.id, i.nombre, i.detalleUso, COUNT(s.id) as cantidad, SUM(i.precio30m) as ingresos " +
                      "FROM instalacion i " +
                      "INNER JOIN sesion s ON i.id = s.idInstalacion " +
                      "WHERE s.fechaHoraInicio BETWEEN ? AND ? " +
-                     "GROUP BY i.id, i.nombre " +
+                     "GROUP BY i.id, i.nombre, i.detalleUso " +
                      "ORDER BY cantidad DESC " +
                      "LIMIT 10";
-        
+
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -246,6 +246,7 @@ public class ReportesData {
                     Object[] fila = {
                         rs.getInt("id"),
                         rs.getString("nombre"),
+                        rs.getString("detalleUso"),  // AGREGADO
                         rs.getInt("cantidad"),
                         rs.getDouble("ingresos")
                     };

@@ -68,6 +68,10 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         // INSTALACIONES DISPONIBLES //
         cargarTodasLasIntalaciones();
         jDateChooser1.setCalendar(Calendar.getInstance());
+        // Ranking de Instalaciones //
+        configurarPanelRankingInstalaciones();
+        cargarRankingInicialInstalaciones();
+        
         // MASAJISTAS POR ESPECIALIDAD //
         cargarPanelesConMasajistas();
         cargarComboEspecialidad();
@@ -114,6 +118,72 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jTableInstalaciones = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jSeparator9 = new javax.swing.JSeparator();
+        BotonGenerarReporte1 = new javax.swing.JButton();
+        jDateChooser7 = new com.toedter.calendar.JDateChooser();
+        jDateChooser8 = new com.toedter.calendar.JDateChooser();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jPanel24 = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        jLabel31 = new javax.swing.JLabel();
+        numTotalReservas = new javax.swing.JLabel();
+        jPanelTratamientosUnicos1 = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        jLabel32 = new javax.swing.JLabel();
+        numInstalacionesActivas2 = new javax.swing.JLabel();
+        jPanelIngresosTratamientosSoli1 = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        jLabel33 = new javax.swing.JLabel();
+        numIngresosInstalaciones = new javax.swing.JLabel();
+        jSeparator10 = new javax.swing.JSeparator();
+        jLabel34 = new javax.swing.JLabel();
+        scrollRankingInstalaciones = new javax.swing.JScrollPane();
+        panelRankingContainerInstalacion = new javax.swing.JPanel();
+        jSeparator11 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -449,15 +519,226 @@ public class ReportesPanel2 extends javax.swing.JPanel {
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel28.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel28.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-InstalacionNegro.png"))); // NOI18N
+        jLabel28.setText("Ranking de Instalaciones");
+
+        jSeparator9.setForeground(new java.awt.Color(21, 104, 195));
+
+        BotonGenerarReporte1.setBackground(new java.awt.Color(21, 104, 195));
+        BotonGenerarReporte1.setForeground(new java.awt.Color(255, 255, 255));
+        BotonGenerarReporte1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-Buscardor.png"))); // NOI18N
+        BotonGenerarReporte1.setText("Generar Ranking");
+        BotonGenerarReporte1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonGenerarReporte1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonGenerarReporte1ActionPerformed(evt);
+            }
+        });
+
+        jDateChooser7.setBackground(new java.awt.Color(255, 255, 255));
+
+        jDateChooser8.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel29.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel29.setText("Fecha Hasta:");
+
+        jLabel30.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel30.setText("Fecha Desde:");
+
+        jPanel24.setPreferredSize(new java.awt.Dimension(76, 76));
+
+        jLabel31.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("Total Reservas");
+
+        numTotalReservas.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        numTotalReservas.setForeground(new java.awt.Color(0, 0, 0));
+        numTotalReservas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numTotalReservas.setText("0");
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+            .addComponent(numTotalReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(numTotalReservas)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        jPanelTratamientosUnicos1.setPreferredSize(new java.awt.Dimension(76, 76));
+
+        jLabel32.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setText("Instalaciones Activas ");
+
+        numInstalacionesActivas2.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        numInstalacionesActivas2.setForeground(new java.awt.Color(0, 0, 0));
+        numInstalacionesActivas2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numInstalacionesActivas2.setText("0");
+
+        javax.swing.GroupLayout jPanelTratamientosUnicos1Layout = new javax.swing.GroupLayout(jPanelTratamientosUnicos1);
+        jPanelTratamientosUnicos1.setLayout(jPanelTratamientosUnicos1Layout);
+        jPanelTratamientosUnicos1Layout.setHorizontalGroup(
+            jPanelTratamientosUnicos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+            .addComponent(numInstalacionesActivas2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanelTratamientosUnicos1Layout.setVerticalGroup(
+            jPanelTratamientosUnicos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTratamientosUnicos1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(numInstalacionesActivas2)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        jPanelIngresosTratamientosSoli1.setMinimumSize(new java.awt.Dimension(70, 76));
+        jPanelIngresosTratamientosSoli1.setPreferredSize(new java.awt.Dimension(131, 100));
+
+        jLabel33.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("Ingresos Instalaciones ");
+
+        numIngresosInstalaciones.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        numIngresosInstalaciones.setForeground(new java.awt.Color(0, 0, 0));
+        numIngresosInstalaciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numIngresosInstalaciones.setText("0");
+
+        javax.swing.GroupLayout jPanelIngresosTratamientosSoli1Layout = new javax.swing.GroupLayout(jPanelIngresosTratamientosSoli1);
+        jPanelIngresosTratamientosSoli1.setLayout(jPanelIngresosTratamientosSoli1Layout);
+        jPanelIngresosTratamientosSoli1Layout.setHorizontalGroup(
+            jPanelIngresosTratamientosSoli1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(numIngresosInstalaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanelIngresosTratamientosSoli1Layout.setVerticalGroup(
+            jPanelIngresosTratamientosSoli1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelIngresosTratamientosSoli1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(numIngresosInstalaciones)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        jSeparator10.setForeground(new java.awt.Color(21, 104, 195));
+
+        jLabel34.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel34.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-InstalacionNegro.png"))); // NOI18N
+        jLabel34.setText("Top 10 Instalaciones");
+
+        panelRankingContainerInstalacion.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout panelRankingContainerInstalacionLayout = new javax.swing.GroupLayout(panelRankingContainerInstalacion);
+        panelRankingContainerInstalacion.setLayout(panelRankingContainerInstalacionLayout);
+        panelRankingContainerInstalacionLayout.setHorizontalGroup(
+            panelRankingContainerInstalacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 716, Short.MAX_VALUE)
+        );
+        panelRankingContainerInstalacionLayout.setVerticalGroup(
+            panelRankingContainerInstalacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 227, Short.MAX_VALUE)
+        );
+
+        scrollRankingInstalaciones.setViewportView(panelRankingContainerInstalacion);
+
+        jSeparator11.setForeground(new java.awt.Color(21, 104, 195));
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(427, 427, 427)
+                        .addComponent(jLabel28))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollRankingInstalaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)
+                                .addComponent(jPanelTratamientosUnicos1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)
+                                .addComponent(jPanelIngresosTratamientosSoli1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addComponent(jLabel30)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jDateChooser8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jDateChooser7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel29))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(BotonGenerarReporte1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel34)))))
+                .addGap(17, 17, 17))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel30)
+                .addGap(4, 4, 4)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jDateChooser7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDateChooser8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelTratamientosUnicos1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelIngresosTratamientosSoli1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(BotonGenerarReporte1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)))
+                .addGap(21, 21, 21)
+                .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollRankingInstalaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -1147,35 +1428,38 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel22))
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel23))
-                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24)
-                    .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(BotonGenerarReporte)
-                .addGap(4, 4, 4)
-                .addComponent(jPanelTotalSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jPanelTratamientosUnicos, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jPanelIngresosTratamientosSoli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scrollRanking)
-                    .addComponent(jSeparator6)))
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scrollRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel13Layout.createSequentialGroup()
+                            .addGap(36, 36, 36)
+                            .addComponent(jLabel22))
+                        .addGroup(jPanel13Layout.createSequentialGroup()
+                            .addGap(19, 19, 19)
+                            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel13Layout.createSequentialGroup()
+                                    .addGap(1, 1, 1)
+                                    .addComponent(jLabel23))
+                                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel13Layout.createSequentialGroup()
+                            .addGap(19, 19, 19)
+                            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel13Layout.createSequentialGroup()
+                                    .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel24)
+                                        .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(10, 10, 10)
+                                    .addComponent(BotonGenerarReporte)
+                                    .addGap(4, 4, 4)
+                                    .addComponent(jPanelTotalSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(9, 9, 9)
+                                    .addComponent(jPanelTratamientosUnicos, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(9, 9, 9)
+                                    .addComponent(jPanelIngresosTratamientosSoli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(19, 19, 19))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1203,9 +1487,9 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                     .addComponent(jPanelTotalSesiones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelTratamientosUnicos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelIngresosTratamientosSoli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addGap(19, 19, 19)
                 .addComponent(scrollRanking, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
         );
 
@@ -1543,12 +1827,39 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         
     }//GEN-LAST:event_BotonGenerarReporteActionPerformed
 
+    private void BotonGenerarReporte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarReporte1ActionPerformed
+        
+        if (jDateChooser7.getDate() == null || jDateChooser8.getDate() == null) {
+            JOptionPane.showMessageDialog(this, 
+                "Seleccione ambas fechas", 
+                "Error", 
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String fechaDesde = formato.format(jDateChooser7.getDate()) + " 00:00:00";
+        String fechaHasta = formato.format(jDateChooser8.getDate()) + " 23:59:59";
+
+        ArrayList<Object[]> ranking = ReportesData.obtenerRankingInstalaciones(fechaDesde, fechaHasta);
+
+        cargarRankingInstalaciones(ranking);
+        actualizarEstadisticasInstalacionesGenerales(ranking);
+
+        JOptionPane.showMessageDialog(this,
+            "Ranking generado con " + ranking.size() + " instalación(es)",
+            "Ranking generado",
+            JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_BotonGenerarReporte1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscarInstalacion;
     private javax.swing.JButton BotonBuscarMasajista;
     private javax.swing.JButton BotonFlitrarMasajistasEspecialidad;
     private javax.swing.JButton BotonGenerarReporte;
+    private javax.swing.JButton BotonGenerarReporte1;
     private javax.swing.JButton BotonGuardar;
     private javax.swing.JComboBox<String> ComboEspecialidad;
     private javax.swing.JComboBox<String> ComboEstadoMasajista;
@@ -1560,6 +1871,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser5;
     private com.toedter.calendar.JDateChooser jDateChooser6;
+    private com.toedter.calendar.JDateChooser jDateChooser7;
+    private com.toedter.calendar.JDateChooser jDateChooser8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1580,7 +1893,14 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1595,6 +1915,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -1606,13 +1927,17 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelEstetico;
     private javax.swing.JPanel jPanelFacial;
     private javax.swing.JPanel jPanelIngresosTratamientosSoli;
+    private javax.swing.JPanel jPanelIngresosTratamientosSoli1;
     private javax.swing.JPanel jPanelRelajacion;
     private javax.swing.JPanel jPanelTotalSesiones;
     private javax.swing.JPanel jPanelTratamientosUnicos;
+    private javax.swing.JPanel jPanelTratamientosUnicos1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -1620,6 +1945,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTableInstalaciones;
     private javax.swing.JTable jTableMasajistasDisponibles;
@@ -1631,9 +1957,14 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel numEsteticos1;
     private javax.swing.JLabel numFaciales;
     private javax.swing.JLabel numFaciales1;
+    private javax.swing.JLabel numIngresosInstalaciones;
+    private javax.swing.JLabel numInstalacionesActivas2;
     private javax.swing.JLabel numRelajaciones;
+    private javax.swing.JLabel numTotalReservas;
     private javax.swing.JPanel panelRankingContainer;
+    private javax.swing.JPanel panelRankingContainerInstalacion;
     private javax.swing.JScrollPane scrollRanking;
+    private javax.swing.JScrollPane scrollRankingInstalaciones;
     private javax.swing.JSpinner timeChooser;
     private javax.swing.JSpinner timeChooser2;
     private javax.swing.JSpinner timeChooser3;
@@ -1749,6 +2080,13 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jPanelTratamientosUnicos.setBackground(new java.awt.Color(231, 76, 60)); 
         jPanelIngresosTratamientosSoli.setOpaque(false);
         jPanelIngresosTratamientosSoli.setBackground(new java.awt.Color(26, 188, 156));
+        
+        jPanel24.setOpaque(false);
+        jPanel24.setBackground(new java.awt.Color(52, 152, 219)); 
+        jPanelTratamientosUnicos1.setOpaque(false);
+        jPanelTratamientosUnicos1.setBackground(new java.awt.Color(231, 76, 60)); 
+        jPanelIngresosTratamientosSoli1.setOpaque(false);
+        jPanelIngresosTratamientosSoli1.setBackground(new java.awt.Color(26, 188, 156));
         
     }
     private void cargarPanelesConMasajistas(){
@@ -1871,9 +2209,9 @@ public class ReportesPanel2 extends javax.swing.JPanel {
 
         panel.setLayout(null);
         panel.setOpaque(false);
-        panel.setPreferredSize(new Dimension(680, 50));
-        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-        
+        panel.setPreferredSize(new Dimension(680, 70));  // ⬅️ Más alto para 2 líneas
+        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70));
+
         JLabel lblNumero = new JLabel(String.valueOf(numero)) {
             @Override
             protected void paintComponent(Graphics g) {
@@ -1881,35 +2219,45 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
                 g2.setColor(new Color(21, 104, 195));
-                g2.fillOval(0, 0, 30, 30);
+                g2.fillOval(0, 0, 35, 35);
 
                 g2.dispose();
                 super.paintComponent(g);
             }
         };
-        lblNumero.setBounds(12, 10, 30, 30);
-        lblNumero.setFont(new Font("Century Gothic", Font.BOLD, 14));
+        lblNumero.setBounds(12, 17, 35, 35);  // ⬅️ Centrado verticalmente
+        lblNumero.setFont(new Font("Century Gothic", Font.BOLD, 16));
         lblNumero.setForeground(Color.WHITE);
         lblNumero.setHorizontalAlignment(JLabel.CENTER);
 
-        JLabel lblNombre = new JLabel("<html><b>" + nombre + "</b> - " + tipo + "</html>");
-        lblNombre.setBounds(55, 8, 400, 20);
-        lblNombre.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+        // Nombre del tratamiento/instalación
+        JLabel lblNombre = new JLabel("<html><b>" + nombre + "</b></html>");
+        lblNombre.setBounds(60, 8, 380, 22);  // ⬅️ Más ancho
+        lblNombre.setFont(new Font("Century Gothic", Font.BOLD, 14));
         lblNombre.setForeground(Color.BLACK);
 
-        JLabel lblSesiones = new JLabel(sesiones + " sesiones realizadas");
-        lblSesiones.setBounds(55, 28, 400, 15);
-        lblSesiones.setFont(new Font("Century Gothic", Font.PLAIN, 11));
-        lblSesiones.setForeground(new Color(102, 102, 102));
+        // Tipo en segunda línea
+        JLabel lblTipo = new JLabel(tipo);
+        lblTipo.setBounds(60, 28, 380, 18);  // ⬅️ Segunda línea
+        lblTipo.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+        lblTipo.setForeground(new Color(102, 102, 102));
 
+        // Sesiones en tercera línea
+        JLabel lblSesiones = new JLabel(sesiones + " sesiones realizadas");
+        lblSesiones.setBounds(60, 45, 380, 17);  // ⬅️ Tercera línea
+        lblSesiones.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        lblSesiones.setForeground(new Color(130, 130, 130));
+
+        // Ingresos a la derecha
         JLabel lblIngresos = new JLabel(String.format("$%,.0f", ingresos));
-        lblIngresos.setBounds(520, 15, 140, 20);
-        lblIngresos.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        lblIngresos.setBounds(480, 23, 180, 24);  // ⬅️ Más espacio y centrado
+        lblIngresos.setFont(new Font("Century Gothic", Font.BOLD, 18));
         lblIngresos.setForeground(new Color(21, 104, 195));
         lblIngresos.setHorizontalAlignment(JLabel.RIGHT);
 
         panel.add(lblNumero);
         panel.add(lblNombre);
+        panel.add(lblTipo);
         panel.add(lblSesiones);
         panel.add(lblIngresos);
 
@@ -1933,6 +2281,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         actualizarEstadisticasGenerales(ranking);
     }
     
+    
+    
     private void actualizarEstadisticasGenerales(ArrayList<Object[]> ranking) {
         int totalSesiones = 0;
         double ingresosTotal = 0.0;
@@ -1943,10 +2293,71 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             ingresosTotal += (double) datos[4];
         }
 
-        // Actualizar los labels con formato
         numFaciales1.setText(String.valueOf(totalSesiones));
         numCorporales1.setText(String.valueOf(tratamientosUnicos));
         numEsteticos1.setText(String.format("$%,.0f", ingresosTotal));
+    }
+    
+    
+    private void cargarRankingInicialInstalaciones(){
+    
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calDesde = Calendar.getInstance();
+        calDesde.set(2000, Calendar.JANUARY, 1, 0, 0, 0);
+        String fechaDesde = formato.format(calDesde.getTime());
+
+        Calendar calHasta = Calendar.getInstance();
+        String fechaHasta = formato.format(calHasta.getTime());
+
+        jDateChooser7.setDate(calDesde.getTime());
+        jDateChooser8.setDate(calHasta.getTime());
+
+        ArrayList<Object[]> ranking = ReportesData.obtenerRankingInstalaciones(fechaDesde, fechaHasta);
+        cargarRankingInstalaciones(ranking);
+        actualizarEstadisticasInstalacionesGenerales(ranking);
+    
+    }
+    
+    private void cargarRankingInstalaciones(ArrayList<Object[]> ranking) {
+        panelRankingContainerInstalacion.removeAll();
+        int posicion = 1;
+        for (Object[] datos : ranking) {
+            JPanel itemPanel = crearItemRanking(
+                posicion,
+                (String) datos[1], 
+                (String) datos[2],
+                (int) datos[3],   
+                (double) datos[4]   
+            );
+            panelRankingContainerInstalacion.add(itemPanel);
+            panelRankingContainerInstalacion.add(Box.createRigidArea(new Dimension(0, 8))); 
+            posicion++;
+        }
+        panelRankingContainerInstalacion.revalidate();
+        panelRankingContainerInstalacion.repaint();
+    }
+
+    private void actualizarEstadisticasInstalacionesGenerales(ArrayList<Object[]> ranking) {
+        int totalSesiones = 0;
+        double ingresosTotal = 0.0;
+        int instalacionesActivas = ranking.size();
+
+        for (Object[] datos : ranking) {
+            totalSesiones += (int) datos[3];
+            ingresosTotal += (double) datos[4];
+        }
+
+        numTotalReservas.setText(String.valueOf(totalSesiones));
+        numInstalacionesActivas2.setText(String.valueOf(instalacionesActivas));
+        numIngresosInstalaciones.setText(String.format("$%,.0f", ingresosTotal));
+    }
+    
+    private void configurarPanelRankingInstalaciones() {
+        panelRankingContainerInstalacion.setLayout(new BoxLayout(panelRankingContainerInstalacion, BoxLayout.Y_AXIS));
+        panelRankingContainerInstalacion.setBackground(Color.WHITE);
+
+        scrollRankingInstalaciones.setBorder(null);
+        scrollRankingInstalaciones.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     }
 }
 
