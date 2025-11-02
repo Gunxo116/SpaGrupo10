@@ -77,6 +77,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         cargarMasajistaEstado();
         cargarTodosLosMasajistas();
         // MASAJISTAS DISPONIBLES //
+        cargarTodasLasMasajistas();
         jDateChooser2.setCalendar(Calendar.getInstance());
         
     }
@@ -2222,6 +2223,29 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 m.getEstado() ? "Activo" : "Inactivo"
             });
         }
+    }
+    // MASAJISTAS DISPONIBLES //
+    private void cargarTodasLasMasajistas(){
+        
+        modelo4.setRowCount(0);
+
+        ArrayList<Masajista> masajistas = MasajistaData.obtenerTodos();
+
+        for(Masajista m : masajistas){
+            modelo4.addRow(new Object[]{
+                m.getId(),   
+                m.getNombreCompleto(),
+                m.getTelefono(),  
+                m.getEspecialidad(),
+                0,
+                m.getEstado() ? "Activo" : "Inactivo" 
+            });
+        }
+        int[] anchos = {50, 180, 120, 150, 100, 80};
+        for(int i = 0; i < anchos.length && i < jTableMasajistasDisponibles.getColumnCount(); i++){
+            jTableMasajistasDisponibles.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+        }
+        
     }
     // Tratamientos mas Solicitados //
     private void configurarPanelRanking() {
