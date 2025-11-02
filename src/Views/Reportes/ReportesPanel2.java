@@ -71,7 +71,6 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         // Ranking de Instalaciones //
         configurarPanelRankingInstalaciones();
         cargarRankingInicialInstalaciones();
-        
         // MASAJISTAS POR ESPECIALIDAD //
         cargarPanelesConMasajistas();
         cargarComboEspecialidad();
@@ -89,8 +88,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel12 = new javax.swing.JLabel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jTabbedPaneReportes = new javax.swing.JTabbedPane();
+        jPanelInstalacionesDisponibles = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -116,7 +115,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         LebelHoras = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableInstalaciones = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelRankingInstalaciones = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jSeparator9 = new javax.swing.JSeparator();
@@ -184,7 +183,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         scrollRankingInstalaciones = new javax.swing.JScrollPane();
         panelRankingContainerInstalacion = new javax.swing.JPanel();
         jSeparator11 = new javax.swing.JSeparator();
-        jPanel3 = new javax.swing.JPanel();
+        jPanelMasajistasDisponibles = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
@@ -211,7 +210,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jTableMasajistasDisponibles = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
         HoraInicioFinalMasajistas = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        jPanelMasajistasEspecialidad = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
@@ -294,7 +293,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         };
         jLabel15 = new javax.swing.JLabel();
         numRelajaciones = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        jPanelTratamientosTipo = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -305,7 +304,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         ComboTipoTrata = new javax.swing.JComboBox<>();
         ComboEstadoTrata = new javax.swing.JComboBox<>();
         BotonGuardar = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
+        jPanelTratamientosSolicitados = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
@@ -372,17 +371,17 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jSeparator8 = new javax.swing.JSeparator();
         scrollRanking = new javax.swing.JScrollPane();
         panelRankingContainer = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        jPanelDiaSpaCompleto = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
+        jPanelInformeDiaSpa = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
 
         jLabel12.setText("jLabel12");
 
-        jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jTabbedPane2.setForeground(new java.awt.Color(0, 0, 0));
+        jTabbedPaneReportes.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPaneReportes.setForeground(new java.awt.Color(0, 0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelInstalacionesDisponibles.setBackground(new java.awt.Color(255, 255, 255));
 
         jSeparator3.setForeground(new java.awt.Color(21, 104, 195));
 
@@ -444,31 +443,31 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTableInstalaciones);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelInstalacionesDisponiblesLayout = new javax.swing.GroupLayout(jPanelInstalacionesDisponibles);
+        jPanelInstalacionesDisponibles.setLayout(jPanelInstalacionesDisponiblesLayout);
+        jPanelInstalacionesDisponiblesLayout.setHorizontalGroup(
+            jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInstalacionesDisponiblesLayout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanelInstalacionesDisponiblesLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelInstalacionesDisponiblesLayout.createSequentialGroup()
+                                    .addGroup(jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5)
                                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanelInstalacionesDisponiblesLayout.createSequentialGroup()
                                             .addGap(11, 11, 11)
                                             .addComponent(jLabel6)
                                             .addGap(54, 54, 54)
                                             .addComponent(jLabel7)
                                             .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanelInstalacionesDisponiblesLayout.createSequentialGroup()
                                             .addGap(12, 12, 12)
                                             .addComponent(timeChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(12, 12, 12)
@@ -476,38 +475,38 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addComponent(BotonBuscarInstalacion)
                                     .addGap(164, 164, 164))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanelInstalacionesDisponiblesLayout.createSequentialGroup()
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(LebelHoras)
                                     .addGap(0, 0, Short.MAX_VALUE))))))
                 .addContainerGap(17, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanelInstalacionesDisponiblesLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelInstalacionesDisponiblesLayout.setVerticalGroup(
+            jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInstalacionesDisponiblesLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(timeChooser, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(timeChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(BotonBuscarInstalacion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelInstalacionesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(LebelHoras))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -515,7 +514,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 .addGap(26, 26, 26))
         );
 
-        jTabbedPane2.addTab("Instalaciones Disponibles", jPanel1);
+        jTabbedPaneReportes.addTab("Instalaciones Disponibles", jPanelInstalacionesDisponibles);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -741,18 +740,18 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelRankingInstalacionesLayout = new javax.swing.GroupLayout(jPanelRankingInstalaciones);
+        jPanelRankingInstalaciones.setLayout(jPanelRankingInstalacionesLayout);
+        jPanelRankingInstalacionesLayout.setHorizontalGroup(
+            jPanelRankingInstalacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelRankingInstalacionesLayout.setVerticalGroup(
+            jPanelRankingInstalacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Ranking Instalaciones", jPanel2);
+        jTabbedPaneReportes.addTab("Ranking Instalaciones", jPanelRankingInstalaciones);
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -889,18 +888,18 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelMasajistasDisponiblesLayout = new javax.swing.GroupLayout(jPanelMasajistasDisponibles);
+        jPanelMasajistasDisponibles.setLayout(jPanelMasajistasDisponiblesLayout);
+        jPanelMasajistasDisponiblesLayout.setHorizontalGroup(
+            jPanelMasajistasDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelMasajistasDisponiblesLayout.setVerticalGroup(
+            jPanelMasajistasDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Masajistas Disponibles", jPanel3);
+        jTabbedPaneReportes.addTab("Masajistas Disponibles", jPanelMasajistasDisponibles);
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1153,18 +1152,18 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 .addGap(21, 21, 21))
         );
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelMasajistasEspecialidadLayout = new javax.swing.GroupLayout(jPanelMasajistasEspecialidad);
+        jPanelMasajistasEspecialidad.setLayout(jPanelMasajistasEspecialidadLayout);
+        jPanelMasajistasEspecialidadLayout.setHorizontalGroup(
+            jPanelMasajistasEspecialidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelMasajistasEspecialidadLayout.setVerticalGroup(
+            jPanelMasajistasEspecialidadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Masajistas por Especialidad", jPanel4);
+        jTabbedPaneReportes.addTab("Masajistas por Especialidad", jPanelMasajistasEspecialidad);
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1265,18 +1264,18 @@ public class ReportesPanel2 extends javax.swing.JPanel {
 
         jPanel12Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BotonGuardar, ComboEstadoTrata, ComboTipoTrata});
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelTratamientosTipoLayout = new javax.swing.GroupLayout(jPanelTratamientosTipo);
+        jPanelTratamientosTipo.setLayout(jPanelTratamientosTipoLayout);
+        jPanelTratamientosTipoLayout.setHorizontalGroup(
+            jPanelTratamientosTipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelTratamientosTipoLayout.setVerticalGroup(
+            jPanelTratamientosTipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Tratamientos por Tipo", jPanel5);
+        jTabbedPaneReportes.addTab("Tratamientos por Tipo", jPanelTratamientosTipo);
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1493,18 +1492,18 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 .addComponent(scrollRanking, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelTratamientosSolicitadosLayout = new javax.swing.GroupLayout(jPanelTratamientosSolicitados);
+        jPanelTratamientosSolicitados.setLayout(jPanelTratamientosSolicitadosLayout);
+        jPanelTratamientosSolicitadosLayout.setHorizontalGroup(
+            jPanelTratamientosSolicitadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelTratamientosSolicitadosLayout.setVerticalGroup(
+            jPanelTratamientosSolicitadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Tratamientos Mas Solicitados", jPanel6);
+        jTabbedPaneReportes.addTab("Tratamientos Mas Solicitados", jPanelTratamientosSolicitados);
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1519,18 +1518,18 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             .addGap(0, 460, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelDiaSpaCompletoLayout = new javax.swing.GroupLayout(jPanelDiaSpaCompleto);
+        jPanelDiaSpaCompleto.setLayout(jPanelDiaSpaCompletoLayout);
+        jPanelDiaSpaCompletoLayout.setHorizontalGroup(
+            jPanelDiaSpaCompletoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelDiaSpaCompletoLayout.setVerticalGroup(
+            jPanelDiaSpaCompletoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Dia de Spa Completo", jPanel7);
+        jTabbedPaneReportes.addTab("Dia de Spa Completo", jPanelDiaSpaCompleto);
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1545,28 +1544,28 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             .addGap(0, 460, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelInformeDiaSpaLayout = new javax.swing.GroupLayout(jPanelInformeDiaSpa);
+        jPanelInformeDiaSpa.setLayout(jPanelInformeDiaSpaLayout);
+        jPanelInformeDiaSpaLayout.setHorizontalGroup(
+            jPanelInformeDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelInformeDiaSpaLayout.setVerticalGroup(
+            jPanelInformeDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Informe de Dias de Spa", jPanel8);
+        jTabbedPaneReportes.addTab("Informe de Dias de Spa", jPanelInformeDiaSpa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addComponent(jTabbedPaneReportes)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addComponent(jTabbedPaneReportes)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1676,9 +1675,6 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     }//GEN-LAST:event_BotonBuscarInstalacionActionPerformed
 
     private void ComboEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboEspecialidadActionPerformed
-        
-        
-        
     }//GEN-LAST:event_ComboEspecialidadActionPerformed
 
     private void BotonFlitrarMasajistasEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonFlitrarMasajistasEspecialidadActionPerformed
@@ -1907,29 +1903,29 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelCorporal;
+    private javax.swing.JPanel jPanelDiaSpaCompleto;
     private javax.swing.JPanel jPanelEstetico;
     private javax.swing.JPanel jPanelFacial;
+    private javax.swing.JPanel jPanelInformeDiaSpa;
     private javax.swing.JPanel jPanelIngresosTratamientosSoli;
     private javax.swing.JPanel jPanelIngresosTratamientosSoli1;
+    private javax.swing.JPanel jPanelInstalacionesDisponibles;
+    private javax.swing.JPanel jPanelMasajistasDisponibles;
+    private javax.swing.JPanel jPanelMasajistasEspecialidad;
+    private javax.swing.JPanel jPanelRankingInstalaciones;
     private javax.swing.JPanel jPanelRelajacion;
     private javax.swing.JPanel jPanelTotalSesiones;
+    private javax.swing.JPanel jPanelTratamientosSolicitados;
+    private javax.swing.JPanel jPanelTratamientosTipo;
     private javax.swing.JPanel jPanelTratamientosUnicos;
     private javax.swing.JPanel jPanelTratamientosUnicos1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1946,7 +1942,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPaneReportes;
     private javax.swing.JTable jTableInstalaciones;
     private javax.swing.JTable jTableMasajistasDisponibles;
     private javax.swing.JTable jTableMasajistasPorEspecialidad;
@@ -1972,6 +1968,75 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 
+    
+    // PANEL DE SCROCLL RANKINGS //
+    private JPanel crearItemRanking(int numero, String nombre, String tipo, int sesiones, double ingresos) {
+        JPanel panel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                g2.setColor(new Color(249, 249, 249));
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 12, 12);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+        };
+
+        panel.setLayout(null);
+        panel.setOpaque(false);
+        panel.setPreferredSize(new Dimension(680, 70));
+        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70));
+
+        JLabel lblNumero = new JLabel(String.valueOf(numero)) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                g2.setColor(new Color(21, 104, 195));
+                g2.fillOval(0, 0, 35, 35);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+        };
+        lblNumero.setBounds(12, 17, 35, 35);
+        lblNumero.setFont(new Font("Century Gothic", Font.BOLD, 16));
+        lblNumero.setForeground(Color.WHITE);
+        lblNumero.setHorizontalAlignment(JLabel.CENTER);
+
+        JLabel lblNombre = new JLabel("<html><b>" + nombre + "</b></html>");
+        lblNombre.setBounds(60, 8, 380, 22);
+        lblNombre.setFont(new Font("Century Gothic", Font.BOLD, 14));
+        lblNombre.setForeground(Color.BLACK);
+
+        JLabel lblTipo = new JLabel(tipo);
+        lblTipo.setBounds(60, 28, 380, 18);
+        lblTipo.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+        lblTipo.setForeground(new Color(102, 102, 102));
+
+        JLabel lblSesiones = new JLabel(sesiones + " sesiones realizadas");
+        lblSesiones.setBounds(60, 45, 380, 17);
+        lblSesiones.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+        lblSesiones.setForeground(new Color(130, 130, 130));
+
+        JLabel lblIngresos = new JLabel(String.format("$%,.0f", ingresos));
+        lblIngresos.setBounds(480, 23, 180, 24);
+        lblIngresos.setFont(new Font("Century Gothic", Font.BOLD, 18));
+        lblIngresos.setForeground(new Color(21, 104, 195));
+        lblIngresos.setHorizontalAlignment(JLabel.RIGHT);
+
+        panel.add(lblNumero);
+        panel.add(lblNombre);
+        panel.add(lblTipo);
+        panel.add(lblSesiones);
+        panel.add(lblIngresos);
+
+        return panel;
+    }
     // TRATAMIENTOS TIPO //
     private void cargarComboTipoTrata(){
         ComboTipoTrata.removeAllItems();
@@ -2158,11 +2223,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             });
         }
     }
-    
-    
-    
     // Tratamientos mas Solicitados //
-    
     private void configurarPanelRanking() {
         panelRankingContainer.setLayout(new BoxLayout(panelRankingContainer, BoxLayout.Y_AXIS));
         panelRankingContainer.setBackground(Color.WHITE);
@@ -2170,7 +2231,6 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         scrollRanking.setBorder(null);
         scrollRanking.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     }
-
     private void cargarRankingTratamientos(ArrayList<Object[]> ranking) {
         panelRankingContainer.removeAll();
 
@@ -2191,98 +2251,19 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         panelRankingContainer.revalidate();
         panelRankingContainer.repaint();
     }
-    
-    private JPanel crearItemRanking(int numero, String nombre, String tipo, int sesiones, double ingresos) {
-        JPanel panel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g.create();
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-                g2.setColor(new Color(249, 249, 249));
-                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 12, 12);
-
-                g2.dispose();
-                super.paintComponent(g);
-            }
-        };
-
-        panel.setLayout(null);
-        panel.setOpaque(false);
-        panel.setPreferredSize(new Dimension(680, 70));  // ⬅️ Más alto para 2 líneas
-        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70));
-
-        JLabel lblNumero = new JLabel(String.valueOf(numero)) {
-            @Override
-            protected void paintComponent(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g.create();
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-                g2.setColor(new Color(21, 104, 195));
-                g2.fillOval(0, 0, 35, 35);
-
-                g2.dispose();
-                super.paintComponent(g);
-            }
-        };
-        lblNumero.setBounds(12, 17, 35, 35);  // ⬅️ Centrado verticalmente
-        lblNumero.setFont(new Font("Century Gothic", Font.BOLD, 16));
-        lblNumero.setForeground(Color.WHITE);
-        lblNumero.setHorizontalAlignment(JLabel.CENTER);
-
-        // Nombre del tratamiento/instalación
-        JLabel lblNombre = new JLabel("<html><b>" + nombre + "</b></html>");
-        lblNombre.setBounds(60, 8, 380, 22);  // ⬅️ Más ancho
-        lblNombre.setFont(new Font("Century Gothic", Font.BOLD, 14));
-        lblNombre.setForeground(Color.BLACK);
-
-        // Tipo en segunda línea
-        JLabel lblTipo = new JLabel(tipo);
-        lblTipo.setBounds(60, 28, 380, 18);  // ⬅️ Segunda línea
-        lblTipo.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-        lblTipo.setForeground(new Color(102, 102, 102));
-
-        // Sesiones en tercera línea
-        JLabel lblSesiones = new JLabel(sesiones + " sesiones realizadas");
-        lblSesiones.setBounds(60, 45, 380, 17);  // ⬅️ Tercera línea
-        lblSesiones.setFont(new Font("Century Gothic", Font.PLAIN, 11));
-        lblSesiones.setForeground(new Color(130, 130, 130));
-
-        // Ingresos a la derecha
-        JLabel lblIngresos = new JLabel(String.format("$%,.0f", ingresos));
-        lblIngresos.setBounds(480, 23, 180, 24);  // ⬅️ Más espacio y centrado
-        lblIngresos.setFont(new Font("Century Gothic", Font.BOLD, 18));
-        lblIngresos.setForeground(new Color(21, 104, 195));
-        lblIngresos.setHorizontalAlignment(JLabel.RIGHT);
-
-        panel.add(lblNumero);
-        panel.add(lblNombre);
-        panel.add(lblTipo);
-        panel.add(lblSesiones);
-        panel.add(lblIngresos);
-
-        return panel;
-    }
-    
     private void cargarRankingInicial() {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar calDesde = Calendar.getInstance();
         calDesde.set(2000, Calendar.JANUARY, 1, 0, 0, 0);
         String fechaDesde = formato.format(calDesde.getTime());
-
         Calendar calHasta = Calendar.getInstance();
         String fechaHasta = formato.format(calHasta.getTime());
-
         jDateChooser5.setDate(calDesde.getTime());
         jDateChooser6.setDate(calHasta.getTime());
-
         ArrayList<Object[]> ranking = ReportesData.obtenerTratamientosMasSolicitados(fechaDesde, fechaHasta);
         cargarRankingTratamientos(ranking);
         actualizarEstadisticasGenerales(ranking);
     }
-    
-    
-    
     private void actualizarEstadisticasGenerales(ArrayList<Object[]> ranking) {
         int totalSesiones = 0;
         double ingresosTotal = 0.0;
@@ -2297,10 +2278,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         numCorporales1.setText(String.valueOf(tratamientosUnicos));
         numEsteticos1.setText(String.format("$%,.0f", ingresosTotal));
     }
-    
-    
+    // Ranking de Instalaciones //
     private void cargarRankingInicialInstalaciones(){
-    
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar calDesde = Calendar.getInstance();
         calDesde.set(2000, Calendar.JANUARY, 1, 0, 0, 0);
@@ -2317,7 +2296,6 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         actualizarEstadisticasInstalacionesGenerales(ranking);
     
     }
-    
     private void cargarRankingInstalaciones(ArrayList<Object[]> ranking) {
         panelRankingContainerInstalacion.removeAll();
         int posicion = 1;
@@ -2336,7 +2314,6 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         panelRankingContainerInstalacion.revalidate();
         panelRankingContainerInstalacion.repaint();
     }
-
     private void actualizarEstadisticasInstalacionesGenerales(ArrayList<Object[]> ranking) {
         int totalSesiones = 0;
         double ingresosTotal = 0.0;
@@ -2351,11 +2328,9 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         numInstalacionesActivas2.setText(String.valueOf(instalacionesActivas));
         numIngresosInstalaciones.setText(String.format("$%,.0f", ingresosTotal));
     }
-    
     private void configurarPanelRankingInstalaciones() {
         panelRankingContainerInstalacion.setLayout(new BoxLayout(panelRankingContainerInstalacion, BoxLayout.Y_AXIS));
         panelRankingContainerInstalacion.setBackground(Color.WHITE);
-
         scrollRankingInstalaciones.setBorder(null);
         scrollRankingInstalaciones.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     }
