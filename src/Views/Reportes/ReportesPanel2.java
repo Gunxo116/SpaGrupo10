@@ -38,6 +38,12 @@ public class ReportesPanel2 extends javax.swing.JPanel {
       new String[]{"ID", "Nombre", "Telefeno", "Sesiones Totales", "Estado"}, 0
     );
     
+    private DefaultTableModel modelo4 = new DefaultTableModel(
+      new String[]{"ID", "Nombre", "Telefeno", "Especialidad","Sesiones Hoy" ,"Estado"}, 0
+    );
+    
+    
+    
     public ReportesPanel2() {
         initComponents();
 
@@ -56,6 +62,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         cargarComboEspecialidad();
         cargarMasajistaEstado();
         cargarTodosLosMasajistas();
+        // MASAJISTAS DISPONIBLES //
+        jDateChooser2.setCalendar(Calendar.getInstance());
         
     }
     
@@ -97,6 +105,31 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jPanel9 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        Calendar cal3 = Calendar.getInstance();
+        cal3.set(Calendar.HOUR_OF_DAY, 9);
+        cal3.set(Calendar.MINUTE, 0);
+        cal3.set(Calendar.SECOND, 0);
+        Date date3 = cal3.getTime();
+        SpinnerDateModel sm3 = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
+        timeChooser3 = new javax.swing.JSpinner(sm3);
+        Calendar cal4 = Calendar.getInstance();
+        cal4.set(Calendar.HOUR_OF_DAY, 10);
+        cal4.set(Calendar.MINUTE, 0);
+        cal4.set(Calendar.SECOND, 0);
+        Date date4 = cal4.getTime();
+        SpinnerDateModel sm4 = new SpinnerDateModel(date4, null, null, Calendar.HOUR_OF_DAY);
+        timeChooser4 = new javax.swing.JSpinner(sm4);
+        jLabel20 = new javax.swing.JLabel();
+        BotonBuscarMasajista = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableMasajistasDisponibles = new javax.swing.JTable();
+        jLabel21 = new javax.swing.JLabel();
+        HoraInicioFinalMasajistas = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -366,15 +399,138 @@ public class ReportesPanel2 extends javax.swing.JPanel {
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel17.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel17.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-masajistasNegro.png"))); // NOI18N
+        jLabel17.setText("Masajistas Disponibles");
+
+        jSeparator5.setForeground(new java.awt.Color(21, 104, 195));
+
+        jDateChooser2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel18.setText("Fecha:");
+
+        jLabel19.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel19.setText("Hora Inicio:");
+
+        JSpinner.DateEditor de3 = new JSpinner.DateEditor(timeChooser3, "HH:mm");
+        timeChooser3.setEditor(de3);
+
+        JSpinner.DateEditor de4 = new JSpinner.DateEditor(timeChooser4, "HH:mm");
+        timeChooser4.setEditor(de4);
+
+        jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel20.setText("Hora Fin:");
+
+        BotonBuscarMasajista.setBackground(new java.awt.Color(21, 104, 195));
+        BotonBuscarMasajista.setForeground(new java.awt.Color(255, 255, 255));
+        BotonBuscarMasajista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-Buscardor.png"))); // NOI18N
+        BotonBuscarMasajista.setText("Buscar Disponibilidad");
+        BotonBuscarMasajista.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonBuscarMasajista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonBuscarMasajistaActionPerformed(evt);
+            }
+        });
+
+        jTableMasajistasDisponibles.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTableMasajistasDisponibles);
+
+        jLabel21.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel21.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(21, 104, 195));
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-checksAzul.png"))); // NOI18N
+        jLabel21.setText("Instalaciones LIbres");
+        jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        HoraInicioFinalMasajistas.setBackground(new java.awt.Color(0, 0, 0));
+        HoraInicioFinalMasajistas.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        HoraInicioFinalMasajistas.setForeground(new java.awt.Color(21, 104, 195));
+        HoraInicioFinalMasajistas.setText("Label");
+        HoraInicioFinalMasajistas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel10Layout.createSequentialGroup()
+                                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel18)
+                                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                                .addGap(11, 11, 11)
+                                                .addComponent(jLabel19)
+                                                .addGap(54, 54, 54)
+                                                .addComponent(jLabel20)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addComponent(timeChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(12, 12, 12)
+                                                .addComponent(timeChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(BotonBuscarMasajista)
+                                        .addGap(164, 164, 164))
+                                    .addGroup(jPanel10Layout.createSequentialGroup()
+                                        .addComponent(jLabel21)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(HoraInicioFinalMasajistas)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 393, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(timeChooser3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(timeChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BotonBuscarMasajista, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(HoraInicioFinalMasajistas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -395,7 +551,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-ManosTratamientos.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-masajistasNegro.png"))); // NOI18N
         jLabel9.setText("Masajistas por Especialidad");
 
         jSeparator4.setForeground(new java.awt.Color(21, 104, 195));
@@ -1022,17 +1178,86 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         
     }//GEN-LAST:event_BotonFlitrarMasajistasEspecialidadActionPerformed
 
+    private void BotonBuscarMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarMasajistaActionPerformed
+        
+        if (jDateChooser2.getDate() == null) {
+            JOptionPane.showMessageDialog(this,
+                "Por favor seleccione una fecha",
+                "Fecha requerida",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Date fechaSeleccionada = jDateChooser2.getDate();
+        Date horaInicio = (Date) timeChooser3.getValue();
+        Date horaFin = (Date) timeChooser4.getValue();
+
+        if (horaFin.before(horaInicio) || horaFin.equals(horaInicio)) {
+            JOptionPane.showMessageDialog(this,
+                "La hora de fin debe ser posterior a la hora de inicio",
+                "Error en horarios",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        HoraInicioFinalMasajistas.setText("("+horaInicio+" - "+horaFin+")");
+
+        java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        java.text.SimpleDateFormat formatoHora = new java.text.SimpleDateFormat("HH:mm:ss");
+
+        String fecha = formatoFecha.format(fechaSeleccionada);
+        String horaInicioStr = formatoHora.format(horaInicio);
+        String horaFinStr = formatoHora.format(horaFin);
+
+        modelo4.setRowCount(0);
+        ArrayList<Object[]> masajistas = ReportesData.obtenerMasajistasDisponibles(fecha, horaInicioStr, horaFinStr);
+
+        for (Object[] m : masajistas) {
+            int id = (int) m[0];
+            String nombre = (String) m[1];
+            String telefono = (String) m[2];
+            String especialidad = (String) m[3];
+
+            modelo4.addRow(new Object[]{
+                id,
+                nombre,
+                telefono,
+                especialidad,
+                0,
+                "Disponible"
+            });
+        }
+
+        int cantidadResultados = modelo4.getRowCount();
+        HoraInicioFinalMasajistas.setText("(" + formatoHora.format(horaInicio).substring(0, 5) + 
+                          " - " + formatoHora.format(horaFin).substring(0, 5) + ")");
+
+        if (cantidadResultados == 0) {
+            JOptionPane.showMessageDialog(this,
+                "No se encontraron masajistas disponibles en el horario seleccionado",
+                "Sin resultados",
+                JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                "Se encontraron " + cantidadResultados + " masajista(s) disponible(s)",
+                "Búsqueda exitosa",
+                JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_BotonBuscarMasajistaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscarInstalacion;
+    private javax.swing.JButton BotonBuscarMasajista;
     private javax.swing.JButton BotonFlitrarMasajistasEspecialidad;
     private javax.swing.JButton BotonGuardar;
     private javax.swing.JComboBox<String> ComboEspecialidad;
     private javax.swing.JComboBox<String> ComboEstadoMasajista;
     private javax.swing.JComboBox<String> ComboEstadoTrata;
     private javax.swing.JComboBox<String> ComboTipoTrata;
+    private javax.swing.JLabel HoraInicioFinalMasajistas;
     private javax.swing.JLabel LebelHoras;
     private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1041,7 +1266,12 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1071,11 +1301,14 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTableInstalaciones;
+    private javax.swing.JTable jTableMasajistasDisponibles;
     private javax.swing.JTable jTableMasajistasPorEspecialidad;
     private javax.swing.JTable jTableTratamientos;
     private javax.swing.JLabel numCorporales;
@@ -1084,6 +1317,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel numRelajaciones;
     private javax.swing.JSpinner timeChooser;
     private javax.swing.JSpinner timeChooser2;
+    private javax.swing.JSpinner timeChooser3;
+    private javax.swing.JSpinner timeChooser4;
     // End of variables declaration//GEN-END:variables
 
 
@@ -1152,6 +1387,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jTableTratamientos.setModel(modelo);
         jTableInstalaciones.setModel(modelo2);
         jTableMasajistasPorEspecialidad.setModel(modelo3);
+        jTableMasajistasDisponibles.setModel(modelo4);
         
         JTableHeader header = jTableTratamientos.getTableHeader();
         header.setBackground(new Color(21, 104, 195));
@@ -1170,6 +1406,12 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         header3.setForeground(Color.WHITE);
         header3.setOpaque(true);
         header3.setFont(header2.getFont().deriveFont(Font.BOLD));
+        
+        JTableHeader header4 = jTableMasajistasDisponibles.getTableHeader();
+        header4.setBackground(new Color(21, 104, 195));
+        header4.setForeground(Color.WHITE);
+        header4.setOpaque(true);
+        header4.setFont(header2.getFont().deriveFont(Font.BOLD));
         
     }
     // MASAJISTAS POR ESPECIALIDAD //
