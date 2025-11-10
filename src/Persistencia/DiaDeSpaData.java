@@ -45,6 +45,44 @@ public class DiaDeSpaData {
         return diasDeSpa;
     }
     
+    public static ArrayList<DiaDeSpa> buscarPorDia(String fecha) {
+    ArrayList<DiaDeSpa> diasDeSpa = new ArrayList<>();
+    String sql = "SELECT * FROM dia_de_spa WHERE DATE(fechaHora) = ? ORDER BY fechaHora";
+    Connection conn = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    
+    try {
+        conn = ConexionDB.getConexion();
+        if (conn != null) {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, fecha);
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+                DiaDeSpa dia = new DiaDeSpa();
+                dia.setId(rs.getInt("id"));
+                dia.setFechaHora(rs.getTimestamp("fechaHora").toLocalDateTime());
+                dia.setPreferencias(rs.getString("preferencias"));
+                dia.setIdCliente(rs.getInt("idCliente"));
+                dia.setMonto(rs.getDouble("monto"));
+                dia.setEstado(rs.getString("estado"));
+                diasDeSpa.add(dia);
+            }
+        }
+    } catch (SQLException e) {
+        System.err.println("Error buscando días de spa por día: " + e.getMessage());
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (pstmt != null) pstmt.close();
+        } catch (SQLException e) {
+            System.err.println("Error cerrando recursos: " + e.getMessage());
+        }
+    }
+    return diasDeSpa;
+}
+    
     public static DiaDeSpa buscarPorId(int id) {
         DiaDeSpa dia = null;
         String sql = "SELECT * FROM dia_de_spa WHERE id = ?";

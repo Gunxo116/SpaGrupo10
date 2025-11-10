@@ -1,9 +1,13 @@
 
 package Views.Reportes;
 
+import Modelo.Cliente;
+import Modelo.DiaDeSpa;
 import Modelo.Instalacion;
 import Modelo.Masajista;
 import Modelo.Tratamiento;
+import Persistencia.ClienteData;
+import Persistencia.DiaDeSpaData;
 import Persistencia.InstalacionData;
 import Persistencia.MasajistaData;
 import Persistencia.ReportesData;
@@ -48,7 +52,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private DefaultTableModel modelo4 = new DefaultTableModel(
       new String[]{"ID", "Nombre", "Telefeno", "Especialidad","Sesiones Hoy" ,"Estado"}, 0
     );
-    
+    private DefaultTableModel modelodia = new DefaultTableModel (
+    new String[]{"ID", "Fecha/Hora", "Cliente", "Preferencias", "Monto", "Estado"},0);
     
     
     public ReportesPanel2() {
@@ -79,6 +84,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         // MASAJISTAS DISPONIBLES //
         cargarTodasLasMasajistas();
         jDateChooser2.setCalendar(Calendar.getInstance());
+        
+        jDateChooser9.setCalendar(Calendar.getInstance() );
         
     }
     
@@ -382,7 +389,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jDateChooser9 = new com.toedter.calendar.JDateChooser();
         BotonBuscarDia = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTableInstalaciones1 = new javax.swing.JTable();
+        jTableDiaSpa = new javax.swing.JTable();
         jPanelInformeDiaSpa = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
 
@@ -719,12 +726,11 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(BotonGenerarReporte1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                            .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel34)))))
-                .addGap(17, 17, 17))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1555,7 +1561,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             }
         });
 
-        jTableInstalaciones1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableDiaSpa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1566,7 +1572,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(jTableInstalaciones1);
+        jScrollPane6.setViewportView(jTableDiaSpa);
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -1952,48 +1958,39 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             return;
         }
         Date fechaSeleccionada = jDateChooser9.getDate();
-        Date horaInicio = (Date) timeChooser.getValue();
-        Date horaFin = (Date) timeChooser2.getValue();
-        
 
-        // Formatear fecha y horas para la consulta
+
+        // Formatear fecha para la consulta
         java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        java.text.SimpleDateFormat formatoHora = new java.text.SimpleDateFormat("HH:mm:ss");
 
         String fecha = formatoFecha.format(fechaSeleccionada);
-        String horaInicioStr = formatoHora.format(horaInicio);
-        String horaFinStr = formatoHora.format(horaFin);
+        
+        
+        modelodia.setRowCount(0);
 
-        modelo2.setRowCount(0);
+        ArrayList<DiaDeSpa> diasDeSpa = DiaDeSpaData.buscarPorDia(fecha);
+            for (DiaDeSpa dia : diasDeSpa) {
+                Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
+    
+                modelodia.addRow(new Object[]{
+                    dia.getId(),                                    // ID
+                    cliente != null ? cliente.getNombreCompleto() : "N/A",  // Cliente
+                    dia.getFechaHora().toLocalTime(),              // Hora
+                    dia.getPreferencias(),                          // Preferencias
+                    "$" + String.format("%.2f", dia.getMonto()),   // Monto
+                    dia.getEstado()                                 // Estado
+                });
+            }
 
-        ArrayList<Object[]> instalaciones = ReportesData.obtenerInstalacionesDisponibles(fecha, horaInicioStr, horaFinStr);
-        for (Object[] inst : instalaciones) {
-            int id = (int) inst[0];
-            String nombre = (String) inst[1];
-            String detalle = (String) inst[2];
-            double precio30m = (double) inst[3];
-
-            modelo2.addRow(new Object[]{
-                id,
-                nombre,
-                detalle,
-                "$" + String.format("%.2f", precio30m),
-                "$" + String.format("%.2f", precio30m * 2),
-                "Disponible"
-            });
-        }
-
-        int cantidadResultados = modelo2.getRowCount();
-        LebelHoras.setText("(" + formatoHora.format(horaInicio).substring(0, 5) + 
-                          " - " + formatoHora.format(horaFin).substring(0, 5) + ")");
+         int cantidadResultados = modelodia.getRowCount();
         if (cantidadResultados == 0) {
             JOptionPane.showMessageDialog(this,
-                "No se encontraron instalaciones disponibles en el horario seleccionado",
+                "El dia seleccionado no cuenta con sesiones",
                 "Sin resultados",
-                JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this,
-                "Se encontraron " + cantidadResultados + " instalación(es) disponible(s)",
+                "Se encontraron sesiones",
                 "Búsqueda exitosa",
                 JOptionPane.INFORMATION_MESSAGE);
         }    }//GEN-LAST:event_BotonBuscarDiaActionPerformed
@@ -2099,8 +2096,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPaneReportes;
+    private javax.swing.JTable jTableDiaSpa;
     private javax.swing.JTable jTableInstalaciones;
-    private javax.swing.JTable jTableInstalaciones1;
     private javax.swing.JTable jTableMasajistasDisponibles;
     private javax.swing.JTable jTableMasajistasPorEspecialidad;
     private javax.swing.JTable jTableTratamientos;
@@ -2283,6 +2280,12 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         header4.setForeground(Color.WHITE);
         header4.setOpaque(true);
         header4.setFont(header2.getFont().deriveFont(Font.BOLD));
+        
+        JTableHeader header5 = jTableDiaSpa.getTableHeader();
+        header5.setBackground(new Color(21, 104, 195));
+        header5.setForeground(Color.WHITE);
+        header5.setOpaque(true);
+        header5.setFont(header2.getFont().deriveFont(Font.BOLD));
         
     }
     // MASAJISTAS POR ESPECIALIDAD //
