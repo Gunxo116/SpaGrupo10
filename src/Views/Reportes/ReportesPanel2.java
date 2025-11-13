@@ -62,6 +62,9 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         cargarTablasBonitas();
         configurarPaneles();
         
+        //DIA DE SPA//
+        cargarDiasdeSpa();
+        
         
         // TRATAMIENTOS TIPO //
         cargarComboEstadoTrata();
@@ -1984,15 +1987,15 @@ public class ReportesPanel2 extends javax.swing.JPanel {
 
          int cantidadResultados = modelodia.getRowCount();
         if (cantidadResultados == 0) {
-            JOptionPane.showMessageDialog(this,
-                "El dia seleccionado no cuenta con sesiones",
-                "Sin resultados",
-               JOptionPane.INFORMATION_MESSAGE);
+           // JOptionPane.showMessageDialog(this,
+           //     "El dia seleccionado no cuenta con sesiones",
+          //      "Sin resultados",
+           //    JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this,
-                "Se encontraron sesiones",
-                "Búsqueda exitosa",
-                JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(this,
+            //    "Se encontraron sesiones",
+            //    "Búsqueda exitosa",
+            //    JOptionPane.INFORMATION_MESSAGE);
         }    }//GEN-LAST:event_BotonBuscarDiaActionPerformed
 
 
@@ -2256,6 +2259,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jTableInstalaciones.setModel(modelo2);
         jTableMasajistasPorEspecialidad.setModel(modelo3);
         jTableMasajistasDisponibles.setModel(modelo4);
+        jTableDiaSpa.setModel(modelodia);
         
         JTableHeader header = jTableTratamientos.getTableHeader();
         header.setBackground(new Color(21, 104, 195));
@@ -2384,6 +2388,26 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             });
         }
     }
+    
+    //Dias de Spa//
+    private void cargarDiasdeSpa(){
+    modelodia.setRowCount(0);
+
+        ArrayList<DiaDeSpa> diasDeSpa = DiaDeSpaData.obtenerTodos();
+            for (DiaDeSpa dia : diasDeSpa) {
+                Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
+    
+                modelodia.addRow(new Object[]{
+                    dia.getId(),                                    // ID
+                    cliente != null ? cliente.getNombreCompleto() : "N/A",  // Cliente
+                    dia.getFechaHora().toLocalTime(),              // Hora
+                    dia.getPreferencias(),                          // Preferencias
+                    "$" + String.format("%.2f", dia.getMonto()),   // Monto
+                    dia.getEstado()                                 // Estado
+                });
+            }
+    }
+    
     // MASAJISTAS DISPONIBLES //
     private void cargarTodasLasMasajistas(){
         

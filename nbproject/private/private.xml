@@ -5,13 +5,11 @@
         <group>
             <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Views/DashboardMenu.java</file>
             <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Modelo/Instalacion.java</file>
-            <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Modelo/Cliente.java</file>
-            <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Views/Clientes/ClientesPanel.java</file>
-            <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Views/RolSelectionDialog.java</file>
-            <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Persistencia/ClienteData.java</file>
-            <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Views/DiasSpa/DiasSpaPanel.java</file>
             <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Modelo/Sesion.java</file>
             <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Persistencia/SesionData.java</file>
+            <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Persistencia/DiaDeSpaData.java</file>
+            <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Views/Reportes/ReportesPanel2.java</file>
+            <file>file:/C:/Users/note/Documents/GitHub/SpaGrupo10/src/Persistencia/ReportesData.java</file>
         </group>
     </open-files>
 </project-private>
