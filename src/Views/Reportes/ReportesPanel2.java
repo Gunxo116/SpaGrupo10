@@ -53,7 +53,10 @@ public class ReportesPanel2 extends javax.swing.JPanel {
       new String[]{"ID", "Nombre", "Telefeno", "Especialidad","Sesiones Hoy" ,"Estado"}, 0
     );
     private DefaultTableModel modelodia = new DefaultTableModel (
-    new String[]{"ID", "Fecha/Hora", "Cliente", "Preferencias", "Monto", "Estado"},0);
+    new String[]{"ID", "Cliente","Fecha/Hora",  "Preferencias", "Monto", "Estado"},0);
+            
+    private DefaultTableModel modeloinfo = new DefaultTableModel (
+    new String[]{"ID", "Cliente","Fecha/Hora",  "Preferencias", "Monto", "Estado"},0);
     
     
     public ReportesPanel2() {
@@ -395,6 +398,67 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jTableDiaSpa = new javax.swing.JTable();
         jPanelInformeDiaSpa = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
+        jSeparator13 = new javax.swing.JSeparator();
+        jLabel38 = new javax.swing.JLabel();
+        jPanelIngresosDiaSpa = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        jLabel37 = new javax.swing.JLabel();
+        numIngresosDiaSpa = new javax.swing.JLabel();
+        jPanelTotalSesiones1 = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        numTotalSeciones = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jPanelTotalDiasSpa = new javax.swing.JPanel(){
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Dibujar fondo blanco redondeado
+                g2.setColor(getBackground());
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+
+                g2.dispose();
+                super.paintComponent(g);
+            }
+
+        };
+        jLabel43 = new javax.swing.JLabel();
+        numDiasDeSpa = new javax.swing.JLabel();
+        jDateChooser10 = new com.toedter.calendar.JDateChooser();
+        jLabel44 = new javax.swing.JLabel();
+        BotonGenerarInforme = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTableInformeSpa = new javax.swing.JTable();
 
         jLabel12.setText("jLabel12");
 
@@ -1636,15 +1700,202 @@ public class ReportesPanel2 extends javax.swing.JPanel {
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
+        jSeparator13.setForeground(new java.awt.Color(21, 104, 195));
+
+        jLabel38.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel38.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-InstalacionNegro.png"))); // NOI18N
+        jLabel38.setText("Informes de Dias de Spa");
+
+        jPanelIngresosDiaSpa.setBackground(new java.awt.Color(255, 153, 51));
+        jPanelIngresosDiaSpa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelIngresosDiaSpa.setMinimumSize(new java.awt.Dimension(70, 76));
+        jPanelIngresosDiaSpa.setPreferredSize(new java.awt.Dimension(131, 100));
+
+        jLabel37.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setText("Ingresos Del Dia");
+
+        numIngresosDiaSpa.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        numIngresosDiaSpa.setForeground(new java.awt.Color(0, 0, 0));
+        numIngresosDiaSpa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numIngresosDiaSpa.setText("0");
+
+        javax.swing.GroupLayout jPanelIngresosDiaSpaLayout = new javax.swing.GroupLayout(jPanelIngresosDiaSpa);
+        jPanelIngresosDiaSpa.setLayout(jPanelIngresosDiaSpaLayout);
+        jPanelIngresosDiaSpaLayout.setHorizontalGroup(
+            jPanelIngresosDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+            .addComponent(numIngresosDiaSpa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanelIngresosDiaSpaLayout.setVerticalGroup(
+            jPanelIngresosDiaSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelIngresosDiaSpaLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(numIngresosDiaSpa)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jPanelTotalSesiones1.setBackground(new java.awt.Color(0, 153, 51));
+        jPanelTotalSesiones1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelTotalSesiones1.setPreferredSize(new java.awt.Dimension(76, 76));
+
+        numTotalSeciones.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        numTotalSeciones.setForeground(new java.awt.Color(0, 0, 0));
+        numTotalSeciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numTotalSeciones.setText("0");
+
+        jLabel39.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel39.setText("Total Sesiones ");
+
+        javax.swing.GroupLayout jPanelTotalSesiones1Layout = new javax.swing.GroupLayout(jPanelTotalSesiones1);
+        jPanelTotalSesiones1.setLayout(jPanelTotalSesiones1Layout);
+        jPanelTotalSesiones1Layout.setHorizontalGroup(
+            jPanelTotalSesiones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTotalSesiones1Layout.createSequentialGroup()
+                .addGroup(jPanelTotalSesiones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(numTotalSeciones, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                    .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanelTotalSesiones1Layout.setVerticalGroup(
+            jPanelTotalSesiones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTotalSesiones1Layout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(numTotalSeciones)
+                .addGap(25, 25, 25))
+        );
+
+        jPanelTotalDiasSpa.setBackground(new java.awt.Color(102, 153, 255));
+        jPanelTotalDiasSpa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelTotalDiasSpa.setPreferredSize(new java.awt.Dimension(76, 76));
+
+        jLabel43.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel43.setText("Dias de Spa");
+
+        numDiasDeSpa.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
+        numDiasDeSpa.setForeground(new java.awt.Color(0, 0, 0));
+        numDiasDeSpa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numDiasDeSpa.setText("0");
+
+        javax.swing.GroupLayout jPanelTotalDiasSpaLayout = new javax.swing.GroupLayout(jPanelTotalDiasSpa);
+        jPanelTotalDiasSpa.setLayout(jPanelTotalDiasSpaLayout);
+        jPanelTotalDiasSpaLayout.setHorizontalGroup(
+            jPanelTotalDiasSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTotalDiasSpaLayout.createSequentialGroup()
+                .addComponent(numDiasDeSpa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+        );
+        jPanelTotalDiasSpaLayout.setVerticalGroup(
+            jPanelTotalDiasSpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTotalDiasSpaLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(numDiasDeSpa)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        jDateChooser10.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel44.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel44.setText("Fecha:");
+
+        BotonGenerarInforme.setBackground(new java.awt.Color(21, 104, 195));
+        BotonGenerarInforme.setForeground(new java.awt.Color(255, 255, 255));
+        BotonGenerarInforme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-Buscardor.png"))); // NOI18N
+        BotonGenerarInforme.setText("Generar Informe");
+        BotonGenerarInforme.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotonGenerarInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonGenerarInformeActionPerformed(evt);
+            }
+        });
+
+        jTableInformeSpa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(jTableInformeSpa);
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser10, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jSeparator13)
+                        .addContainerGap())
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(BotonGenerarInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jPanelTotalDiasSpa, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelTotalSesiones1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87)
+                .addComponent(jPanelIngresosDiaSpa, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel38))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jLabel44)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooser10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BotonGenerarInforme, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelIngresosDiaSpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelTotalSesiones1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelTotalDiasSpa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanelInformeDiaSpaLayout = new javax.swing.GroupLayout(jPanelInformeDiaSpa);
@@ -1998,12 +2249,49 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             //    JOptionPane.INFORMATION_MESSAGE);
         }    }//GEN-LAST:event_BotonBuscarDiaActionPerformed
 
+    private void BotonGenerarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarInformeActionPerformed
+        if (jDateChooser9.getDate() == null) {
+            JOptionPane.showMessageDialog(this,
+                "Por favor seleccione una fecha",
+                "Fecha requerida",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Date fechaSeleccionada = jDateChooser9.getDate();
+
+
+        // Formatear fecha para la consulta
+        java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd");
+
+        String fecha = formatoFecha.format(fechaSeleccionada);
+        
+        
+        modeloinfo.setRowCount(0);
+
+        ArrayList<DiaDeSpa> diasDeSpa = DiaDeSpaData.buscarPorDia(fecha);
+            for (DiaDeSpa dia : diasDeSpa) {
+                Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
+    
+                modeloinfo.addRow(new Object[]{
+                    dia.getId(),                                    // ID
+                    cliente != null ? cliente.getNombreCompleto() : "N/A",  // Cliente
+                    dia.getFechaHora().toLocalTime(),              // Hora
+                    dia.getPreferencias(),                          // Preferencias
+                    "$" + String.format("%.2f", dia.getMonto()),   // Monto
+                    dia.getEstado()                                 // Estado
+                });
+            }
+
+         int cantidadResultados = modeloinfo.getRowCount();
+    }//GEN-LAST:event_BotonGenerarInformeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscarDia;
     private javax.swing.JButton BotonBuscarInstalacion;
     private javax.swing.JButton BotonBuscarMasajista;
     private javax.swing.JButton BotonFlitrarMasajistasEspecialidad;
+    private javax.swing.JButton BotonGenerarInforme;
     private javax.swing.JButton BotonGenerarReporte;
     private javax.swing.JButton BotonGenerarReporte1;
     private javax.swing.JButton BotonGuardar;
@@ -2014,6 +2302,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel HoraInicioFinalMasajistas;
     private javax.swing.JLabel LebelHoras;
     private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser10;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser5;
     private com.toedter.calendar.JDateChooser jDateChooser6;
@@ -2050,7 +2339,12 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2069,6 +2363,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelEstetico;
     private javax.swing.JPanel jPanelFacial;
     private javax.swing.JPanel jPanelInformeDiaSpa;
+    private javax.swing.JPanel jPanelIngresosDiaSpa;
     private javax.swing.JPanel jPanelIngresosTratamientosSoli;
     private javax.swing.JPanel jPanelIngresosTratamientosSoli1;
     private javax.swing.JPanel jPanelInstalacionesDisponibles;
@@ -2076,7 +2371,9 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelMasajistasEspecialidad;
     private javax.swing.JPanel jPanelRankingInstalaciones;
     private javax.swing.JPanel jPanelRelajacion;
+    private javax.swing.JPanel jPanelTotalDiasSpa;
     private javax.swing.JPanel jPanelTotalSesiones;
+    private javax.swing.JPanel jPanelTotalSesiones1;
     private javax.swing.JPanel jPanelTratamientosSolicitados;
     private javax.swing.JPanel jPanelTratamientosTipo;
     private javax.swing.JPanel jPanelTratamientosUnicos;
@@ -2087,9 +2384,11 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -2100,6 +2399,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPaneReportes;
     private javax.swing.JTable jTableDiaSpa;
+    private javax.swing.JTable jTableInformeSpa;
     private javax.swing.JTable jTableInstalaciones;
     private javax.swing.JTable jTableMasajistasDisponibles;
     private javax.swing.JTable jTableMasajistasPorEspecialidad;
@@ -2107,14 +2407,17 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JTable jTableTratamientos1;
     private javax.swing.JLabel numCorporales;
     private javax.swing.JLabel numCorporales1;
+    private javax.swing.JLabel numDiasDeSpa;
     private javax.swing.JLabel numEsteticos;
     private javax.swing.JLabel numEsteticos1;
     private javax.swing.JLabel numFaciales;
     private javax.swing.JLabel numFaciales1;
+    private javax.swing.JLabel numIngresosDiaSpa;
     private javax.swing.JLabel numIngresosInstalaciones;
     private javax.swing.JLabel numInstalacionesActivas2;
     private javax.swing.JLabel numRelajaciones;
     private javax.swing.JLabel numTotalReservas;
+    private javax.swing.JLabel numTotalSeciones;
     private javax.swing.JPanel panelRankingContainer;
     private javax.swing.JPanel panelRankingContainerInstalacion;
     private javax.swing.JScrollPane scrollRanking;
@@ -2260,6 +2563,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jTableMasajistasPorEspecialidad.setModel(modelo3);
         jTableMasajistasDisponibles.setModel(modelo4);
         jTableDiaSpa.setModel(modelodia);
+        jTableInformeSpa.setModel(modeloinfo);
         
         JTableHeader header = jTableTratamientos.getTableHeader();
         header.setBackground(new Color(21, 104, 195));
@@ -2290,6 +2594,12 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         header5.setForeground(Color.WHITE);
         header5.setOpaque(true);
         header5.setFont(header2.getFont().deriveFont(Font.BOLD));
+        
+        JTableHeader header6 = jTableInformeSpa.getTableHeader();
+        header6.setBackground(new Color(21, 104, 195));
+        header6.setForeground(Color.WHITE);
+        header6.setOpaque(true);
+        header6.setFont(header2.getFont().deriveFont(Font.BOLD));
         
     }
     // MASAJISTAS POR ESPECIALIDAD //
@@ -2391,6 +2701,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     
     //Dias de Spa//
     private void cargarDiasdeSpa(){
+    modeloinfo.setRowCount(0);
     modelodia.setRowCount(0);
 
         ArrayList<DiaDeSpa> diasDeSpa = DiaDeSpaData.obtenerTodos();
@@ -2398,6 +2709,18 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
     
                 modelodia.addRow(new Object[]{
+                    dia.getId(),                                    // ID
+                    cliente != null ? cliente.getNombreCompleto() : "N/A",  // Cliente
+                    dia.getFechaHora().toLocalTime(),              // Hora
+                    dia.getPreferencias(),                          // Preferencias
+                    "$" + String.format("%.2f", dia.getMonto()),   // Monto
+                    dia.getEstado()                                 // Estado
+                });
+            }
+            for (DiaDeSpa dia : diasDeSpa) {
+                Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
+    
+                modeloinfo.addRow(new Object[]{
                     dia.getId(),                                    // ID
                     cliente != null ? cliente.getNombreCompleto() : "N/A",  // Cliente
                     dia.getFechaHora().toLocalTime(),              // Hora
