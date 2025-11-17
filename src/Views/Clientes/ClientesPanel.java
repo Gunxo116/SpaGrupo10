@@ -43,7 +43,7 @@ public class ClientesPanel extends javax.swing.JPanel{
 
         limpiarTabla();
 
-        // Función para que al hacer click sobre un alumno se cargue la información en el formulario de edición
+        // Función para que al hacer click sobre un cliente se cargue la información en el formulario de edición
         jTable1.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener(){
             @Override
             public void valueChanged(javax.swing.event.ListSelectionEvent e){
@@ -837,7 +837,7 @@ public class ClientesPanel extends javax.swing.JPanel{
         Cliente resultado = ClienteData.guardar(cliente);
         if( resultado != null ){
             JOptionPane.showMessageDialog(this,
-              "Alumno guardado exitosamente\n\n"
+              "Cliente guardado exitosamente\n\n"
               + "ID: " + resultado.getIdCliente() + "\n"
               + "Nombre: " + resultado.getNombreCompleto() + "\n"
               + "DNI: " + resultado.getDni(),
@@ -846,7 +846,7 @@ public class ClientesPanel extends javax.swing.JPanel{
             limpiarInputs();
         } else{
             JOptionPane.showMessageDialog(this,
-              "Error al guardar el alumno\n\n"
+              "Error al guardar el cliente\n\n"
               + "Por favor verifique los datos e intente nuevamente",
               "Error al guardar",
               JOptionPane.ERROR_MESSAGE);
