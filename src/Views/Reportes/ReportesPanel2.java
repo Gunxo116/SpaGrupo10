@@ -5,12 +5,14 @@ import Modelo.Cliente;
 import Modelo.DiaDeSpa;
 import Modelo.Instalacion;
 import Modelo.Masajista;
+import Modelo.Sesion;
 import Modelo.Tratamiento;
 import Persistencia.ClienteData;
 import Persistencia.DiaDeSpaData;
 import Persistencia.InstalacionData;
 import Persistencia.MasajistaData;
 import Persistencia.ReportesData;
+import Persistencia.SesionData;
 import Persistencia.TratamientoData;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -1761,10 +1763,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         jPanelTotalSesiones1.setLayout(jPanelTotalSesiones1Layout);
         jPanelTotalSesiones1Layout.setHorizontalGroup(
             jPanelTotalSesiones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTotalSesiones1Layout.createSequentialGroup()
-                .addComponent(numTotalSeciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+            .addComponent(numTotalSeciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelTotalSesiones1Layout.setVerticalGroup(
             jPanelTotalSesiones1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2247,15 +2247,15 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         }    }//GEN-LAST:event_BotonBuscarDiaActionPerformed
 
     private void BotonGenerarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarInformeActionPerformed
-        if (jDateChooser10.getDate() == null) {
+        
+        if( jDateChooser10.getDate() == null ){
             JOptionPane.showMessageDialog(this,
-                "Por favor seleccione una fecha",
-                "Fecha requerida",
-                JOptionPane.WARNING_MESSAGE);
+              "Por favor seleccione una fecha",
+              "Fecha requerida",
+              JOptionPane.WARNING_MESSAGE);
             return;
         }
         Date fechaSeleccionada = jDateChooser10.getDate();
-
 
         // Formatear fecha para la consulta
         java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd");
@@ -2265,20 +2265,46 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         modeloinfo.setRowCount(0);
         ArrayList<DiaDeSpa> diasDeSpa = DiaDeSpaData.buscarPorDia(fecha);
 
-            for (DiaDeSpa dia : diasDeSpa) {
-                Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
-    
-                modeloinfo.addRow(new Object[]{
-                    dia.getId(),                                    // ID
-                    cliente != null ? cliente.getNombreCompleto() : "N/A",  // Cliente
-                    dia.getFechaHora().toLocalTime(),              // Hora
-                    dia.getPreferencias(),                          // Preferencias
-                    "$" + String.format("%.2f", dia.getMonto()),   // Monto
-                    dia.getEstado()                                 // Estado
-                });
+        for( DiaDeSpa dia : diasDeSpa ){
+            Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
+
+            modeloinfo.addRow(new Object[]{
+                dia.getId(), // ID
+                cliente != null ? cliente.getNombreCompleto() : "N/A", // Cliente
+                dia.getFechaHora().toLocalTime(), // Hora
+                dia.getPreferencias(), // Preferencias
+                "$" + String.format("%.2f", dia.getMonto()), // Monto
+                dia.getEstado() // Estado
+            });
+        }
+
+        int diasSpa = modeloinfo.getRowCount();
+        numDiasDeSpa.setText(String.valueOf(diasSpa));
+
+        // Obtener sesiones totales
+//        int sesionesPorDia = modeloinfo.get
+        int numSesiones = 0;
+
+        for( int i = 0 ; i < modeloinfo.getRowCount() ; i++ ){
+            Object id = modeloinfo.getValueAt(i, 0);          // Columna "ID"
+            Object cliente = modeloinfo.getValueAt(i, 1);     // Columna "Cliente"
+            Object hora = modeloinfo.getValueAt(i, 2);        // Columna "Hora"
+            Object preferencias = modeloinfo.getValueAt(i, 3); // Columna "Preferencias"
+            Object monto = modeloinfo.getValueAt(i, 4);       // Columna "Monto"
+            Object estado = modeloinfo.getValueAt(i, 5);      // Columna "Estado"
+
+            // Ejemplo de subconsulta usando el ID
+            if( id != null ){
+
+                ArrayList<Sesion> sesiones = SesionData.obtenerPorDiaSpa((int) id);
+                numSesiones += sesiones.size();
+
+                System.out.println("Procesando fila " + i + " con ID: " + id);
+                System.out.println("Cantidad sesiones: " + sesiones.size());
             }
-                    int r = modelodia.getRowCount();
-        numTotalSeciones.setText(String.valueOf(r));
+        }
+
+        numTotalSeciones.setText(String.valueOf(numSesiones));
              
     }//GEN-LAST:event_BotonGenerarInformeActionPerformed
 
