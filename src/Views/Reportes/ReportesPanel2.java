@@ -1,4 +1,3 @@
-
 package Views.Reportes;
 
 import Modelo.Cliente;
@@ -35,43 +34,39 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+public class ReportesPanel2 extends javax.swing.JPanel{
 
-
-public class ReportesPanel2 extends javax.swing.JPanel {
-    
     private DefaultTableModel modelo = new DefaultTableModel(
       new String[]{"ID", "Nombre", "Tipo", "Duracion (min)", "Costo", "Estado"}, 0
     );
-    
+
     private DefaultTableModel modelo2 = new DefaultTableModel(
       new String[]{"ID", "Nombre", "Detalle", "Precio30m", "Precio60m", "Estado"}, 0
     );
-    
+
     private DefaultTableModel modelo3 = new DefaultTableModel(
       new String[]{"ID", "Nombre", "Telefeno", "Sesiones Totales", "Estado"}, 0
     );
-    
+
     private DefaultTableModel modelo4 = new DefaultTableModel(
-      new String[]{"ID", "Nombre", "Telefeno", "Especialidad","Sesiones Hoy" ,"Estado"}, 0
+      new String[]{"ID", "Nombre", "Telefeno", "Especialidad", "Sesiones Hoy", "Estado"}, 0
     );
-    private DefaultTableModel modelodia = new DefaultTableModel (
-    new String[]{"ID", "Cliente","Hora",  "Preferencias", "Monto", "Estado"},0);
-            
-    private DefaultTableModel modeloinfo = new DefaultTableModel (
-    new String[]{"ID", "Cliente","Hora",  "Preferencias", "Monto", "Estado"},0);
-    
-    
-    public ReportesPanel2() {
+    private DefaultTableModel modelodia = new DefaultTableModel(
+      new String[]{"ID", "Cliente", "Hora", "Preferencias", "Monto", "Estado"}, 0);
+
+    private DefaultTableModel modeloinfo = new DefaultTableModel(
+      new String[]{"ID", "Cliente", "Hora", "Preferencias", "Monto", "Estado"}, 0);
+
+    public ReportesPanel2(){
         initComponents();
 
         cargarTablasBonitas();
         configurarPaneles();
-        
+
         //DIA DE SPA//
         cargarDiasdeSpa();
         cargarDiasdeSpa2();
-        
-        
+
         // TRATAMIENTOS TIPO //
         cargarComboEstadoTrata();
         cargarComboTipoTrata();
@@ -93,16 +88,14 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         // MASAJISTAS DISPONIBLES //
         cargarTodasLasMasajistas();
         jDateChooser2.setCalendar(Calendar.getInstance());
-        
-        jDateChooser9.setCalendar(Calendar.getInstance() );
-        
-        jDateChooser10.setCalendar(Calendar.getInstance() );
+
+        jDateChooser9.setCalendar(Calendar.getInstance());
+
+        jDateChooser10.setCalendar(Calendar.getInstance());
         // Informes de Dias de Spa //
-        
+
     }
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1923,7 +1916,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     }//GEN-LAST:event_ComboTipoTrataActionPerformed
 
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
-        
+
         String tipoSeleccionado = (String) ComboTipoTrata.getSelectedItem();
         String estadoSeleccionado = (String) ComboEstadoTrata.getSelectedItem();
 
@@ -1931,7 +1924,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
 
         ArrayList<Tratamiento> tratamientos = ReportesData.filtrarTratamientos(tipoSeleccionado, estadoSeleccionado);
 
-        for (Tratamiento t : tratamientos) {
+        for( Tratamiento t : tratamientos ){
             modelo.addRow(new Object[]{
                 t.getIdTratamiento(),
                 t.getNombre(),
@@ -1941,42 +1934,42 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                 t.getEstado() ? "Activo" : "Inactivo"
             });
         }
-        
+
         int cantidadResultados = modelo.getRowCount();
-        if (cantidadResultados == 0) {
+        if( cantidadResultados == 0 ){
             JOptionPane.showMessageDialog(this,
-                "No se encontraron tratamientos con los criterios seleccionados",
-                "Sin resultados",
-                JOptionPane.INFORMATION_MESSAGE);
-        } else {
+              "No se encontraron tratamientos con los criterios seleccionados",
+              "Sin resultados",
+              JOptionPane.INFORMATION_MESSAGE);
+        } else{
             JOptionPane.showMessageDialog(this,
-                "Se encontraron " + cantidadResultados + " tratamiento(s)",
-                "Búsqueda exitosa",
-                JOptionPane.INFORMATION_MESSAGE);
+              "Se encontraron " + cantidadResultados + " tratamiento(s)",
+              "Búsqueda exitosa",
+              JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_BotonGuardarActionPerformed
 
     private void BotonBuscarInstalacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarInstalacionActionPerformed
-        
-        if (jDateChooser1.getDate() == null) {
+
+        if( jDateChooser1.getDate() == null ){
             JOptionPane.showMessageDialog(this,
-                "Por favor seleccione una fecha",
-                "Fecha requerida",
-                JOptionPane.WARNING_MESSAGE);
+              "Por favor seleccione una fecha",
+              "Fecha requerida",
+              JOptionPane.WARNING_MESSAGE);
             return;
         }
         Date fechaSeleccionada = jDateChooser1.getDate();
         Date horaInicio = (Date) timeChooser.getValue();
         Date horaFin = (Date) timeChooser2.getValue();
-        
-        LebelHoras.setText("("+horaInicio+" - "+horaFin+")");
 
-        if (horaFin.before(horaInicio) || horaFin.equals(horaInicio)) {
+        LebelHoras.setText("(" + horaInicio + " - " + horaFin + ")");
+
+        if( horaFin.before(horaInicio) || horaFin.equals(horaInicio) ){
             JOptionPane.showMessageDialog(this,
-                "La hora de fin debe ser posterior a la hora de inicio",
-                "Error en horarios",
-                JOptionPane.WARNING_MESSAGE);
+              "La hora de fin debe ser posterior a la hora de inicio",
+              "Error en horarios",
+              JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -1991,7 +1984,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         modelo2.setRowCount(0);
 
         ArrayList<Object[]> instalaciones = ReportesData.obtenerInstalacionesDisponibles(fecha, horaInicioStr, horaFinStr);
-        for (Object[] inst : instalaciones) {
+        for( Object[] inst : instalaciones ){
             int id = (int) inst[0];
             String nombre = (String) inst[1];
             String detalle = (String) inst[2];
@@ -2008,47 +2001,47 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         }
 
         int cantidadResultados = modelo2.getRowCount();
-        LebelHoras.setText("(" + formatoHora.format(horaInicio).substring(0, 5) + 
-                          " - " + formatoHora.format(horaFin).substring(0, 5) + ")");
-        if (cantidadResultados == 0) {
+        LebelHoras.setText("(" + formatoHora.format(horaInicio).substring(0, 5)
+          + " - " + formatoHora.format(horaFin).substring(0, 5) + ")");
+        if( cantidadResultados == 0 ){
             JOptionPane.showMessageDialog(this,
-                "No se encontraron instalaciones disponibles en el horario seleccionado",
-                "Sin resultados",
-                JOptionPane.INFORMATION_MESSAGE);
-        } else {
+              "No se encontraron instalaciones disponibles en el horario seleccionado",
+              "Sin resultados",
+              JOptionPane.INFORMATION_MESSAGE);
+        } else{
             JOptionPane.showMessageDialog(this,
-                "Se encontraron " + cantidadResultados + " instalación(es) disponible(s)",
-                "Búsqueda exitosa",
-                JOptionPane.INFORMATION_MESSAGE);
+              "Se encontraron " + cantidadResultados + " instalación(es) disponible(s)",
+              "Búsqueda exitosa",
+              JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_BotonBuscarInstalacionActionPerformed
 
     private void ComboEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboEspecialidadActionPerformed
     }//GEN-LAST:event_ComboEspecialidadActionPerformed
 
     private void BotonFlitrarMasajistasEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonFlitrarMasajistasEspecialidadActionPerformed
-        
+
         String especialidadSeleccionada = (String) ComboEspecialidad.getSelectedItem();
         String estadoSeleccionado = (String) ComboEstadoMasajista.getSelectedItem();
         modelo3.setRowCount(0);
 
-        if (especialidadSeleccionada.equals("Todos") && estadoSeleccionado.equals("Todos")) {
+        if( especialidadSeleccionada.equals("Todos") && estadoSeleccionado.equals("Todos") ){
             ArrayList<Masajista> masajistas = MasajistaData.obtenerTodos();
-            for (Masajista m : masajistas) {
+            for( Masajista m : masajistas ){
                 modelo3.addRow(new Object[]{
                     m.getId(),
                     m.getNombreCompleto(),
                     m.getTelefono(),
-                    0, 
+                    0,
                     m.getEstado() ? "Activo" : "Inactivo"
                 });
             }
-        } else if (!especialidadSeleccionada.equals("Todos") && estadoSeleccionado.equals("Todos")) {
+        } else if( !especialidadSeleccionada.equals("Todos") && estadoSeleccionado.equals("Todos") ){
             ArrayList<Object[]> masajistas = ReportesData.obtenerMasajistasPorEspecialidad(especialidadSeleccionada);
-            for (Object[] m : masajistas) {
-                Masajista masajista = MasajistaData.buscarPorId((int)m[0]);
-                if (masajista != null) {
+            for( Object[] m : masajistas ){
+                Masajista masajista = MasajistaData.buscarPorId((int) m[0]);
+                if( masajista != null ){
                     modelo3.addRow(new Object[]{
                         m[0],
                         m[1],
@@ -2058,15 +2051,15 @@ public class ReportesPanel2 extends javax.swing.JPanel {
                     });
                 }
             }
-        } else {
+        } else{
             ArrayList<Object[]> porEspecialidad = ReportesData.obtenerMasajistasPorEspecialidad(
-                especialidadSeleccionada.equals("Todos") ? null : especialidadSeleccionada
+              especialidadSeleccionada.equals("Todos") ? null : especialidadSeleccionada
             );
             boolean estadoBuscado = estadoSeleccionado.equals("Activo");
 
-            for (Object[] m : porEspecialidad) {
-                Masajista masajista = MasajistaData.buscarPorId((int)m[0]);
-                if (masajista != null && masajista.getEstado() == estadoBuscado) {
+            for( Object[] m : porEspecialidad ){
+                Masajista masajista = MasajistaData.buscarPorId((int) m[0]);
+                if( masajista != null && masajista.getEstado() == estadoBuscado ){
                     modelo3.addRow(new Object[]{
                         m[0], m[1], m[2], m[3],
                         masajista.getEstado() ? "Activo" : "Inactivo"
@@ -2076,41 +2069,41 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         }
 
         int cantidadResultados = modelo3.getRowCount();
-        if (cantidadResultados == 0) {
+        if( cantidadResultados == 0 ){
             JOptionPane.showMessageDialog(this,
-                "No se encontraron masajistas con los criterios seleccionados",
-                "Sin resultados",
-                JOptionPane.INFORMATION_MESSAGE);
-        } else {
+              "No se encontraron masajistas con los criterios seleccionados",
+              "Sin resultados",
+              JOptionPane.INFORMATION_MESSAGE);
+        } else{
             JOptionPane.showMessageDialog(this,
-                "Se encontraron " + cantidadResultados + " masajista(s)",
-                "Búsqueda exitosa",
-                JOptionPane.INFORMATION_MESSAGE);
+              "Se encontraron " + cantidadResultados + " masajista(s)",
+              "Búsqueda exitosa",
+              JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_BotonFlitrarMasajistasEspecialidadActionPerformed
 
     private void BotonBuscarMasajistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarMasajistaActionPerformed
-        
-        if (jDateChooser2.getDate() == null) {
+
+        if( jDateChooser2.getDate() == null ){
             JOptionPane.showMessageDialog(this,
-                "Por favor seleccione una fecha",
-                "Fecha requerida",
-                JOptionPane.WARNING_MESSAGE);
+              "Por favor seleccione una fecha",
+              "Fecha requerida",
+              JOptionPane.WARNING_MESSAGE);
             return;
         }
         Date fechaSeleccionada = jDateChooser2.getDate();
         Date horaInicio = (Date) timeChooser3.getValue();
         Date horaFin = (Date) timeChooser4.getValue();
 
-        if (horaFin.before(horaInicio) || horaFin.equals(horaInicio)) {
+        if( horaFin.before(horaInicio) || horaFin.equals(horaInicio) ){
             JOptionPane.showMessageDialog(this,
-                "La hora de fin debe ser posterior a la hora de inicio",
-                "Error en horarios",
-                JOptionPane.WARNING_MESSAGE);
+              "La hora de fin debe ser posterior a la hora de inicio",
+              "Error en horarios",
+              JOptionPane.WARNING_MESSAGE);
             return;
         }
-        HoraInicioFinalMasajistas.setText("("+horaInicio+" - "+horaFin+")");
+        HoraInicioFinalMasajistas.setText("(" + horaInicio + " - " + horaFin + ")");
 
         java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd");
         java.text.SimpleDateFormat formatoHora = new java.text.SimpleDateFormat("HH:mm:ss");
@@ -2122,7 +2115,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         modelo4.setRowCount(0);
         ArrayList<Object[]> masajistas = ReportesData.obtenerMasajistasDisponibles(fecha, horaInicioStr, horaFinStr);
 
-        for (Object[] m : masajistas) {
+        for( Object[] m : masajistas ){
             int id = (int) m[0];
             String nombre = (String) m[1];
             String telefono = (String) m[2];
@@ -2139,26 +2132,26 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         }
 
         int cantidadResultados = modelo4.getRowCount();
-        HoraInicioFinalMasajistas.setText("(" + formatoHora.format(horaInicio).substring(0, 5) + 
-                          " - " + formatoHora.format(horaFin).substring(0, 5) + ")");
+        HoraInicioFinalMasajistas.setText("(" + formatoHora.format(horaInicio).substring(0, 5)
+          + " - " + formatoHora.format(horaFin).substring(0, 5) + ")");
 
-        if (cantidadResultados == 0) {
+        if( cantidadResultados == 0 ){
             JOptionPane.showMessageDialog(this,
-                "No se encontraron masajistas disponibles en el horario seleccionado",
-                "Sin resultados",
-                JOptionPane.INFORMATION_MESSAGE);
-        } else {
+              "No se encontraron masajistas disponibles en el horario seleccionado",
+              "Sin resultados",
+              JOptionPane.INFORMATION_MESSAGE);
+        } else{
             JOptionPane.showMessageDialog(this,
-                "Se encontraron " + cantidadResultados + " masajista(s) disponible(s)",
-                "Búsqueda exitosa",
-                JOptionPane.INFORMATION_MESSAGE);
+              "Se encontraron " + cantidadResultados + " masajista(s) disponible(s)",
+              "Búsqueda exitosa",
+              JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_BotonBuscarMasajistaActionPerformed
 
     private void BotonGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarReporteActionPerformed
-        
-        if (jDateChooser5.getDate() == null || jDateChooser6.getDate() == null) {
+
+        if( jDateChooser5.getDate() == null || jDateChooser6.getDate() == null ){
             JOptionPane.showMessageDialog(this, "Seleccione ambas fechas", "Error", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -2170,16 +2163,16 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         ArrayList<Object[]> ranking = ReportesData.obtenerTratamientosMasSolicitados(fechaDesde, fechaHasta);
 
         cargarRankingTratamientos(ranking);
-        
+
     }//GEN-LAST:event_BotonGenerarReporteActionPerformed
 
     private void BotonGenerarReporte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarReporte1ActionPerformed
-        
-        if (jDateChooser7.getDate() == null || jDateChooser8.getDate() == null) {
-            JOptionPane.showMessageDialog(this, 
-                "Seleccione ambas fechas", 
-                "Error", 
-                JOptionPane.WARNING_MESSAGE);
+
+        if( jDateChooser7.getDate() == null || jDateChooser8.getDate() == null ){
+            JOptionPane.showMessageDialog(this,
+              "Seleccione ambas fechas",
+              "Error",
+              JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -2193,61 +2186,59 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         actualizarEstadisticasInstalacionesGenerales(ranking);
 
         JOptionPane.showMessageDialog(this,
-            "Ranking generado con " + ranking.size() + " instalación(es)",
-            "Ranking generado",
-            JOptionPane.INFORMATION_MESSAGE);
-        
+          "Ranking generado con " + ranking.size() + " instalación(es)",
+          "Ranking generado",
+          JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_BotonGenerarReporte1ActionPerformed
 
     private void BotonBuscarDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarDiaActionPerformed
-        if (jDateChooser9.getDate() == null) {
+        if( jDateChooser9.getDate() == null ){
             JOptionPane.showMessageDialog(this,
-                "Por favor seleccione una fecha",
-                "Fecha requerida",
-                JOptionPane.WARNING_MESSAGE);
+              "Por favor seleccione una fecha",
+              "Fecha requerida",
+              JOptionPane.WARNING_MESSAGE);
             return;
         }
         Date fechaSeleccionada = jDateChooser9.getDate();
 
-
         // Formatear fecha para la consulta
         java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd");
-       /* SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");*/
+        /* SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");*/
 
         String fecha = formatoFecha.format(fechaSeleccionada);
-        
-        
+
         modelodia.setRowCount(0);
 
         ArrayList<DiaDeSpa> diasDeSpa = DiaDeSpaData.buscarPorDia(fecha);
-            for (DiaDeSpa dia : diasDeSpa) {
-                Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
-    
-                modelodia.addRow(new Object[]{
-                    dia.getId(),                                    // ID
-                    cliente != null ? cliente.getNombreCompleto() : "N/A",  // Cliente
-                    dia.getFechaHora().toLocalTime(),                  // Hora
-                    dia.getPreferencias(),                          // Preferencias
-                    "$" + String.format("%.2f", dia.getMonto()),   // Monto
-                    dia.getEstado()                                 // Estado
-                });
-            }
+        for( DiaDeSpa dia : diasDeSpa ){
+            Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
 
-         int cantidadResultados = modelodia.getRowCount();
-        if (cantidadResultados == 0) {
+            modelodia.addRow(new Object[]{
+                dia.getId(), // ID
+                cliente != null ? cliente.getNombreCompleto() : "N/A", // Cliente
+                dia.getFechaHora().toLocalTime(), // Hora
+                dia.getPreferencias(), // Preferencias
+                "$" + String.format("%.2f", dia.getMonto()), // Monto
+                dia.getEstado() // Estado
+            });
+        }
+
+        int cantidadResultados = modelodia.getRowCount();
+        if( cantidadResultados == 0 ){
             JOptionPane.showMessageDialog(this,
-                "El dia seleccionado no cuenta con sesiones",
-                "Sin resultados",
+              "El dia seleccionado no cuenta con sesiones",
+              "Sin resultados",
               JOptionPane.INFORMATION_MESSAGE);
-        } else {
-          JOptionPane.showMessageDialog(this,
-                "Se encontraron sesiones",
-                "Búsqueda exitosa",
-                JOptionPane.INFORMATION_MESSAGE);
+        } else{
+            JOptionPane.showMessageDialog(this,
+              "Se encontraron sesiones",
+              "Búsqueda exitosa",
+              JOptionPane.INFORMATION_MESSAGE);
         }    }//GEN-LAST:event_BotonBuscarDiaActionPerformed
 
     private void BotonGenerarInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGenerarInformeActionPerformed
-        
+
         if( jDateChooser10.getDate() == null ){
             JOptionPane.showMessageDialog(this,
               "Por favor seleccione una fecha",
@@ -2265,49 +2256,46 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         modeloinfo.setRowCount(0);
         ArrayList<DiaDeSpa> diasDeSpa = DiaDeSpaData.buscarPorDia(fecha);
 
+        // Obtener ingresos
+        Double ingresoTotalDiaSpa = 0.0;
+
         for( DiaDeSpa dia : diasDeSpa ){
             Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
 
+            ingresoTotalDiaSpa += dia.getMonto();
+
             modeloinfo.addRow(new Object[]{
-                dia.getId(), // ID
-                cliente != null ? cliente.getNombreCompleto() : "N/A", // Cliente
-                dia.getFechaHora().toLocalTime(), // Hora
-                dia.getPreferencias(), // Preferencias
-                "$" + String.format("%.2f", dia.getMonto()), // Monto
-                dia.getEstado() // Estado
+                dia.getId(),
+                cliente != null ? cliente.getNombreCompleto() : "N/A",
+                dia.getFechaHora().toLocalTime(),
+                dia.getPreferencias(),
+                "$" + String.format("%.2f", dia.getMonto()),
+                dia.getEstado()
             });
         }
 
         int diasSpa = modeloinfo.getRowCount();
         numDiasDeSpa.setText(String.valueOf(diasSpa));
 
+        numIngresosDiaSpa.setText("$" + String.format("%.2f", ingresoTotalDiaSpa));
+
         // Obtener sesiones totales
-//        int sesionesPorDia = modeloinfo.get
         int numSesiones = 0;
 
         for( int i = 0 ; i < modeloinfo.getRowCount() ; i++ ){
-            Object id = modeloinfo.getValueAt(i, 0);          // Columna "ID"
-            Object cliente = modeloinfo.getValueAt(i, 1);     // Columna "Cliente"
-            Object hora = modeloinfo.getValueAt(i, 2);        // Columna "Hora"
-            Object preferencias = modeloinfo.getValueAt(i, 3); // Columna "Preferencias"
-            Object monto = modeloinfo.getValueAt(i, 4);       // Columna "Monto"
-            Object estado = modeloinfo.getValueAt(i, 5);      // Columna "Estado"
+            Object id = modeloinfo.getValueAt(i, 0);
 
-            // Ejemplo de subconsulta usando el ID
             if( id != null ){
 
                 ArrayList<Sesion> sesiones = SesionData.obtenerPorDiaSpa((int) id);
                 numSesiones += sesiones.size();
 
-                System.out.println("Procesando fila " + i + " con ID: " + id);
-                System.out.println("Cantidad sesiones: " + sesiones.size());
             }
         }
 
         numTotalSeciones.setText(String.valueOf(numSesiones));
-             
-    }//GEN-LAST:event_BotonGenerarInformeActionPerformed
 
+    }//GEN-LAST:event_BotonGenerarInformeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonBuscarDia;
@@ -2451,13 +2439,11 @@ public class ReportesPanel2 extends javax.swing.JPanel {
     private javax.swing.JSpinner timeChooser4;
     // End of variables declaration//GEN-END:variables
 
-
-    
     // PANEL DE SCROCLL RANKINGS //
-    private JPanel crearItemRanking(int numero, String nombre, String tipo, int sesiones, double ingresos) {
-        JPanel panel = new JPanel() {
+    private JPanel crearItemRanking(int numero, String nombre, String tipo, int sesiones, double ingresos){
+        JPanel panel = new JPanel(){
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g){
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -2474,9 +2460,9 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         panel.setPreferredSize(new Dimension(680, 70));
         panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70));
 
-        JLabel lblNumero = new JLabel(String.valueOf(numero)) {
+        JLabel lblNumero = new JLabel(String.valueOf(numero)){
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g){
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -2521,30 +2507,33 @@ public class ReportesPanel2 extends javax.swing.JPanel {
 
         return panel;
     }
+
     // TRATAMIENTOS TIPO //
     private void cargarComboTipoTrata(){
         ComboTipoTrata.removeAllItems();
         ComboTipoTrata.addItem("Todos");
 
         ArrayList<String> tipos = ReportesData.obtenerTiposTratamiento();
-        for(String tipo : tipos){
+        for( String tipo : tipos ){
             ComboTipoTrata.addItem(tipo);
         }
     }
+
     private void cargarComboEstadoTrata(){
         ComboEstadoTrata.removeAllItems();
         ComboEstadoTrata.addItem("Todos");
 
         ArrayList<String> estados = ReportesData.obtenerEstados();
-        for(String estado : estados){
+        for( String estado : estados ){
             ComboEstadoTrata.addItem(estado);
         }
     }
-    private void cargarTodosLosTratamientos() {
+
+    private void cargarTodosLosTratamientos(){
         modelo.setRowCount(0);
         ArrayList<Tratamiento> tratamientos = TratamientoData.obtenerTodos();
 
-        for (Tratamiento t : tratamientos) {
+        for( Tratamiento t : tratamientos ){
             modelo.addRow(new Object[]{
                 t.getIdTratamiento(),
                 t.getNombre(),
@@ -2555,123 +2544,127 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             });
         }
     }
+
     // INSTALACIONES DISPONIBLES //
     private void cargarTodasLasIntalaciones(){
-        
+
         modelo2.setRowCount(0);
-    
+
         ArrayList<Instalacion> instalaciones = InstalacionData.obtenerTodas();
 
-        for(Instalacion i : instalaciones){
+        for( Instalacion i : instalaciones ){
             modelo2.addRow(new Object[]{
                 i.getIdInstalacion(),
                 i.getNombre(),
                 i.getDetalleUso(),
                 "$" + String.format("%.2f", i.getPrecio30m()),
-                "$" + String.format("%.2f", i.getPrecio30m() * 2), 
-                i.isEstado()? "Activo" : "Inactivo"
+                "$" + String.format("%.2f", i.getPrecio30m() * 2),
+                i.isEstado() ? "Activo" : "Inactivo"
             });
         }
         int[] anchos = {50, 120, 250, 80, 80, 70};
-        for(int i = 0; i < anchos.length; i++){
+        for( int i = 0 ; i < anchos.length ; i++ ){
             jTableInstalaciones.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
-        
+
     }
+
     // TABLAS BONITAS //
     private void cargarTablasBonitas(){
-        
+
         jTableTratamientos.setModel(modelo);
         jTableInstalaciones.setModel(modelo2);
         jTableMasajistasPorEspecialidad.setModel(modelo3);
         jTableMasajistasDisponibles.setModel(modelo4);
         jTableDiaSpa.setModel(modelodia);
         jTableInformeSpa.setModel(modeloinfo);
-        
+
         JTableHeader header = jTableTratamientos.getTableHeader();
         header.setBackground(new Color(21, 104, 195));
         header.setForeground(Color.WHITE);
         header.setOpaque(true);
         header.setFont(header.getFont().deriveFont(Font.BOLD));
-        
+
         JTableHeader header2 = jTableInstalaciones.getTableHeader();
         header2.setBackground(new Color(21, 104, 195));
         header2.setForeground(Color.WHITE);
         header2.setOpaque(true);
         header2.setFont(header2.getFont().deriveFont(Font.BOLD));
-        
+
         JTableHeader header3 = jTableMasajistasPorEspecialidad.getTableHeader();
         header3.setBackground(new Color(21, 104, 195));
         header3.setForeground(Color.WHITE);
         header3.setOpaque(true);
         header3.setFont(header2.getFont().deriveFont(Font.BOLD));
-        
+
         JTableHeader header4 = jTableMasajistasDisponibles.getTableHeader();
         header4.setBackground(new Color(21, 104, 195));
         header4.setForeground(Color.WHITE);
         header4.setOpaque(true);
         header4.setFont(header2.getFont().deriveFont(Font.BOLD));
-        
+
         JTableHeader header5 = jTableDiaSpa.getTableHeader();
         header5.setBackground(new Color(21, 104, 195));
         header5.setForeground(Color.WHITE);
         header5.setOpaque(true);
         header5.setFont(header2.getFont().deriveFont(Font.BOLD));
-        
+
         JTableHeader header6 = jTableInformeSpa.getTableHeader();
         header6.setBackground(new Color(21, 104, 195));
         header6.setForeground(Color.WHITE);
         header6.setOpaque(true);
         header6.setFont(header2.getFont().deriveFont(Font.BOLD));
-        
+
     }
+
     // MASAJISTAS POR ESPECIALIDAD //
     private void configurarPaneles(){
-    
+
         jPanelFacial.setOpaque(false);
-        jPanelFacial.setBackground(new java.awt.Color(52, 152, 219)); 
+        jPanelFacial.setBackground(new java.awt.Color(52, 152, 219));
         jPanelCorporal.setOpaque(false);
-        jPanelCorporal.setBackground(new java.awt.Color(46, 204, 113)); 
+        jPanelCorporal.setBackground(new java.awt.Color(46, 204, 113));
         jPanelRelajacion.setOpaque(false);
         jPanelRelajacion.setBackground(new java.awt.Color(231, 76, 60));
         jPanelEstetico.setOpaque(false);
         jPanelEstetico.setBackground(new java.awt.Color(26, 188, 156));
-        
+
         jPanelTotalSesiones.setOpaque(false);
-        jPanelTotalSesiones.setBackground(new java.awt.Color(52, 152, 219)); 
+        jPanelTotalSesiones.setBackground(new java.awt.Color(52, 152, 219));
         jPanelTratamientosUnicos.setOpaque(false);
-        jPanelTratamientosUnicos.setBackground(new java.awt.Color(231, 76, 60)); 
+        jPanelTratamientosUnicos.setBackground(new java.awt.Color(231, 76, 60));
         jPanelIngresosTratamientosSoli.setOpaque(false);
         jPanelIngresosTratamientosSoli.setBackground(new java.awt.Color(26, 188, 156));
-        
+
         jPanel24.setOpaque(false);
-        jPanel24.setBackground(new java.awt.Color(52, 152, 219)); 
+        jPanel24.setBackground(new java.awt.Color(52, 152, 219));
         jPanelTratamientosUnicos1.setOpaque(false);
-        jPanelTratamientosUnicos1.setBackground(new java.awt.Color(231, 76, 60)); 
+        jPanelTratamientosUnicos1.setBackground(new java.awt.Color(231, 76, 60));
         jPanelIngresosTratamientosSoli1.setOpaque(false);
         jPanelIngresosTratamientosSoli1.setBackground(new java.awt.Color(26, 188, 156));
-        
+
         jPanelTotalDiasSpa.setOpaque(false);
-        jPanelTotalDiasSpa.setBackground(new java.awt.Color(52, 152, 219)); 
+        jPanelTotalDiasSpa.setBackground(new java.awt.Color(52, 152, 219));
         jPanelTotalSesiones1.setOpaque(false);
-        jPanelTotalSesiones1.setBackground(new java.awt.Color(231, 76, 60)); 
+        jPanelTotalSesiones1.setBackground(new java.awt.Color(231, 76, 60));
         jPanelIngresosDiaSpa.setOpaque(false);
         jPanelIngresosDiaSpa.setBackground(new java.awt.Color(26, 188, 156));
-        
+
     }
+
     private void cargarPanelesConMasajistas(){
-    
+
         ArrayList<Masajista> masajistas = MasajistaData.obtenerActivos();
-    
+
         int faciales = 0;
         int corporales = 0;
         int relajaciones = 0;
         int esteticos = 0;
 
-        for (Masajista m : masajistas) {
+        for( Masajista m : masajistas ){
             String especialidad = m.getEspecialidad();
-            if (especialidad != null) {
-                switch (especialidad.toLowerCase()) {
+            if( especialidad != null ){
+                switch( especialidad.toLowerCase() ){
                     case "facial":
                     case "faciales":
                         faciales++;
@@ -2698,27 +2691,30 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         numCorporales.setText(String.valueOf(corporales));
         numRelajaciones.setText(String.valueOf(relajaciones));
         numEsteticos.setText(String.valueOf(esteticos));
-    } 
+    }
+
     private void cargarComboEspecialidad(){
         ComboEspecialidad.removeAllItems();
         ComboEspecialidad.addItem("Todos");
         ArrayList<String> Especialidades = ReportesData.obtenerEspecialidades();
-        for(String tipo : Especialidades){
+        for( String tipo : Especialidades ){
             ComboEspecialidad.addItem(tipo);
         }
-        
+
     }
+
     private void cargarMasajistaEstado(){
         ComboEstadoMasajista.removeAllItems();
         ComboEstadoMasajista.addItem("Todos");
         ComboEstadoMasajista.addItem("Activo");
         ComboEstadoMasajista.addItem("Inactivo");
     }
-    private void cargarTodosLosMasajistas() {
+
+    private void cargarTodosLosMasajistas(){
         modelo3.setRowCount(0);
         ArrayList<Masajista> masajistas = MasajistaData.obtenerTodos();
 
-        for (Masajista m : masajistas) {
+        for( Masajista m : masajistas ){
             modelo3.addRow(new Object[]{
                 m.getId(),
                 m.getNombreCompleto(),
@@ -2728,114 +2724,136 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             });
         }
     }
-    
+
     //Dias de Spa//
     private void cargarDiasdeSpa(){
-    modeloinfo.setRowCount(0);
-    modelodia.setRowCount(0);
+        modeloinfo.setRowCount(0);
+        modelodia.setRowCount(0);
 
         ArrayList<DiaDeSpa> diasDeSpa = DiaDeSpaData.obtenerTodos();
-            for (DiaDeSpa dia : diasDeSpa) {
-                Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
-    
-                modelodia.addRow(new Object[]{
-                    dia.getId(),                                    // ID
-                    cliente != null ? cliente.getNombreCompleto() : "N/A",  // Cliente
-                    dia.getFechaHora().toLocalTime(),              // Hora
-                    dia.getPreferencias(),                          // Preferencias
-                    "$" + String.format("%.2f", dia.getMonto()),   // Monto
-                    dia.getEstado()                                 // Estado
-                });
-            }
-            for (DiaDeSpa dia : diasDeSpa) {
-                Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
-    
-                modeloinfo.addRow(new Object[]{
-                    dia.getId(),                                    // ID
-                    cliente != null ? cliente.getNombreCompleto() : "N/A",  // Cliente
-                    dia.getFechaHora().toLocalTime(),              // Hora
-                    dia.getPreferencias(),                          // Preferencias
-                    "$" + String.format("%.2f", dia.getMonto()),   // Monto
-                    dia.getEstado()                                 // Estado
-                });
-            }
+        for( DiaDeSpa dia : diasDeSpa ){
+            Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
+
+            modelodia.addRow(new Object[]{
+                dia.getId(), // ID
+                cliente != null ? cliente.getNombreCompleto() : "N/A", // Cliente
+                dia.getFechaHora().toLocalTime(), // Hora
+                dia.getPreferencias(), // Preferencias
+                "$" + String.format("%.2f", dia.getMonto()), // Monto
+                dia.getEstado() // Estado
+            });
+        }
+        for( DiaDeSpa dia : diasDeSpa ){
+            Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
+
+            modeloinfo.addRow(new Object[]{
+                dia.getId(), // ID
+                cliente != null ? cliente.getNombreCompleto() : "N/A", // Cliente
+                dia.getFechaHora().toLocalTime(), // Hora
+                dia.getPreferencias(), // Preferencias
+                "$" + String.format("%.2f", dia.getMonto()), // Monto
+                dia.getEstado() // Estado
+            });
+        }
     }
+
     private void cargarDiasdeSpa2(){
-    modeloinfo.setRowCount(0);
+        modeloinfo.setRowCount(0);
+
+        // Obtener ingresos
+        Double ingresoTotalDiaSpa = 0.0;
 
         ArrayList<DiaDeSpa> diasDeSpa = DiaDeSpaData.obtenerTodos();
-            for (DiaDeSpa dia : diasDeSpa) {
-                Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
-    
-                modeloinfo.addRow(new Object[]{
-                    dia.getId(),                                    // ID
-                    cliente != null ? cliente.getNombreCompleto() : "N/A",  // Cliente
-                    dia.getFechaHora().toLocalTime(),              // Hora
-                    dia.getPreferencias(),                          // Preferencias
-                    "$" + String.format("%.2f", dia.getMonto()),   // Monto
-                    dia.getEstado()                                 // Estado
-                });
+        for( DiaDeSpa dia : diasDeSpa ){
+            Cliente cliente = ClienteData.obtenerPorId(dia.getIdCliente());
+
+            ingresoTotalDiaSpa += dia.getMonto();
+
+            modeloinfo.addRow(new Object[]{
+                dia.getId(),
+                cliente != null ? cliente.getNombreCompleto() : "N/A",
+                dia.getFechaHora().toLocalTime(),
+                dia.getPreferencias(),
+                "$" + String.format("%.2f", dia.getMonto()),
+                dia.getEstado()
+            });
+        }
+        int diasSpa = modeloinfo.getRowCount();
+        numDiasDeSpa.setText(String.valueOf(diasSpa));
+
+        numIngresosDiaSpa.setText("$" + String.format("%.2f", ingresoTotalDiaSpa));
+
+        int numSesiones = 0;
+
+        for( int i = 0 ; i < modeloinfo.getRowCount() ; i++ ){
+            Object id = modeloinfo.getValueAt(i, 0);
+
+            if( id != null ){
+
+                ArrayList<Sesion> sesiones = SesionData.obtenerPorDiaSpa((int) id);
+                numSesiones += sesiones.size();
+
             }
-        int r = modelodia.getRowCount();
-        numDiasDeSpa.setText(String.valueOf(r));
+        }
+
+        numTotalSeciones.setText(String.valueOf(numSesiones));
     }
-    
-    
-    
-    
-    
+
     // MASAJISTAS DISPONIBLES //
     private void cargarTodasLasMasajistas(){
-        
+
         modelo4.setRowCount(0);
 
         ArrayList<Masajista> masajistas = MasajistaData.obtenerTodos();
 
-        for(Masajista m : masajistas){
+        for( Masajista m : masajistas ){
             modelo4.addRow(new Object[]{
-                m.getId(),   
+                m.getId(),
                 m.getNombreCompleto(),
-                m.getTelefono(),  
+                m.getTelefono(),
                 m.getEspecialidad(),
                 0,
-                m.getEstado() ? "Activo" : "Inactivo" 
+                m.getEstado() ? "Activo" : "Inactivo"
             });
         }
         int[] anchos = {50, 180, 120, 150, 100, 80};
-        for(int i = 0; i < anchos.length && i < jTableMasajistasDisponibles.getColumnCount(); i++){
+        for( int i = 0 ; i < anchos.length && i < jTableMasajistasDisponibles.getColumnCount() ; i++ ){
             jTableMasajistasDisponibles.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
-        
+
     }
+
     // Tratamientos mas Solicitados //
-    private void configurarPanelRanking() {
+    private void configurarPanelRanking(){
         panelRankingContainer.setLayout(new BoxLayout(panelRankingContainer, BoxLayout.Y_AXIS));
         panelRankingContainer.setBackground(Color.WHITE);
 
         scrollRanking.setBorder(null);
         scrollRanking.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     }
-    private void cargarRankingTratamientos(ArrayList<Object[]> ranking) {
+
+    private void cargarRankingTratamientos(ArrayList<Object[]> ranking){
         panelRankingContainer.removeAll();
 
         int posicion = 1;
-        for (Object[] datos : ranking) {
+        for( Object[] datos : ranking ){
             JPanel itemPanel = crearItemRanking(
-                posicion,
-                (String) datos[1], 
-                (String) datos[2],
-                (int) datos[3],   
-                (double) datos[4] 
+              posicion,
+              (String) datos[1],
+              (String) datos[2],
+              (int) datos[3],
+              (double) datos[4]
             );
             panelRankingContainer.add(itemPanel);
-            panelRankingContainer.add(Box.createRigidArea(new Dimension(0, 8))); 
+            panelRankingContainer.add(Box.createRigidArea(new Dimension(0, 8)));
             posicion++;
         }
 
         panelRankingContainer.revalidate();
         panelRankingContainer.repaint();
     }
-    private void cargarRankingInicial() {
+
+    private void cargarRankingInicial(){
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar calDesde = Calendar.getInstance();
         calDesde.set(2000, Calendar.JANUARY, 1, 0, 0, 0);
@@ -2848,12 +2866,13 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         cargarRankingTratamientos(ranking);
         actualizarEstadisticasGenerales(ranking);
     }
-    private void actualizarEstadisticasGenerales(ArrayList<Object[]> ranking) {
+
+    private void actualizarEstadisticasGenerales(ArrayList<Object[]> ranking){
         int totalSesiones = 0;
         double ingresosTotal = 0.0;
         int tratamientosUnicos = ranking.size();
 
-        for (Object[] datos : ranking) {
+        for( Object[] datos : ranking ){
             totalSesiones += (int) datos[3];
             ingresosTotal += (double) datos[4];
         }
@@ -2862,6 +2881,7 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         numCorporales1.setText(String.valueOf(tratamientosUnicos));
         numEsteticos1.setText(String.format("$%,.0f", ingresosTotal));
     }
+
     // Ranking de Instalaciones //
     private void cargarRankingInicialInstalaciones(){
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -2878,32 +2898,34 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         ArrayList<Object[]> ranking = ReportesData.obtenerRankingInstalaciones(fechaDesde, fechaHasta);
         cargarRankingInstalaciones(ranking);
         actualizarEstadisticasInstalacionesGenerales(ranking);
-    
+
     }
-    private void cargarRankingInstalaciones(ArrayList<Object[]> ranking) {
+
+    private void cargarRankingInstalaciones(ArrayList<Object[]> ranking){
         panelRankingContainerInstalacion.removeAll();
         int posicion = 1;
-        for (Object[] datos : ranking) {
+        for( Object[] datos : ranking ){
             JPanel itemPanel = crearItemRanking(
-                posicion,
-                (String) datos[1], 
-                (String) datos[2],
-                (int) datos[3],   
-                (double) datos[4]   
+              posicion,
+              (String) datos[1],
+              (String) datos[2],
+              (int) datos[3],
+              (double) datos[4]
             );
             panelRankingContainerInstalacion.add(itemPanel);
-            panelRankingContainerInstalacion.add(Box.createRigidArea(new Dimension(0, 8))); 
+            panelRankingContainerInstalacion.add(Box.createRigidArea(new Dimension(0, 8)));
             posicion++;
         }
         panelRankingContainerInstalacion.revalidate();
         panelRankingContainerInstalacion.repaint();
     }
-    private void actualizarEstadisticasInstalacionesGenerales(ArrayList<Object[]> ranking) {
+
+    private void actualizarEstadisticasInstalacionesGenerales(ArrayList<Object[]> ranking){
         int totalSesiones = 0;
         double ingresosTotal = 0.0;
         int instalacionesActivas = ranking.size();
 
-        for (Object[] datos : ranking) {
+        for( Object[] datos : ranking ){
             totalSesiones += (int) datos[3];
             ingresosTotal += (double) datos[4];
         }
@@ -2912,7 +2934,8 @@ public class ReportesPanel2 extends javax.swing.JPanel {
         numInstalacionesActivas2.setText(String.valueOf(instalacionesActivas));
         numIngresosInstalaciones.setText(String.format("$%,.0f", ingresosTotal));
     }
-    private void configurarPanelRankingInstalaciones() {
+
+    private void configurarPanelRankingInstalaciones(){
         panelRankingContainerInstalacion.setLayout(new BoxLayout(panelRankingContainerInstalacion, BoxLayout.Y_AXIS));
         panelRankingContainerInstalacion.setBackground(Color.WHITE);
         scrollRankingInstalaciones.setBorder(null);
@@ -2926,4 +2949,4 @@ public class ReportesPanel2 extends javax.swing.JPanel {
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-*/
+ */

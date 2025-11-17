@@ -1,26 +1,15 @@
-
 package Views.Principal;
 
 import Persistencia.EstadisticasData;
-import Views.Clientes.ClientesPanel;
 import Views.DashboardMenu;
-import Views.DiasSpa.DiasSpaPanel;
-import Views.Instalaciones.InstalacionesPanel;
-import Views.Masajistas.MasajistasPanel;
-import Views.Tratamientos.TratamientoPanel;
-import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import javax.swing.*;
 
+public class PrincipalPanel extends javax.swing.JPanel{
 
-public class PrincipalPanel extends javax.swing.JPanel {
-    
     private JLabel lblClientesActivos;
     private JLabel lblMasajistasDisponibles;
     private JLabel lblSesionesDelDia;
@@ -29,22 +18,21 @@ public class PrincipalPanel extends javax.swing.JPanel {
     private JLabel lblTratamientosActivos;
     private JLabel lblIngresosDelMes;
 
-    public PrincipalPanel() {
+    public PrincipalPanel(){
         initComponents();
-        
+
         configurarPrincipal();
         actualizarEstadisticas();
     }
-    
-    
+
     private void configurarPrincipal(){
 
         PanelClientes.setOpaque(false);
-        PanelClientes.setBackground(new java.awt.Color(52, 152, 219)); 
+        PanelClientes.setBackground(new java.awt.Color(52, 152, 219));
         PanelMasajistas.setOpaque(false);
-        PanelMasajistas.setBackground(new java.awt.Color(46, 204, 113)); 
+        PanelMasajistas.setBackground(new java.awt.Color(46, 204, 113));
         PanelSesiones.setOpaque(false);
-        PanelSesiones.setBackground(new java.awt.Color(155, 89, 182)); 
+        PanelSesiones.setBackground(new java.awt.Color(155, 89, 182));
         PanelDiaSpa.setOpaque(false);
         PanelDiaSpa.setBackground(new java.awt.Color(241, 196, 15));
         PanelInstalaciones.setOpaque(false);
@@ -55,7 +43,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
         PanelIngresos.setBackground(new java.awt.Color(26, 188, 156));
         PanelRecargar.setOpaque(false);
         PanelRecargar.setBackground(new java.awt.Color(52, 152, 219));
-        
+
         jPanelicono.setOpaque(false);
         jPanelicono.setBackground(new java.awt.Color(0, 0, 0, 60));
         jPanelicono1.setOpaque(false);
@@ -70,11 +58,8 @@ public class PrincipalPanel extends javax.swing.JPanel {
         jPanelicono5.setBackground(new java.awt.Color(0, 0, 0, 60));
         jPanelicono6.setOpaque(false);
         jPanelicono6.setBackground(new java.awt.Color(0, 0, 0, 60));
-        
-        
+
     }
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -350,7 +335,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
         jPanel1.setForeground(new java.awt.Color(255, 51, 51));
         jPanel1.setToolTipText("");
 
-        PanelClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PanelClientesMouseClicked(evt);
@@ -418,7 +403,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
-        PanelMasajistas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelMasajistas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelMasajistas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PanelMasajistasMouseClicked(evt);
@@ -481,7 +466,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addGap(27, 27, 27))
         );
 
-        PanelSesiones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelSesiones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelSesiones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PanelSesionesMouseClicked(evt);
@@ -543,7 +528,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addGap(23, 23, 23))
         );
 
-        PanelDiaSpa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelDiaSpa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelDiaSpa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PanelDiaSpaMouseClicked(evt);
@@ -605,7 +590,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addGap(23, 23, 23))
         );
 
-        PanelInstalaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelInstalaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelInstalaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PanelInstalacionesMouseClicked(evt);
@@ -667,7 +652,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addGap(26, 26, 26))
         );
 
-        PanelTratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelTratamientos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelTratamientos.setPreferredSize(new java.awt.Dimension(145, 196));
         PanelTratamientos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -730,7 +715,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addGap(23, 23, 23))
         );
 
-        PanelRecargar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelRecargar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         PanelRecargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 PanelRecargarMouseClicked(evt);
@@ -762,6 +747,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 PanelIngresosMouseClicked(evt);
             }
         });
+        PanelIngresos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelicono6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -784,39 +770,16 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
 
+        PanelIngresos.add(jPanelicono6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 16, -1, -1));
+
         jLabel16.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel16.setText("Ingresos Mes");
+        PanelIngresos.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 90, -1, -1));
 
-        numIngresoMes.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
+        numIngresoMes.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         numIngresoMes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numIngresoMes.setText("0");
-
-        javax.swing.GroupLayout PanelIngresosLayout = new javax.swing.GroupLayout(PanelIngresos);
-        PanelIngresos.setLayout(PanelIngresosLayout);
-        PanelIngresosLayout.setHorizontalGroup(
-            PanelIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelIngresosLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jPanelicono6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelIngresosLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(PanelIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(numIngresoMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(37, 37, 37))
-        );
-        PanelIngresosLayout.setVerticalGroup(
-            PanelIngresosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelIngresosLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jPanelicono6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(numIngresoMes)
-                .addGap(19, 19, 19))
-        );
+        PanelIngresos.add(numIngresoMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 139, 146, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -865,7 +828,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PanelInstalaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelTratamientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelTratamientos, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                     .addComponent(PanelIngresos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelRecargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -884,24 +847,24 @@ public class PrincipalPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PanelRecargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelRecargarMouseClicked
-        
+
         animarIconoActualizar();
-    
-        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
             @Override
-            protected Void doInBackground() throws Exception {
+            protected Void doInBackground() throws Exception{
                 actualizarEstadisticas();
                 return null;
             }
 
             @Override
-            protected void done() {
-                // Mensaje 
+            protected void done(){
+                // Mensaje
             }
         };
 
         worker.execute();
-        
+
     }//GEN-LAST:event_PanelRecargarMouseClicked
 
     private void PanelClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelClientesMouseClicked
@@ -930,7 +893,6 @@ public class PrincipalPanel extends javax.swing.JPanel {
 
     private void PanelIngresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelIngresosMouseClicked
     }//GEN-LAST:event_PanelIngresosMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelClientes;
@@ -975,10 +937,10 @@ public class PrincipalPanel extends javax.swing.JPanel {
     private javax.swing.JLabel numTratamientos;
     // End of variables declaration//GEN-END:variables
 
-    public void actualizarEstadisticas() {
+    public void actualizarEstadisticas(){
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
-        try {
+        try{
             int clientesActivos = EstadisticasData.obtenerTotalClientesActivos();
             int masajistasDisponibles = EstadisticasData.obtenerTotalMasajistasDisponibles();
             int sesionesDelDia = EstadisticasData.obtenerSesionesDelDia();
@@ -997,21 +959,18 @@ public class PrincipalPanel extends javax.swing.JPanel {
 
             System.out.println("Estadisticas actualizadas correctamente");
 
-        } catch (Exception e) {
+        } catch( Exception e ){
             System.err.println("Error actualizando estadisticas: " + e.getMessage());
             JOptionPane.showMessageDialog(this,
-                "Error al cargar las estadísticas.\nVerifique la conexion a la base de datos.",
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-        } finally {
+              "Error al cargar las estadísticas.\nVerifique la conexion a la base de datos.",
+              "Error",
+              JOptionPane.ERROR_MESSAGE);
+        } finally{
             setCursor(Cursor.getDefaultCursor());
         }
     }
-    
-    
-    
-    
-    private void animarIconoActualizar() {
+
+    private void animarIconoActualizar(){
         final ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/img/hd/iconohd-Actualizar.png"));
         final Color colorOriginal = PanelRecargar.getBackground();
         final Color colorDestello = colorOriginal.brighter();
@@ -1019,13 +978,13 @@ public class PrincipalPanel extends javax.swing.JPanel {
         final int pasos = 85;
         final int delay = duracion / pasos;
 
-        Timer timer = new Timer(delay, new ActionListener() {
+        Timer timer = new Timer(delay, new ActionListener(){
             int contador = 0;
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if (contador >= pasos) {
-                    ((Timer)e.getSource()).stop();
+            public void actionPerformed(ActionEvent e){
+                if( contador >= pasos ){
+                    ((Timer) e.getSource()).stop();
                     jLabel10.setIcon(iconoOriginal);
                     PanelRecargar.setBackground(colorOriginal);
                     return;
@@ -1038,10 +997,10 @@ public class PrincipalPanel extends javax.swing.JPanel {
 
                 // Efecto de color
                 float ratio = (float) contador / pasos;
-                if (contador < pasos / 2) {
+                if( contador < pasos / 2 ){
                     ratio = ratio * 2;
                     PanelRecargar.setBackground(interpolarColor(colorOriginal, colorDestello, ratio));
-                } else {
+                } else{
                     ratio = (ratio - 0.5f) * 2;
                     PanelRecargar.setBackground(interpolarColor(colorDestello, colorOriginal, ratio));
                 }
@@ -1049,7 +1008,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 contador++;
             }
 
-            private Color interpolarColor(Color c1, Color c2, float ratio) {
+            private Color interpolarColor(Color c1, Color c2, float ratio){
                 int r = (int) (c1.getRed() + (c2.getRed() - c1.getRed()) * ratio);
                 int g = (int) (c1.getGreen() + (c2.getGreen() - c1.getGreen()) * ratio);
                 int b = (int) (c1.getBlue() + (c2.getBlue() - c1.getBlue()) * ratio);
@@ -1060,8 +1019,8 @@ public class PrincipalPanel extends javax.swing.JPanel {
         timer.start();
     }
 
-    private BufferedImage rotarImagen(Image imagen, double angulo) {
-        
+    private BufferedImage rotarImagen(Image imagen, double angulo){
+
         int ancho = imagen.getWidth(null);
         int alto = imagen.getHeight(null);
         BufferedImage bufferedImage = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_ARGB);
@@ -1072,33 +1031,33 @@ public class PrincipalPanel extends javax.swing.JPanel {
         g2d.drawImage(imagen, 0, 0, null);
         g2d.dispose();
         return bufferedImage;
-        
+
     }
-    
-    private void animarYNavegar(JPanel panel, JPanel destino) {
+
+    private void animarYNavegar(JPanel panel, JPanel destino){
         final Color colorOriginal = panel.getBackground();
         final Color colorDestello = colorOriginal.brighter();
         final int duracion = 300;
         final int pasos = 10;
         final int delay = duracion / pasos;
 
-        Timer timer = new Timer(delay, new ActionListener() {
+        Timer timer = new Timer(delay, new ActionListener(){
             int contador = 0;
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if (contador >= pasos) {
-                    ((Timer)e.getSource()).stop();
+            public void actionPerformed(ActionEvent e){
+                if( contador >= pasos ){
+                    ((Timer) e.getSource()).stop();
                     panel.setBackground(colorOriginal);
                     DashboardMenu.ShowJPanel(destino);
                     return;
                 }
 
                 float ratio = (float) contador / pasos;
-                if (contador < pasos / 2) {
+                if( contador < pasos / 2 ){
                     ratio = ratio * 2;
                     panel.setBackground(interpolarColor(colorOriginal, colorDestello, ratio));
-                } else {
+                } else{
                     ratio = (ratio - 0.5f) * 2;
                     panel.setBackground(interpolarColor(colorDestello, colorOriginal, ratio));
                 }
@@ -1106,7 +1065,7 @@ public class PrincipalPanel extends javax.swing.JPanel {
                 contador++;
             }
 
-            private Color interpolarColor(Color c1, Color c2, float ratio) {
+            private Color interpolarColor(Color c1, Color c2, float ratio){
                 int r = (int) (c1.getRed() + (c2.getRed() - c1.getRed()) * ratio);
                 int g = (int) (c1.getGreen() + (c2.getGreen() - c1.getGreen()) * ratio);
                 int b = (int) (c1.getBlue() + (c2.getBlue() - c1.getBlue()) * ratio);
@@ -1125,4 +1084,4 @@ public class PrincipalPanel extends javax.swing.JPanel {
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-*/
+ */
